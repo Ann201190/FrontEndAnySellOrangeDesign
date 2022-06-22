@@ -1,0 +1,99 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div class="p-5 wow fadeInUp" style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22); "
+    data-wow-delay="0.2s">
+    <h1 style="text-align: center;">{{'DISCOUNT.DISCOUNTLIST.HEADER.List' | translate }}</h1>
+
+    <table class="table table-striped" style="background: white;">
+
+        <tbody>
+
+            <tr *ngFor="let discount of discounts; let i = index">
+
+                <td colspan="6">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+
+                                        <div style="margin-right:15px;">{{i+1}} </div>
+
+                                        <div>{{DiscountType[discount.discountType] | translate}}</div>
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <div style="width: 220px;">{{discount.name}}</div>
+                                                <div class=" text-primary">
+                                                    {{discount.value}}
+                                                    <i *ngIf="DiscountType[discount.discountType]==DiscountType[1]"
+                                                        class="fas fa-coins"></i>
+                                                    <i *ngIf="DiscountType[discount.discountType]==DiscountType[0]"
+                                                        class="fas fa-percent"></i>
+                                                </div>
+                                            </h5>
+
+                                            <div class="fst-italic" style="float: right;">
+                                                <div style="float: right;">
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="updateDiscount(discount.id)"><i
+                                                            class="fas fa-edit"></i></a>
+
+
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="moreDiscount(discount.id)" data-bs-toggle="modal"
+                                                        data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+
+                                                    <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal"
+                                                        (click)="deleteDiscount(discount)"><i
+                                                            class="fas fa-trash-alt"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel"> {{'DISCOUNT.DISCOUNTMODAL.HEADER.HeaderDelete' |
+                    translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+
+                <div> {{'DISCOUNT.DISCOUNTMODAL.BODY.Content' | translate }}
+                    <p>{{oneDiscount?.name}}?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'DISCOUNT.DISCOUNTMODAL.BUTTON_DISCOUNTMODEL.No' | translate }}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="idDiscount(idDiscountForDeleted)">
+                    {{'DISCOUNT.DISCOUNTMODAL.BUTTON_DISCOUNTMODEL.Yes' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

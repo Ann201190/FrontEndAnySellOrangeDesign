@@ -1,0 +1,154 @@
+<div class="container-xxl mb-5">
+
+    <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" *ngIf='role==roleType[1]' type="submit"
+        (click)="addProductDiscount()"><i class="fas fa-plus"></i>
+        {{'DISCOUNT.HEADER.Add' | translate }} </a>
+
+    <div class="row" style="margin-top: 48px;">
+        <div class="col-lg-4 text-center text-lg-start">
+
+
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="testimonial-item bg-transparent border rounded p-4"
+                    style="background-color: rgb(254, 161, 22) !important;">
+                    <h1>{{discount.name}}</h1>
+                    <hr>
+                    <div class="d-flex align-items-center">
+                        <div class="ps-3">
+                            <p><b>{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.ValueDiscount' | translate
+                                    }}</b>{{discount.value}}</p>
+                            <p><b>{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.TypeDiscount' | translate
+                                    }}</b>{{DiscountType[discount.discountType] | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-8 text-lg-start">
+
+
+
+
+
+
+
+
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8" style="padding: 5px;">
+                <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+
+                    <h1 style="text-align: center;">{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.List' | translate
+                        }}"{{discount.name}}"</h1>
+
+
+                    <table class="table table-striped" style="background: white;">
+                        <thead>
+                            <tr>
+                                <th scope="col">№</th>
+                                <th scope="col">{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.Name' | translate }}</th>
+                                <th scope="col">{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.Image' | translate }}</th>
+                                <th scope="col">{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.Barcode' | translate }}</th>
+                                <th scope="col">{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.Price' | translate }}</th>
+                                <th scope="col">{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.PriceWithDiscount' |
+                                    translate}}</th>
+                                <th scope="col">{{'DISCOUNT.PRODUCTWITHDISCOUNT.HEADER.Action' | translate }}</th>
+                            </tr>
+                            <div style="float: right" *ngIf="products.length >0">
+
+                                <label class="custom-big-checkbox">
+                                    <input type="checkbox" name="otk" id="otkritka" class="align-self-center"
+                                        [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"
+                                        (change)="fieldsChangeShowUrna()">
+                                    <span class="custom-big-checkbox__checkbox"></span>
+                                </label>
+
+
+                                <button class="btn btn-link" type="button" *ngIf='isShow'>
+                                    <img src="/assets/Urna.png" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                        alt="Del" height="25" width="25"></button>
+                            </div>
+
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let product of products; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{product.name}}</td>
+
+                                <td *ngIf="product?.image != null" style="text-align: center; "> <img id="image_1"
+                                        [src]="product.image" alt="Product" height="50px" width="50px" /></td>
+                                <td *ngIf="product?.image == null" style="text-align: center;"> <img id="image_2"
+                                        src="/assets/DefaultProduct.png" alt="Product" height="50px" width="50px" />
+                                </td>
+                                <td style="text-align: center;">{{product.barcode}}</td>
+                                <td style="text-align: center;">{{product.price}}</td>
+                                <td style="text-align: center;">{{product.priceWithDiscount}}</td>
+                                <td style="text-align: center;">
+
+                                    <label class="custom-big-checkbox">
+                                        <input type="checkbox" name="otk" id="otkritka" value="{{product.id}}"
+                                            class="align-self-center" [(ngModel)]="product.checked"
+                                            (change)="fieldsChangeShowUrna()">
+                                        <span class="custom-big-checkbox__checkbox"></span>
+                                    </label>
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    {{'DISCOUNT.PRODUCTWITHDISCOUNTMODAL.HEADER.HeaderDelete'| translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <div> {{'DISCOUNT.PRODUCTWITHDISCOUNTMODAL.BODY.Content' | translate }}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'DISCOUNT.PRODUCTWITHDISCOUNTMODAL.BUTTON_PRODUCTWITHDISCOUNTMODAL.No'
+                    |
+                    translate }}</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="
+                    deleteAllProducts()">
+                    {{'DISCOUNT.PRODUCTWITHDISCOUNTMODAL.BUTTON_PRODUCTWITHDISCOUNTMODAL.Yes' | translate
+                    }}</button>
+            </div>
+        </div>
+    </div>
+</div>

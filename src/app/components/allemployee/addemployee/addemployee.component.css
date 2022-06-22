@@ -1,0 +1,12 @@
+.card-img,
+.card-img-bottom,
+.card-img-top {
+    width: 30%; 
+}
+img {
+  display: block; 
+  margin-left: auto;
+  margin-right: auto 
+} 
+
+

@@ -1,0 +1,145 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="p-5 wow fadeInUp" style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22); "
+    data-wow-delay="0.2s">
+    <h1 style="text-align: center;">{{'PRODUCT.PRODUCTLIST.HEADER.List' | translate }}</h1>
+
+    <table class="table table-striped" style="background: white;">
+
+        <tbody>
+
+            <tr *ngFor="let product of products; let i = index">
+
+                <td colspan="6">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+
+                                        <div style="margin-right:15px;">{{i+1}} </div>
+                                        <img *ngIf="product?.image != null" class="flex-shrink-0 img-fluid rounded"
+                                            style="text-align: center; " id="image_1" [src]="product.image"
+                                            alt="Product" height="50px" width="50px" />
+                                        <img *ngIf="product?.image == null" class="flex-shrink-0 img-fluid rounded"
+                                            style="text-align: center;" id="image_2" src="/assets/DefaultProduct.png"
+                                            alt="Product" height="50px" width="50px" />
+
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <div style="width: 220px;">{{product?.name}}</div>
+                                                <div class=" text-primary">
+                                                    {{product?.price}}
+                                                    <i class="fas fa-coins"></i></div>
+                                            </h5>
+
+                                            <div class="fst-italic" style="float: right;">
+                                                <div style="float: right;">
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="updateProduct(product.id)"><i
+                                                            class="fas fa-edit"></i></a>
+
+
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="moreProduct(product)" data-bs-toggle="modal"
+                                                        data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+
+                                                    <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal"
+                                                        (click)="deleteProduct(product)"><i
+                                                            class="fas fa-trash-alt"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel"> {{'PRODUCT.PRODUCTMODAL.HEADER.HeaderDelete' |
+                    translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <p *ngIf="oneProduct?.image != null" style="text-align: center;"> <img
+                        style="display: block; margin-left: auto; margin-right: auto " id="image_1"
+                        [src]="oneProduct.image" alt="Product" height="150px" width="150px" /></p>
+                <p *ngIf="oneProduct?.image == null" style="text-align: center;"> <img
+                        style=" display: block; margin-left: auto; margin-right: auto " id="image_2"
+                        src="/assets/DefaultProduct.png" alt="Product" height="150px" width="150px" /></p>
+                <div> {{'PRODUCT.PRODUCTMODAL.BODY.Content' | translate }}
+                    <p>{{oneProduct?.name}}?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'PRODUCT.PRODUCTMODAL.BUTTON_PRODUCTMODAL.No' | translate }}</button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
+                    (click)="idProduct(idProductForDeleted)">
+                    {{'PRODUCT.PRODUCTMODAL.BUTTON_PRODUCTMODAL.Yes' | translate }}</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal More -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
+    style=" margin-top: 60px;">
+    <div class="modal-dialog" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moreModalLabel">{{'PRODUCT.PRODUCTMODAL.HEADER.HeaderMore' | translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p *ngIf="oneProduct?.image != null" style="margin: 0 auto ; width: 250px !important;">
+                    <img id="image_1" [src]="oneProduct.image" alt="Product" height="250px" width="250px" />
+                </p>
+                <p *ngIf="oneProduct?.image == null" style="margin: 0 auto ; width: 250px !important;">
+                    <img id="image_2" src="/assets/DefaultProduct.png" alt="Product" height="250px" width="250px" />
+                </p>
+
+                <p><b>{{'PRODUCT.PRODUCTMODAL.BODY.Name' | translate }}: </b>{{oneProduct?.name}}</p>
+                <p><b>{{'PRODUCT.PRODUCTMODAL.BODY.Price' | translate }}: </b>{{oneProduct?.price}}</p>
+                <p *ngIf="oneProduct.discount?.value != null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.Discount' | translate }}:
+                    </b>{{oneProduct.discount?.value}}</p>
+                <p *ngIf="oneProduct.discount?.value != null"> <b>{{'PRODUCT.PRODUCTMODAL.BODY.TypeDiscount' | translate
+                        }}: </b>{{DiscountType[index] | translate}}</p>
+                <p *ngIf="oneProduct.discount?.value != null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.PriceWithDiscount' |
+                        translate }}:
+                    </b>{{oneProduct?.priceWithDiscount}}</p>
+                <p><b>{{'PRODUCT.PRODUCTMODAL.BODY.Barcode' | translate }}: </b>{{oneProduct?.barcode}}</p>
+                <p *ngIf="oneProduct.productUnit!= null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.Unit' | translate }}:
+                    </b>{{productUnitType[oneProduct.productUnit] | translate}}</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'PRODUCT.PRODUCTMODAL.BUTTON_PRODUCTMODAL.Close' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

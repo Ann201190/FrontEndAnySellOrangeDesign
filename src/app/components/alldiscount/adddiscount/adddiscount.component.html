@@ -1,0 +1,67 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+    <!-- <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>-->
+    <h1 class="text-white mb-4">{{'DISCOUNT.DISCOUNTADD.HEADER.Header' | translate }}</h1>
+
+    <form [formGroup]="form" (ngSubmit)="addDiscount()">
+        <div class="row g-3">
+            <div class="col-12">
+                <label>{{'DISCOUNT.DISCOUNTADD.HEADER.Name' | translate }}</label>
+
+                <input id="name" type="text" name="name" formControlName="name" class="form-control"
+                    placeholder="{{'DISCOUNT.DISCOUNTADD.INPUT_DISCOUNTADD_PLACEHOLDER.Name' | translate}}">
+
+                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
+                        {{'DISCOUNT.DISCOUNTADD.SPAN.NameEmpty'
+                        | translate }}</span>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>{{'DISCOUNT.DISCOUNTADD.HEADER.Value' | translate }}</label>
+
+                <input id="value" type="number" name="value" formControlName="value" class="form-control"
+                    placeholder="{{'DISCOUNT.DISCOUNTADD.INPUT_DISCOUNTADD_PLACEHOLDER.Value' | translate}}">
+
+                <div *ngIf="form.controls['value'].invalid && form.controls['value'].touched">
+                    <span class="error-message" *ngIf="form.controls['value'].errors?.['required']">
+                        {{'DISCOUNT.DISCOUNTADD.SPAN.ValueEmpty'
+                        | translate }}</span>
+
+                    <span class="error-message" *ngIf="this.form.controls['value'].errors?.['min']">
+                        {{'DISCOUNT.DISCOUNTADD.SPAN.ValueMin'
+                        | translate }} </span>
+                </div>
+            </div>
+
+            <span class="error-message"
+                *ngIf="this.form.controls['discount'].value=='Percent'  && this.form.controls['value'].value>100">
+                {{'DISCOUNT.DISCOUNTADD.SPAN.ValueMax'
+                | translate }}</span>
+
+            <div class="col-12">
+                <label for="discount">{{'DISCOUNT.DISCOUNTADD.HEADER.DiscountType' | translate }}</label>
+                <select class="form-select" id="discount" formControlName="discount">
+                    <option *ngFor="let discount of discountType | keyvalue" [ngValue]="discount.value">
+                        {{discount.value}}</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                    [disabled]="form.invalid || form.disabled ||(this.form.controls['discount'].value=='Percent'  && this.form.controls['value'].value>100)"
+                    type="submit">{{'DISCOUNT.DISCOUNTADD.BUTTON_DISCOUNTADD.Save' | translate }}</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,81 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div class="container-xxl bg-dark hero-discount mb-5">
+    <div class="container my-5">
+        <div class="row" style="margin-top: 48px;">
+            <div class="col-lg-6 text-center text-lg-start">
+
+            </div>
+            <div class="col-lg-6 text-lg-start">
+
+                <div class="p-5 wow fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
+                    <h1 class="text-white mb-4"> {{'DISCOUNT.DISCOUNTEDIT.HEADER.Header' | translate }}</h1>
+
+                    <form [formGroup]="form" (ngSubmit)="editDiscount()">
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label>{{'DISCOUNT.DISCOUNTEDIT.HEADER.Name' | translate }}</label>
+
+                                <input id="name" type="text" name="name" formControlName="name" class="form-control"
+                                    placeholder="{{'DISCOUNT.DISCOUNTEDIT.INPUT_DISCOUNTEDIT_PLACEHOLDER.Name' | translate}}">
+
+                                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+                                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
+                                        {{'DISCOUNT.DISCOUNTEDIT.SPAN.NameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'DISCOUNT.DISCOUNTEDIT.HEADER.Value' | translate }}</label>
+
+                                <input id="value" type="number" name="value" formControlName="value"
+                                    class="form-control"
+                                    placeholder="{{'DISCOUNT.DISCOUNTEDIT.INPUT_DISCOUNTEDIT_PLACEHOLDER.Value' | translate}}">
+
+                                <div *ngIf="form.controls['value'].invalid && form.controls['value'].touched">
+                                    <span class="error-message" *ngIf="form.controls['value'].errors?.['required']">
+                                        {{'DISCOUNT.DISCOUNTEDIT.SPAN.ValueEmpty'
+                                        | translate }}</span>
+                                    <span class="error-message" *ngIf="this.form.controls['value'].errors?.['max']">
+                                        {{'DISCOUNT.DISCOUNTEDIT.SPAN.ValueMax'
+                                        | translate }}</span>
+                                    <span class="error-message" *ngIf="this.form.controls['value'].errors?.['min']">
+                                        {{'DISCOUNT.DISCOUNTEDIT.SPAN.ValueMin'
+                                        | translate }} </span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="discount">{{'DISCOUNT.DISCOUNTEDIT.HEADER.DiscountType' | translate
+                                    }}</label>
+                                <select class="form-select" id="discount" formControlName="discount">
+                                    <option *ngFor="let discount of discountType | keyvalue" [ngValue]="discount.value">
+                                        {{discount.value }}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary" style="margin-right: 70px;"
+                                    [disabled]="form.invalid || form.disabled"
+                                    type="submit">{{'DISCOUNT.DISCOUNTEDIT.BUTTON_DISCOUNTEDIT.Edit' | translate
+                                    }}</button>
+                                <button class="btn btn-light" [routerLink]="['/discount']" style="float: right;"
+                                    type="submit">{{'DISCOUNT.DISCOUNTEDIT.BUTTON_DISCOUNTEDIT.Cancel' | translate
+                                    }}</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

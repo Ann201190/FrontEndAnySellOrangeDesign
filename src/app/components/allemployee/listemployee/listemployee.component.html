@@ -1,0 +1,120 @@
+<ngx-loading [show]="isWaiting"
+    [config]="{ backdropBorderRadius: '10px', backdropBackgroundColour: 'rgba(255, 255 255, 0.7)' }">
+</ngx-loading>
+<div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+
+    <h1 style="text-align: center;">{{'EMPLOYEE.EMPLOYEELIST.HEADER.List' | translate }}</h1>
+    <table class="table table-striped" style="background: white;">
+        <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Photo' | translate }}</th>
+                <th scope="col">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Role' | translate }}</th>
+                <th scope="col">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Name' | translate }}</th>
+                <th scope="col" colspan="3">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Action' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let employee of employees; let i = index">
+                <td>{{i+1}}</td>
+
+
+                <td *ngIf="employee.photo != null" style="text-align: center;"> <img id="image_1" [src]="employee.photo"
+                        alt="..." height="70" width="70" /></td>
+                <td *ngIf="employee.photo == null" style="text-align: center;"> <img id="image_2"
+                        src="/assets/DefaultContact.png" alt="..." height="70" width="70" /></td>
+
+
+                <td style="text-align: center;">{{roleType[employee.role] | translate}}</td>
+                <td>{{employee.name}} {{employee.surName}}</td>
+
+                <td>
+                    <button class="btn btn-link" (click)="updateEmployee(employee.id)">
+                        <img src="/assets/Edit.png" alt="Edit" height="27" width="27"></button>
+                </td>
+                <td>
+                    <button class="btn btn-link" (click)="moreEmployee(employee)" data-bs-toggle="modal"
+                        data-bs-target="#moreModal">
+                        <img src="/assets/TrioButton.png" alt="More" height="25" width="25"></button>
+                </td>
+                <td>
+                    <button type="button" *ngIf='roleType[employee.role]==roleType[0]'
+                        (click)="deleteEmployee(employee)" class="btn btn-link" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal">
+                        <img src="/assets/Urna.png" alt="Del" height="25" width="25">
+                    </button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel"> {{'EMPLOYEE.EMPLOYEEMODAL.HEADER.HeaderDelete' |
+                    translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <p *ngIf="oneEmployee?.photo != null" style="text-align: center;"> <img
+                        style=" display: block; margin-left: auto; margin-right: auto " id="image_1"
+                        [src]="oneEmployee.photo" alt="Employee" height="150px" width="150px" /></p>
+                <p *ngIf="oneEmployee?.photo == null" style="text-align: center;"> <img
+                        style=" display: block; margin-left: auto; margin-right: auto " id="image_2"
+                        src="/assets/DefaultContact.png" alt="Employee" height="150px" width="150px" /></p>
+                <div> {{'EMPLOYEE.EMPLOYEEMODAL.BODY.Content' | translate }}
+                    <p>{{oneEmployee?.surName}} {{oneEmployee?.name}}?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'EMPLOYEE.EMPLOYEEMODAL.BUTTON_EMPLOYEEMODEL.No' | translate }}</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="idEmployee(idEmployeeForDeleted)">
+                    {{'EMPLOYEE.EMPLOYEEMODAL.BUTTON_EMPLOYEEMODEL.Yes' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal More -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
+    style=" margin-top: 60px;">
+    <div class="modal-dialog" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moreModalLabel">{{'EMPLOYEE.EMPLOYEEMODAL.HEADER.HeaderMore' | translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p *ngIf="oneEmployee?.photo != null" style="text-align: center;"> <img id="image_1"
+                        [src]="oneEmployee.photo" alt="..." height="250" width="250" /></p>
+                <p *ngIf="oneEmployee?.photo == null" style="text-align: center;"> <img id="image_2"
+                        src="/assets/DefaultContact.png" alt="..." height="250" width="250" /></p>
+
+                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Role' | translate }}: </b> {{roleType[oneEmployee.role] |
+                    translate}}</p>
+                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Name' | translate }}: </b>{{oneEmployee?.name}}
+                    {{oneEmployee?.surName}}</p>
+                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Phone' | translate }}: </b>{{oneEmployee?.phone}}</p>
+                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Email' | translate }}: </b>{{oneEmployee?.email}}</p>
+                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Address' | translate }}: </b>{{oneEmployee?.address}}</p>
+                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Other' | translate }}: </b>{{oneEmployee?.other}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'EMPLOYEE.EMPLOYEEMODAL.BUTTON_EMPLOYEEMODEL.Close' | translate
+                    }}</button>
+            </div>
+        </div>
+    </div>
+</div>

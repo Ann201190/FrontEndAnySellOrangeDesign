@@ -1,0 +1,108 @@
+<div class="container-xxl bg-dark hero-header mb-5">
+    <div class="container my-5">
+        <div class="row" style="margin-top: 48px;">
+            <div class="col-lg-6 text-center text-lg-start">
+
+            </div>
+            <div class="col-lg-6 text-lg-start">
+
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <h1 class="text-white mb-4"> {{'PRODUCT.PRODUCTEDIT.HEADER.Header' | translate }}</h1>
+
+
+                    <form [formGroup]="form" (ngSubmit)="editProduct()">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label>{{'PRODUCT.PRODUCTEDIT.HEADER.Name' | translate }}</label>
+                                <input id="name" type="text" name="name" formControlName="name" class="form-control"
+                                    placeholder="{{'PRODUCT.PRODUCTEDIT.INPUT_PRODUCTEDIT_PLACEHOLDER.Name' | translate}}">
+
+                                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+                                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
+                                        {{'PRODUCT.PRODUCTEDIT.SPAN.NameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'PRODUCT.PRODUCTEDIT.HEADER.Price' | translate }}</label>
+
+                                <input id="price" type="number" name="price" formControlName="price"
+                                    class="form-control"
+                                    placeholder="{{'PRODUCT.PRODUCTEDIT.INPUT_PRODUCTEDIT_PLACEHOLDER.Price' | translate}}">
+
+                                <div *ngIf="form.controls['price'].invalid && form.controls['price'].touched">
+                                    <span class="error-message" *ngIf="form.controls['price'].errors?.['required']">
+                                        {{'PRODUCT.PRODUCTEDIT.SPAN.PriceEmpty'
+                                        | translate }}</span>
+                                    <span class="error-message" *ngIf="this.form.controls['price'].errors?.['min']">
+                                        {{'PRODUCT.PRODUCTEDIT.SPAN.BarcodedMin'
+                                        | translate }} </span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="productUnit">{{'PRODUCT.PRODUCTEDIT.HEADER.Unit' | translate }}</label>
+                                <select class="form-select" id="productUnit" formControlName="productUnit">
+                                    <option *ngFor="let productUnit of productUnitType | keyvalue"
+                                        [ngValue]="productUnit.value">
+                                        {{productUnit.value}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'PRODUCT.PRODUCTEDIT.HEADER.Barcode' | translate }}</label>
+                                <input id="barcode" type="text" name="barcode" formControlName="barcode"
+                                    class="form-control"
+                                    placeholder="{{'PRODUCT.PRODUCTEDIT.INPUT_PRODUCTEDIT_PLACEHOLDER.Barcode' | translate}}">
+                                <div *ngIf="form.controls['barcode'].invalid && form.controls['barcode'].touched">
+                                    <span class="error-message" *ngIf="form.controls['barcode'].errors?.['required']">
+                                        {{'PRODUCT.PRODUCTEDIT.SPAN.BarcodeEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div style="margin-bottom: 10px;">
+                                    <img *ngIf="product?.image != null" id="image_1" [src]="product.image" alt="Product"
+                                        height="150" width="150" />
+                                    <img *ngIf="product?.image == null" id="image_2" src="/assets/DefaultProduct.png"
+                                        alt="Product" height="150" width="150" />
+                                </div>
+                                <button *ngIf="product?.image != null" type="button" class="btn btn-primary"
+                                    style="padding: 2px;"
+                                    (click)="deleteImg()">{{'PRODUCT.PRODUCTEDIT.BUTTON_PRODUCTEDIT.Delete' | translate
+                                    }}</button>
+                            </div>
+
+
+                            <div class="col-12">
+                                <label>{{'PRODUCT.PRODUCTADD.HEADER.Image' | translate }}</label>
+                                <input id="file" type="file" #file name="file" (change)="onFileChanged($event)"
+                                    placeholder="{{'PRODUCT.PRODUCTEDIT.INPUT_PRODUCTEDIT_PLACEHOLDER.Image' | translate}}"
+                                    formControlName="file" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+
+                                <button class="btn btn-primary " style="margin-right: 70px;"
+                                    [disabled]="form.invalid || form.disabled"
+                                    type="submit">{{'PRODUCT.PRODUCTEDIT.BUTTON_PRODUCTEDIT.Edit' | translate
+                                    }}</button>
+
+                                <button class="btn btn-light" [routerLink]="['/product']" style=" float: right;"
+                                    type="submit">{{'PRODUCT.PRODUCTEDIT.BUTTON_PRODUCTEDIT.Cancel' | translate
+                                    }}</button>
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

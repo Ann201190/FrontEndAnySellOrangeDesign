@@ -1,0 +1,71 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="container-xxl bg-dark hero-addshop mb-5">
+    <div class="container my-5">
+        <div class="row" style="margin-top: 48px;">
+
+            <div class="col-lg-6 text-lg-start">
+
+                <div class="p-5 wow fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
+                    <h1 class="text-white mb-4"> {{'STORE.STOREADD.HEADER.Header' | translate }}</h1>
+
+                    <form [formGroup]="form" (ngSubmit)="addStore()">
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <img *ngIf="image != null" id="image_1" [src]="image" alt="Store" height="150"
+                                    width="150" />
+                                <img *ngIf="image == null" id="image_2" src="/assets/DefaultStore.png" alt="Store"
+                                    height="150" width="150" />
+
+                                <button *ngIf="image != null" type="button" class="restar-button-img"
+                                    style="padding: 2px;"
+                                    (click)="deleteImg()">{{'STORE.STOREADD.BUTTON_STOREADD.DeleteLogo' | translate
+                                    }}</button>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Logo' | translate }}</label>
+                                <input id="file" type="file" #file name="file" (change)="onFileChanged($event)"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Logo' | translate}}"
+                                    formControlName="file" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Name' | translate }}</label>
+
+                                <input id="name" type="text" name="name" formControlName="name" class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Name' | translate}}">
+
+                                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+                                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
+                                        {{'STORE.STOREADD.SPAN.NameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary" style="margin-right: 70px;"
+                                    [disabled]="form.invalid || form.disabled"
+                                    type="submit">{{'STORE.STOREADD.BUTTON_STOREADD.Save' | translate }}</button>
+                                <button class="btn btn-light" [routerLink]="['/store']" style="float: right;"
+                                    type="submit">{{'STORE.STOREADD.BUTTON_STOREADD.Cancel' | translate }}</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center text-lg-start">
+
+            </div>
+
+        </div>
+    </div>
+</div>

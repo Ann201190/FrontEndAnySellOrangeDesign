@@ -1,0 +1,97 @@
+<!-- Navbar & Hero Start -->
+<div class="container-xxl position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+        <a href="" class="navbar-brand p-0">
+            <h1 class="text-primary m-0">AnySell</h1>
+            <!-- <img src="img/logo.png" alt="Logo"> -->
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0 pe-4">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+
+
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Service</a>
+                <a href="menu.html" class="nav-item nav-link">Menu</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="booking.html" class="dropdown-item">Booking</a>
+                        <a href="team.html" class="dropdown-item">Our Team</a>
+                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
+        </div>
+    </nav>
+
+    <!--<div class="container-xxl py-5 bg-dark hero-header mb-5">
+      <div class="container my-5 py-5">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 text-center text-lg-start">
+            <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
+            <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor
+              diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem
+              sit clita duo justo magna dolore erat amet</p>
+            <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+          </div>
+          <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+            <img class="img-fluid" src="img/hero.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div> -->
+</div>
+<!-- Navbar & Hero End -->
+
+
+
+
+
+
+<div *ngIf='isLoggedIn'>
+    <button color="primary" (click)='logout()'>Logout</button>
+</div>
+
+<input type="checkbox" id="nav-toggle" hidden>
+<nav class="nav" *ngIf='isLoggedIn  && isStoreId'>
+
+    <label for="nav-toggle" class="nav-toggle" onclick></label>
+
+    <h2 class="logo">
+
+        <h6>{{storage.getItem('email')}}</h6>
+        <h3>{{storage.getItem('storeName')}}</h3>
+
+        <a href="#"><span>
+
+                <img *ngIf="path != null" id="imageStore_1" [src]=" path.changingThisBreaksApplicationSecurity"
+                    alt="Store" height="150" width="150" />
+                <img *ngIf="path == null" id="imageStore_2" src="/assets/DefaultStore.png" alt="Store" height="150"
+                    width="150" />
+            </span></a>
+    </h2>
+    <ul>
+        <li><a [routerLink]="['/store']"><img src="/assets/Stores.png" alt="Store" height="35" width="35">
+                Магазины</a>
+        <li><a [routerLink]="['/product']"><img src="/assets/Products.png" alt="Product" height="35" width="35">
+                Продукты</a>
+        <li><a [routerLink]="['/discount']"><img src="/assets/Discounts.png" alt="Discount" height="35" width="35">
+                Cкидки</a>
+        <li *ngIf='role==roleType[1]'><a [routerLink]="['/provider']"><img src="/assets/Providers.png" alt="Discount"
+                    height="35" width="35"> Поставщики</a>
+        <li *ngIf='role==roleType[1]'><a [routerLink]="['/listcoming']">Приходы</a>
+        <li *ngIf='role==roleType[1]'><img src="/assets/Users.png" alt="User" height="35" width="35"><a
+                [routerLink]="['/employee']">Сотрудники</a>
+
+            <!--  <li><a href="#6">Шесть</a>
+        <li><a href="#7">Семь</a>-->
+    </ul>
+</nav>
+
+<!--*ngIf='role==roleType[1] '-->

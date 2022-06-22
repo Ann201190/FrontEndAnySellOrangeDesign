@@ -1,0 +1,93 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+
+<div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+    <!-- <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>-->
+    <h1 class="text-white mb-4"> {{'PRODUCT.PRODUCTADD.HEADER.Header' | translate }}</h1>
+
+
+    <form [formGroup]="form" (ngSubmit)="addProduct()">
+        <div class="row g-3">
+            <div class="col-12">
+                <label>{{'PRODUCT.PRODUCTADD.HEADER.Name' | translate }}</label>
+                <input id="name" type="text" name="name" formControlName="name" class="form-control"
+                    placeholder="{{'PRODUCT.PRODUCTADD.INPUT_PRODUCTADD_PLACEHOLDER.Name' | translate}}">
+
+                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
+                        {{'PRODUCT.PRODUCTADD.SPAN.NameEmpty'
+                        | translate }}</span>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>{{'PRODUCT.PRODUCTADD.HEADER.Price' | translate }}</label>
+                <input id="price" type="number" name="price" formControlName="price" class="form-control"
+                    placeholder="{{'PRODUCT.PRODUCTADD.INPUT_PRODUCTADD_PLACEHOLDER.Price' | translate}}">
+
+                <div *ngIf="form.controls['price'].invalid && form.controls['price'].touched">
+                    <span class="error-message" *ngIf="form.controls['price'].errors?.['required']">
+                        {{'PRODUCT.PRODUCTADD.SPAN.PriceEmpty'
+                        | translate }}</span>
+                    <span class="error-message" *ngIf="this.form.controls['price'].errors?.['min']">
+                        {{'PRODUCT.PRODUCTADD.SPAN.PriceMin'
+                        | translate }} </span>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="productUnit">{{'PRODUCT.PRODUCTADD.HEADER.Unit' | translate }}</label>
+                <select class="form-select" id="productUnit" formControlName="productUnit">
+                    <option *ngFor="let productUnit of productUnitType | keyvalue" [ngValue]="productUnit.value">
+                        {{productUnit.value}}</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <label>{{'PRODUCT.PRODUCTADD.HEADER.Barcode' | translate }}</label>
+                <input id="barcode" type="text" name="barcode" formControlName="barcode" class="form-control"
+                    placeholder="{{'PRODUCT.PRODUCTADD.INPUT_PRODUCTADD_PLACEHOLDER.Barcode' | translate}}">
+                <div *ngIf="form.controls['barcode'].invalid && form.controls['barcode'].touched">
+                    <span class="error-message" *ngIf="form.controls['barcode'].errors?.['required']">
+                        {{'PRODUCT.PRODUCTADD.SPAN.BarcodeEmpty'
+                        | translate }}</span>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <div style="margin-bottom: 10px;">
+                    <img *ngIf="image != null" id="image_1" [src]="image" alt="Product" height="150" width="150" />
+                    <img *ngIf="image == null" id="image_2" src="/assets/DefaultProduct.png" alt="Product" height="150"
+                        width="150" />
+                </div>
+                <button *ngIf="image != null" type="button" class="btn btn-primary" style="padding: 2px;"
+                    (click)="deleteImg()">{{'PRODUCT.PRODUCTADD.BUTTON_PRODUCTADD.Delete' | translate
+                    }}</button>
+            </div>
+
+
+
+            <div class="col-12">
+                <label>{{'PRODUCT.PRODUCTADD.HEADER.Image' | translate }}</label>
+                <input id="file" type="file" #file name="file" (change)="onFileChanged($event)"
+                    placeholder="{{'PRODUCT.PRODUCTADD.INPUT_PRODUCTADD_PLACEHOLDER.Image' | translate}}"
+                    formControlName="file" class="form-control">
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                    [disabled]="form.invalid || form.disabled"
+                    type="submit">{{'PRODUCT.PRODUCTADD.BUTTON_PRODUCTADD.Save' | translate }}</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>

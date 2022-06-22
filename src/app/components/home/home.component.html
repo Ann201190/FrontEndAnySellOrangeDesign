@@ -1,0 +1,53 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div *ngIf='!isLoggedIn'>
+    <div style="margin-top: 48px;">
+        <div class="p-5 wow bg-dark fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
+            <h1 class="text-white mb-4">{{'HOME.HEADER.Header' | translate }}</h1>
+
+            <form [formGroup]="form" (ngSubmit)="login()">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label>{{'HOME.HEADER.Email' | translate }}</label>
+                        <input id="email" type="email"
+                            placeholder="{{'HOME.INPUT_LOGIN_PLACEHOLDER.Email' | translate}}" formControlName="email"
+                            class="form-control">
+                        <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+                            <span class="error-message" *ngIf="form.controls['email'].errors?.['required']">
+                                {{'HOME.SPAN.EmailEmpty' | translate }} </span>
+                            <span class="error-message" *ngIf="form.controls['email'].errors?.['email']">
+                                {{'HOME.SPAN.EmailСorrect' | translate }} </span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label> {{ 'HOME.HEADER.Password' | translate }} </label>
+                        <input id="password" type="password"
+                            placeholder="{{'HOME.INPUT_LOGIN_PLACEHOLDER.Password' | translate}}"
+                            formControlName="password" class="form-control">
+                        <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+                            <span class="error-message" *ngIf="form.controls['password'].errors?.['required']"> {{
+                                'HOME.SPAN.PasswordСorrect' | translate }} </span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary " style="margin-right: 70px;"
+                            [disabled]="form.invalid || form.disabled" type="submit" type="submit">
+                            {{'HOME.BUTTON_LOGIN.LogIn' | translate }}</button>
+                        <button class="btn btn-light" [routerLink]="['/registration']" style=" float: right;"
+                            type="submit">{{'HOME.BUTTON_LOGIN.Registration' | translate }}</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf='isLoggedIn'>
+    <h1>Главная страница</h1>
+</div>

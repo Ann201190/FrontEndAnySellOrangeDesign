@@ -1,0 +1,119 @@
+<ngx-loading [show]="isWaiting"
+    [config]="{ backdropBorderRadius: '10px', backdropBackgroundColour: 'rgba(255, 255 255, 0.7)' }">
+</ngx-loading>
+<div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+
+    <h1 style="text-align: center;">{{'PROVIDER.PROVIDERLIST.HEADER.List' | translate }}</h1>
+    <table class="table table-striped" style="background: white;">
+        <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">{{'PROVIDER.PROVIDERLIST.HEADER.Name' | translate }}</th>
+                <th scope="col" colspan="3">{{'PROVIDER.PROVIDERLIST.HEADER.Action' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let provider of providers; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{provider?.name}}</td>
+                <td>
+                    <button class="btn btn-link" (click)="updateProvider(provider.id)">
+                        <img src="/assets/Edit.png" alt="Del" height="27" width="27"></button>
+                </td>
+                <td>
+                    <button class="btn btn-link" (click)="moreProvider(provider)" data-bs-toggle="modal"
+                        data-bs-target="#moreModal">
+                        <img src="/assets/TrioButton.png" alt="More" height="25" width="25"></button>
+                </td>
+                <td>
+                    <button class="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        (click)="deleteProvider(provider)">
+                        <img src="/assets/Urna.png" alt="Del" height="25" width="25"></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel"> {{'PROVIDER.PROVIDERMODAL.HEADER.HeaderDelete' |
+                    translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+
+                <div> {{'PROVIDER.PROVIDERMODAL.BODY.Content' | translate }}
+                    <p>{{oneProvider.name}}?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'PROVIDER.PROVIDERMODAL.BUTTON_PROVIDERMODAL.No' | translate }}</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="idProvider(idProviderForDeleted)">
+                    {{'PROVIDER.PROVIDERMODAL.BUTTON_PROVIDERMODAL.Yes' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal More -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
+    style=" margin-top: 60px;">
+    <div class="modal-dialog" style="width: 560px ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moreModalLabel">{{'PROVIDER.PROVIDERMODAL.HEADER.HeaderMore' | translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <p><b>{{'PROVIDER.PROVIDERMODAL.BODY.Name' | translate }}: </b>{{oneProvider.name}}</p>
+                <p><b>{{'PROVIDER.PROVIDERMODAL.BODY.Phone' | translate }}: </b>{{oneProvider.phone}}</p>
+                <p><b>{{'PROVIDER.PROVIDERMODAL.BODY.Email' | translate }}: </b>{{oneProvider.email}}</p>
+                <p><b>{{'PROVIDER.PROVIDERMODAL.BODY.Other' | translate }}: </b>{{oneProvider.other}}</p>
+
+                <div *ngIf="comingsProvider.length!= 0" comingsProvider>
+                    <h4 style="text-align:center ;">{{'PROVIDER.PROVIDERMODAL.BODY.List' | translate }}</h4>
+
+                    <table class="table table-striped" style="background: white;">
+                        <thead>
+
+                            <tr>
+                                <th scope="col">№</th>
+                                <th scope="col">{{'PROVIDER.PROVIDERMODAL.BODY.Number' | translate }}</th>
+                                <th scope="col">{{'PROVIDER.PROVIDERMODAL.BODY.Date' | translate }}</th>
+                                <th scope="col">{{'PROVIDER.PROVIDERMODAL.BODY.Sum' | translate }}</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let comingProvider of comingsProvider; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{comingProvider.number }}</td>
+                                <td>{{comingProvider.date | date:'dd-MM-yyyy, H:mm:ss' }}</td>
+                                <td>{{summCalculate(comingProvider)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'PROVIDER.PROVIDERMODAL.BUTTON_PROVIDERMODAL.Close' | translate
+                    }}</button>
+            </div>
+        </div>
+    </div>
+</div>

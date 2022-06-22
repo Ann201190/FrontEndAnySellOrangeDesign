@@ -1,0 +1,99 @@
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 minheight" style="padding: 5px;">
+    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+
+        <h1 style="text-align: center;">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.List' | translate}} {{discount.name}}</h1>
+
+
+        <table class="table table-striped" style="background: white;">
+            <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Name' | translate }}</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Image' | translate }}</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Barcode' | translate }}</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Price' | translate }}</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.PriceWithDiscount' |
+                        translate}}</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.TypeDiscount' | translate }}</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.NameDiscount' | translate }}</th>
+                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Action' | translate }}</th>
+                </tr>
+                <div style="float: right" *ngIf="products.length >0">
+
+                    <label class="custom-big-checkbox">
+                        <input type="checkbox" name="otk" id="otkritka" class="align-self-center"
+                            [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"
+                            (change)="fieldsChangeShowUrna()">
+                        <span class="custom-big-checkbox__checkbox"></span>
+                    </label>
+
+
+                    <button class="btn btn-link" type="button" *ngIf='isShow'>
+                        <img src="/assets/AddDiscount.png" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            alt="Del" height="25" width="25"></button>
+                </div>
+
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let product of products; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{product.name}}</td>
+
+                    <td *ngIf="product?.image != null" style="text-align: center; "> <img id="image_1"
+                            [src]="product.image" alt="Product" height="50px" width="50px" /></td>
+                    <td *ngIf="product?.image == null" style="text-align: center;"> <img id="image_2"
+                            src="/assets/DefaultProduct.png" alt="Product" height="50px" width="50px" /></td>
+                    <td style="text-align: center;">{{product.barcode}}</td>
+                    <td style="text-align: center;">{{product.price}}</td>
+                    <td style="text-align: center;">{{product.priceWithDiscount}}</td>
+                    <td style="text-align: center;">
+                        {{product.index != null ? DiscountType[product.index] : ' '| translate}}
+                    </td>
+                    <td style="text-align: center;">
+                        {{ product.discount?.name }}
+                    </td>
+                    <td style="text-align: center;">
+
+                        <label class="custom-big-checkbox">
+                            <input type="checkbox" name="otk" id="otkritka" value="{{product.id}}"
+                                class="align-self-center" [(ngModel)]="product.checked"
+                                (change)="fieldsChangeShowUrna()">
+                            <span class="custom-big-checkbox__checkbox"></span>
+                        </label>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+<!-- Modal Add -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    {{'DISCOUNT.ADDDISCOUNTPRODUCTMODAL.HEADER.HeaderAdd'| translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <div> {{'DISCOUNT.ADDDISCOUNTPRODUCTMODAL.BODY.Content' | translate }}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'DISCOUNT.ADDDISCOUNTPRODUCTMODAL.BUTTON_ADDDISCOUNTPRODUCTMODAL.No' |
+                    translate }}</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="
+                    addAllProducts()">
+                    {{'DISCOUNT.ADDDISCOUNTPRODUCTMODAL.BUTTON_ADDDISCOUNTPRODUCTMODAL.Yes' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

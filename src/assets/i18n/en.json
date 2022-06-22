@@ -1,0 +1,603 @@
+{
+    "Percent": "Percent",
+    "Fixed": "Fixed",
+    "Piece": "Piece",
+    "Kilogram": "Kilogram",
+    "Liter": "Liter",
+    "Cashier": "Cashier",
+    "Manager": "Manager",
+    "HOME": {
+        "HEADER": {
+            "Header": "Login",
+            "Password": "Password",
+            "Email": "Email"
+        },
+        "BUTTON_LOGIN": {
+            "LogIn": "Log in",
+            "Registration": "Registration"
+        },
+        "INPUT_LOGIN_PLACEHOLDER": {
+            "Email": "Enter your email",
+            "Password": "Enter your password"
+        },
+        "SPAN": {
+            "EmailEmpty": "Email must not be empty",
+            "EmailСorrect": "Enter a valid email address",
+            "PasswordСorrect": "Password must not be empty"
+        }
+    },
+    "BUTTON": {
+        "LANG": {
+            "RU": "Russion",
+            "EN": "English"
+        }
+    },
+    "REGISTRATION": {
+        "HEADER": {
+            "Header": "Registration",
+            "Email": "Email",
+            "Password": "Password",
+            "Repeat": "Repeat password"
+        },
+        "INPUT_REGISTRATION_PLACEHOLDER": {
+            "Email": "Enter your email",
+            "Password": "Enter your password"
+        },
+        "BUTTON_REGISTRATION": {
+            "Save": "Registration",
+            "Cancel": "Cancel"
+        },
+        "SPAN": {
+            "EmailEmpty": "Email must not be empty",
+            "EmailСorrect": "Enter a valid email address",
+            "PasswordMin": "Password cannot be less",
+            "PasswordMatch": "Password doesn't match",
+            "PasswordСorrect": "Password must not be empty",
+            "PasswordSymbol": "symbol.",
+            "Now": "Now"
+        }
+    },
+    "CONFIRM": {
+        "InfoTrue": "Your registration confirmed",
+        "LogIn": "Log in",
+        "InfoFalse": "Something went wrong..."
+    },
+    "INFO": {
+        "InfoAll": "Email has been sent to you for confirm your registration.",
+        "InfoCashier": "Your account has been deleted. Refer to your Manager"
+    },
+    "ERROR": {
+        "Infoh1": "Oops, something went wrong.",
+        "Infoh2": "Page not found...."
+    },
+    "PRODUCT": {
+        "HEADER": {
+            "Header": "Products"
+        },
+        "PRODUCT": {
+            "HEADER": {
+                "Download": "Download Price-list"
+            }
+        },
+        "PRODUCTADD": {
+            "HEADER": {
+                "Header": "Add product",
+                "Image": "Image",
+                "Name": "Name",
+                "Price": "Price",
+                "Barcode": "Barcode",
+                "Unit": "Unit"
+            },
+            "INPUT_PRODUCTADD_PLACEHOLDER": {
+                "Image": "Select picture",
+                "Name": "Enter name product",
+                "Price": "Enter price product",
+                "Barcode": "Enter barcode product"
+            },
+            "SPAN": {
+                "NameEmpty": "Name must not be empty",
+                "PriceEmpty": "Price must not be empty",
+                "BarcodedMin": "The minimum price must be greater than 0",
+                "BarcodeEmpty": "Barcode must not be empty"
+            },
+            "BUTTON_PRODUCTADD": {
+                "Save": "Save",
+                "Delete": "Delete"
+            }
+        },
+        "PRODUCTEDIT": {
+            "HEADER": {
+                "Header": "Edit product",
+                "Image": "Image",
+                "Name": "Name",
+                "Price": "Price",
+                "Barcode": "Barcode",
+                "Unit": "Unit"
+            },
+            "INPUT_PRODUCTEDIT_PLACEHOLDER": {
+                "Image": "Select picture",
+                "Name": "Enter name product",
+                "Price": "Enter price product",
+                "Barcode": "Enter barcode product"
+            },
+            "SPAN": {
+                "NameEmpty": "Name must not be empty",
+                "PriceEmpty": "Price must not be empty",
+                "PriceMin": "The minimum price must be greater than 0",
+                "BarcodeEmpty": "Barcode must not be empty"
+            },
+            "BUTTON_PRODUCTEDIT": {
+                "Edit": "Edit",
+                "Cancel": "Cancel",
+                "Delete": "Delete"
+            }
+        },
+        "PRODUCTMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Deleting product",
+                "HeaderMore": "More"
+            },
+            "BODY": {
+                "Content": "Are you sure you want to delete the product ",
+                "Name": "Name",
+                "Price": "Price",
+                "Unit": "Unit",
+                "Barcode": "Barcode",
+                "Discount": "Discount",
+                "TypeDiscount": "Type discount",
+                "PriceWithDiscount": "Price with discount"
+            },
+            "BUTTON_PRODUCTMODAL": {
+                "Yes": "Yes",
+                "No": "No",
+                "Close": "Close"
+            }
+        },
+        "PRODUCTLIST": {
+            "HEADER": {
+                "List": "Product's list",
+                "Name": "Name",
+                "Picture": "Picture",
+                "Action": "Action"
+            }
+        }
+    },
+    "STORE": {
+        "HEADER": {
+            "Header": "Your stores",
+            "Add": "Add store"
+        },
+        "STOREADD": {
+            "HEADER": {
+                "Header": "Add store",
+                "Logo": "Logo",
+                "Name": "Name store",
+                "Firstname": "Your first name",
+                "Lastname": "Your last name",
+                "Phone": "Your phone",
+                "Other": "Other",
+                "Photo": "Your photo",
+                "Address": "Your address"
+            },
+            "INPUT_STOREADD_PLACEHOLDER": {
+                "Logo": "Select logo",
+                "Name": "Enter name store",
+                "Firstname": "Enter your first name",
+                "Lastname": "Enter your last name employee",
+                "Other": "Enter other",
+                "Photo": "Select photo",
+                "Address": "Enter your address"
+            },
+            "SPAN": {
+                "NameEmpty": "Name must not be empty",
+                "FirstnameEmpty": "First name must not be empty",
+                "LastnameEmpty": "Last name must not be empty",
+                "PhoneEmpty": "Phone must not be empty",
+                "AddressEmpty": "Address must not be empty"
+            },
+            "BUTTON_STOREADD": {
+                "Save": "Add",
+                "Cancel": "Cancel",
+                "AddStore": "Add store",
+                "DeleteLogo": "Delete",
+                "DeletePhoto": "Delete"
+            }
+        },
+        "STOREEDIT": {
+            "HEADER": {
+                "Header": "Edit store",
+                "Logo": "Logo",
+                "Name": "Name store"
+            },
+            "BUTTON_STOREEDIT": {
+                "Edit": "Edit",
+                "Cancel": "Cancel",
+                "Delete": "Delete"
+            },
+            "INPUT_STOREEDIT_PLACEHOLDER": {
+                "Logo": "Select logo",
+                "Name": "Enter name store"
+            },
+            "SPAN": {
+                "NameEmpty": "Name must not be empty"
+            }
+        }
+    },
+    "DISCOUNT": {
+        "HEADER": {
+            "Header": "Discounts",
+            "Add": "Add discount"
+        },
+        "DISCOUNTADD": {
+            "HEADER": {
+                "Header": "Add discount",
+                "Name": "Name discount",
+                "Value": "Value discount",
+                "DiscountType": "Discount type"
+            },
+            "INPUT_DISCOUNTADD_PLACEHOLDER": {
+                "Value": "Enter value discount",
+                "Name": "Enter name discount"
+            },
+            "SPAN": {
+                "NameEmpty": "Name must not be empty",
+                "ValueEmpty": "Discount's value must not be empty",
+                "ValueMin": "Minimum discount must be greater than 0",
+                "ValueMax": "Maximum discount value must not exceed 100%"
+            },
+            "BUTTON_DISCOUNTADD": {
+                "Save": "Add"
+            }
+        },
+        "DISCOUNTLIST": {
+            "HEADER": {
+                "Name": "Name",
+                "Value": "Value",
+                "DiscountType": "Discount type",
+                "List": "Discount's list",
+                "Action": "Action"
+            }
+        },
+        "DISCOUNTEDIT": {
+            "HEADER": {
+                "Header": "Edit discount",
+                "Value": "Value",
+                "DiscountType": "Discount type",
+                "Name": "Name"
+            },
+            "INPUT_DISCOUNTEDIT_PLACEHOLDER": {
+                "Value": "Enter value discount",
+                "Name": "Enter name discount"
+            },
+            "SPAN": {
+                "NameEmpty": "Name must not be empty",
+                "ValueEmpty": "Discount's value must not be empty",
+                "ValueMin": "The minimum discount must be greater than 0",
+                "ValueMax": "The maximum discount value must not exceed 100"
+            },
+            "BUTTON_DISCOUNTEDIT": {
+                "Edit": "Edit",
+                "Cancel": "Cancel"
+            }
+        },
+        "DISCOUNTMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Deleting discount"
+            },
+            "BODY": {
+                "Content": "Are you sure you want to delete the discount "
+            },
+            "BUTTON_DISCOUNTMODEL": {
+                "Yes": "Yes",
+                "No": "No"
+            }
+        },
+        "PRODUCTWITHDISCOUNT": {
+            "HEADER": {
+                "ValueDiscount": "Value: ",
+                "TypeDiscount": "Type: ",
+                "List": "Product with discount ",
+                "Name": "Name",
+                "Price": "Price",
+                "Image": "Image",
+                "Barcode": "Barcode",
+                "PriceWithDiscount": "Price with discount",
+                "Action": "Action"
+            }
+        },
+        "PRODUCTWITHDISCOUNTMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Deleting discount from a product"
+            },
+            "BODY": {
+                "Content": "Are you sure you want to delete the discount from a product?"
+            },
+            "BUTTON_PRODUCTWITHDISCOUNTMODAL": {
+                "Yes": "Yes",
+                "No": "No"
+            }
+        },
+        "ADDDISCOUNTPRODUCT": {
+            "HEADER": {
+                "List": "Products without discount ",
+                "Name": "Name",
+                "Price": "Price",
+                "Image": "Image",
+                "Barcode": "Barcode",
+                "TypeDiscount": "Type of discount",
+                "NameDiscount": "Name of discount",
+                "PriceWithDiscount": "Price with discount",
+                "Action": "Action"
+            }
+        },
+        "ADDDISCOUNTPRODUCTMODAL": {
+            "HEADER": {
+                "HeaderAdd": "Adding discount to product"
+            },
+            "BODY": {
+                "Content": "Are you sure you want to add the discount to product?"
+            },
+            "BUTTON_ADDDISCOUNTPRODUCTMODAL": {
+                "Yes": "Yes",
+                "No": "No"
+            }
+        }
+    },
+    "EMPLOYEE": {
+        "HEADER": {
+            "Header": "Employees"
+        },
+        "EMPLOYEELIST": {
+            "HEADER": {
+                "List": "Employee's list",
+                "Name": "Full name",
+                "Photo": "Photo",
+                "Role": "Position",
+                "Action": "Action"
+            }
+        },
+        "EMPLOYEEADD": {
+            "HEADER": {
+                "Header": "Add employee",
+                "Name": "Name employee",
+                "Surname": "Surname employee",
+                "Email": "Email employee",
+                "Phone": "Phone employee",
+                "Photo": "Photo employee",
+                "Other": "Other",
+                "Address": "Address employee"
+            },
+            "INPUT_EMPLOYEEADD_PLACEHOLDER": {
+                "Name": "Enter name employee",
+                "Surname": "Enter surname employee",
+                "Phone": "Enter phone employee",
+                "Email": "Enter email employee",
+                "Address": "Enter address employee",
+                "Other": "Enter other information about the employee"
+            },
+            "SPAN": {
+                "NameEmpty": "Name employee must not be empty",
+                "SurnameEmpty": "Surname employee must not be empty",
+                "PhoneEmpty": "Phone employee must not be empty",
+                "EmailEmpty": "Email employee must not be empty",
+                "EmailСorrect": "Enter a valid email address",
+                "AddressEmpty": "Address employee must not be empty"
+            },
+            "BUTTON_EMPLOYEEADD": {
+                "Save": "Add",
+                "Delete": "Delete"
+            }
+        },
+        "EMPLOYEEEDIT": {
+            "HEADER": {
+                "Header": "Edit employee",
+                "Name": "Name employee",
+                "Surname": "Surname employee",
+                "Email": "Email employee",
+                "Phone": "Phone employee",
+                "Photo": "Photo employee",
+                "Other": "Other",
+                "Address": "Address employee"
+            },
+            "INPUT_EMPLOYEEEDIT_PLACEHOLDER": {
+                "Name": "Enter name employee",
+                "Surname": "Enter surname employee",
+                "Phone": "Enter phone employee",
+                "Address": "Enter address employee",
+                "Other": "Enter other information about the employee"
+            },
+            "SPAN": {
+                "NameEmpty": "Name employee must not be empty",
+                "SurnameEmpty": "Surname employee must not be empty",
+                "PhoneEmpty": "Phone employee must not be empty",
+                "AddressEmpty": "Address employee must not be empty"
+            },
+            "BUTTON_EMPLOYEEEDIT": {
+                "Edit": "Edit",
+                "Cancel": "Cancel",
+                "Delete": "Delete"
+            }
+        },
+        "EMPLOYEEMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Deleting employee",
+                "HeaderMore": "More"
+            },
+            "BODY": {
+                "Content": "Are you sure you want to delete the employee ",
+                "Name": "Full name",
+                "Phone": "Phone",
+                "Role": "Position",
+                "Email": "Email",
+                "Address": "Address",
+                "Other": "Other"
+            },
+            "BUTTON_EMPLOYEEMODEL": {
+                "Yes": "Yes",
+                "No": "No",
+                "Close": "Close"
+            }
+        }
+    },
+    "PROVIDER": {
+        "HEADER": {
+            "Header": "Providers"
+        },
+        "PROVIDERLIST": {
+            "HEADER": {
+                "List": "Provider's list",
+                "Name": "Name",
+                "Action": "Action"
+            }
+        },
+        "PROVIDERMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Deleting provider",
+                "HeaderMore": "More"
+            },
+            "BODY": {
+                "Content": "Are you sure you want to delete the provider ",
+                "Name": "Name",
+                "Phone": "Phone",
+                "Email": "Email",
+                "Other": "Other",
+                "List": "List coming",
+                "Number": "Number",
+                "Sum": "Total sum",
+                "Date": "Date"
+            },
+            "BUTTON_PROVIDERMODAL": {
+                "Yes": "Yes",
+                "No": "No",
+                "Close": "Close"
+            }
+        },
+        "PROVIDERADD": {
+            "HEADER": {
+                "Header": "Add provider",
+                "Name": "Name provider",
+                "Email": "Email provider",
+                "Phone": "Phone provider",
+                "Other": "Other provider"
+            },
+            "INPUT_PROVIDERADD_PLACEHOLDER": {
+                "Email": "Enter email provider",
+                "Name": "Enter name provider",
+                "Phone": "Enter phone provider",
+                "Other": "Enter other provider"
+            },
+            "SPAN": {
+                "NameEmpty": "Name provider must not be empty",
+                "PhoneEmpty": "Phone provider must not be empty",
+                "EmailСorrect": "Enter a valid email address"
+            },
+            "BUTTON_PROVIDERADD": {
+                "Save": "Add"
+            }
+        },
+        "PROVIDEREDIT": {
+            "HEADER": {
+                "Header": "Edit provider",
+                "Name": "Name provider",
+                "Email": "Email provider",
+                "Phone": "Phone provider",
+                "Other": "Other"
+            },
+            "INPUT_PROVIDEREDIT_PLACEHOLDER": {
+                "Name": "Enter name provider",
+                "Phone": "Enter phone provider",
+                "Email": "Enter email provider",
+                "Other": "Enter other information about the provider"
+            },
+            "SPAN": {
+                "NameEmpty": "Name provider must not be empty",
+                "PhoneEmpty": "Phone provider must not be empty",
+                "EmailСorrect": "Enter a valid email address"
+            },
+            "BUTTON_PROVIDEREDIT": {
+                "Edit": "Edit",
+                "Cancel": "Cancel"
+            }
+        }
+    },
+    "COMING": {
+        "HEADER": {
+            "Header": "Comings"
+        },
+        "COMINGADD": {
+            "HEADER": {
+                "Header": "Add coming",
+                "Number": "Number coming",
+                "Provider": "Providers",
+                "Product": "Products",
+                "Count": "Count",
+                "Price": "Price",
+                "Sum": "Total"
+            },
+            "INPUT_COMINGADD_PLACEHOLDER": {
+                "Number": "Enter number coming",
+                "Count": "Enter count coming",
+                "Price": "Enter price coming"
+            },
+            "SPAN": {
+                "NumberEmpty": "Coming's number must not be empty",
+                "CountEmpty": "Coming's count must not be empty",
+                "ProviderEmpty": "Coming's provider must not be empty",
+                "ProductEmpty": "Coming's product must not be empty",
+                "CountMin": "The minimum count must be greater than 0",
+                "PriceMin": "The minimum price must be greater than 0",
+                "PriceEmpty": "Coming's price must not be empty"
+            },
+            "HEADERTABLE": {
+                "Name": "Name",
+                "Count": "Count",
+                "Price": "Price",
+                "Sum": "Total",
+                "Action": "Action",
+                "Total": "TOTAL"
+            },
+            "BUTTON_COMINGADD": {
+                "Save": "Add"
+            }
+        },
+        "COMINGLIST": {
+            "HEADER": {
+                "List": "Coming's list",
+                "Number": "Number",
+                "Provider": "Provider",
+                "Date": "Date",
+                "Sum": "Total sum",
+                "Action": "Action"
+            }
+        },
+        "COMINGMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Deleting coming",
+                "Number": "Coming No "
+            },
+            "BODY": {
+                "Content": "Are you sure you want to delete the provider ",
+                "List": "Product's list",
+                "Name": "Provider",
+                "Phone": "Phone",
+                "Email": "Email",
+                "Other": "Other",
+                "Date": "Date coming",
+                "Total": "TOTAL"
+            },
+            "HEADERTABLE": {
+                "Name": "Name",
+                "Count": "Count",
+                "Price": "Price",
+                "Sum": "Total",
+                "Action": "Action",
+                "Total": "TOTAL"
+            },
+            "BUTTON_COMINGMODAL": {
+                "Yes": "Yes",
+                "No": "No",
+                "Close": "Close"
+            }
+        }
+    }
+}

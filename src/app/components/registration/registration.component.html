@@ -1,0 +1,147 @@
+<!--<form [formGroup]="form" (ngSubmit)="registration()" class="minheight">
+
+    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+
+        <div>
+            <h5 class="card-header bg-success rounded-header" style="margin-bottom: 30px; text-align: center;">
+                {{'REGISTRATION.HEADER.Header' | translate }}</h5>
+
+            <div style="margin-bottom: 20px;">
+                <label>{{'REGISTRATION.HEADER.Email' | translate }}</label>
+                <input id="email" type="email"
+                    placeholder="{{'REGISTRATION.INPUT_REGISTRATION_PLACEHOLDER.Email' | translate}}"
+                    formControlName="email" class="form-control">
+                <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+                    <span class="error-message" *ngIf="form.controls['email'].errors?.['required']">
+                        {{'REGISTRATION.SPAN.EmailEmpty'
+                        | translate }}</span>
+                    <span class="error-message"
+                        *ngIf="form.controls['email'].errors?.['email']">{{'REGISTRATION.SPAN.EmailСorrect' |
+                        translate }}</span>
+                </div>
+            </div>
+
+
+            <div style="margin-bottom: 20px;">
+                <label>{{'REGISTRATION.HEADER.Password' | translate }}</label>
+                <input class="form-control" id="password" type="password"
+                    placeholder="{{'REGISTRATION.INPUT_REGISTRATION_PLACEHOLDER.Password' | translate}}"
+                    formControlName="password" />
+
+                <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+                    <span class="error-message" *ngIf="form.controls['password'].errors?.['required']">
+                        {{'REGISTRATION.SPAN.PasswordСorrect' | translate }}</span>
+                    <span
+                        *ngIf="form.controls['password'].errors?.['minlength'] && form.controls['password'].errors?.['minlength']['requiredLength']">
+                        {{'REGISTRATION.SPAN.PasswordMin' | translate }}
+                        {{form.controls['password'].errors?.['minlength']['requiredLength']}}
+                        {{'HOME.SPAN.PasswordSymbol' | translate }}
+                        {{'REGISTRATION.SPAN.Now' | translate }}
+                        {{form.controls['password'].errors?.['minlength']['actualLength']}}
+                    </span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label>{{'REGISTRATION.HEADER.Repeat' | translate }}</label>
+                <input class="form-control"
+                    placeholder="{{'REGISTRATION.INPUT_REGISTRATION_PLACEHOLDER.Password' | translate}}"
+                    id="confirm_password" type="password" formControlName="confirm_password" />
+                <div *ngIf="form.controls['confirm_password'].touched">
+                    <span class="error-message"
+                        *ngIf="form.value.password!=form.value.confirm_password">{{'REGISTRATION.SPAN.PasswordMatch'
+                        |
+                        translate }}</span>
+                </div>
+            </div>
+
+            <div class="container-buttons">
+                <button class="btn btn-success" style="margin-right: 70px;"
+                    [disabled]="(form.invalid || form.disabled) || form.value.password != form.value.confirm_password"
+                    type="submit">{{'REGISTRATION.BUTTON_REGISTRATION.Save' | translate }}</button>
+                <button class="btn btn-light" [routerLink]="['']" style="margin-right: 70px;"
+                    type="submit">{{'REGISTRATION.BUTTON_REGISTRATION.Cancel' | translate }}</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+-->
+
+
+
+
+
+
+<div style="margin-top: 48px;">
+    <div class="p-5 wow bg-dark fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
+        <h1 class="text-white mb-4">{{'REGISTRATION.HEADER.Header' | translate }}</h1>
+
+
+        <form [formGroup]="form" (ngSubmit)="registration()">
+            <div class="row g-3">
+                <div class="col-12">
+                    <label>{{'REGISTRATION.HEADER.Email' | translate }}</label>
+                    <input id="email" type="email"
+                        placeholder="{{'REGISTRATION.INPUT_REGISTRATION_PLACEHOLDER.Email' | translate}}"
+                        formControlName="email" class="form-control">
+                    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+                        <span class="error-message" *ngIf="form.controls['email'].errors?.['required']">
+                            {{'REGISTRATION.SPAN.EmailEmpty'
+                            | translate }}</span>
+                        <span class="error-message"
+                            *ngIf="form.controls['email'].errors?.['email']">{{'REGISTRATION.SPAN.EmailСorrect' |
+                            translate }}</span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label>{{'REGISTRATION.HEADER.Password' | translate }}</label>
+                    <input class="form-control" id="password" type="password"
+                        placeholder="{{'REGISTRATION.INPUT_REGISTRATION_PLACEHOLDER.Password' | translate}}"
+                        formControlName="password" />
+
+                    <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+                        <span class="error-message" *ngIf="form.controls['password'].errors?.['required']">
+                            {{'REGISTRATION.SPAN.PasswordСorrect' | translate }}</span>
+                        <span
+                            *ngIf="form.controls['password'].errors?.['minlength'] && form.controls['password'].errors?.['minlength']['requiredLength']">
+                            {{'REGISTRATION.SPAN.PasswordMin' | translate }}
+                            {{form.controls['password'].errors?.['minlength']['requiredLength']}}
+                            {{'HOME.SPAN.PasswordSymbol' | translate }}
+                            {{'REGISTRATION.SPAN.Now' | translate }}
+                            {{form.controls['password'].errors?.['minlength']['actualLength']}}
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+                    <label>{{'REGISTRATION.HEADER.Repeat' | translate }}</label>
+                    <input class="form-control"
+                        placeholder="{{'REGISTRATION.INPUT_REGISTRATION_PLACEHOLDER.Password' | translate}}"
+                        id="confirm_password" type="password" formControlName="confirm_password" />
+                    <div *ngIf="form.controls['confirm_password'].touched">
+                        <span class="error-message"
+                            *ngIf="form.value.password!=form.value.confirm_password">{{'REGISTRATION.SPAN.PasswordMatch'|
+                            translate }}</span>
+                    </div>
+
+                </div>
+
+                <div class="col-12">
+
+                    <button class="btn btn-primary " style="margin-right: 70px;"
+                        [disabled]="(form.invalid || form.disabled) || form.value.password != form.value.confirm_password"
+                        type="submit">{{'REGISTRATION.BUTTON_REGISTRATION.Save' | translate }}</button>
+
+                    <button class="btn btn-light" [routerLink]="['']" style=" float: right;"
+                        type="submit">{{'REGISTRATION.BUTTON_REGISTRATION.Cancel' | translate }}</button>
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
