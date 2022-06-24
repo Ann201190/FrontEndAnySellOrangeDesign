@@ -49,6 +49,7 @@ import { ListcomingComponent } from './components/allcoming/listcoming/listcomin
 import { InformationsCashierComponent } from './components/informationscashier/informationscashier.component';
 import { MorediscountComponent } from './components/alldiscount/morediscount/morediscount.component';
 import { AdddiscountproductComponent } from './components/alldiscount/adddiscountproduct/adddiscountproduct.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -103,6 +104,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     FormsModule,
     NgSelectModule,
+    NgxPaginationModule,
     NgxMaskModule.forRoot(),
     NgxLoadingModule.forRoot({}),
     ReactiveFormsModule,

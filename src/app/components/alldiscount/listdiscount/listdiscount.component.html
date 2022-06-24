@@ -6,7 +6,8 @@
 </div>
 
 
-<div class="p-5 wow fadeInUp" style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22); "
+<div class="p-5 wow fadeInUp"
+    style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22); height: 500px;"
     data-wow-delay="0.2s">
     <h1 style="text-align: center;">{{'DISCOUNT.DISCOUNTLIST.HEADER.List' | translate }}</h1>
 
@@ -14,7 +15,7 @@
 
         <tbody>
 
-            <tr *ngFor="let discount of discounts; let i = index">
+            <tr *ngFor="let discount of discounts| paginate: { itemsPerPage: 3, currentPage:  p } ; let i = index">
 
                 <td colspan="6">
                     <div class="tab-content">
@@ -68,7 +69,11 @@
 
         </tbody>
     </table>
-
+    <div *ngIf='discounts.length>0' style="text-align: center;">
+        <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+            nextLabel="{{'PAGINATION.Next' | translate}}">
+        </pagination-controls>
+    </div>
 </div>
 
 <!-- Modal Delete -->

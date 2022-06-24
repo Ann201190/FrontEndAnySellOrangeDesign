@@ -37,7 +37,7 @@ export class EditproviderComponent implements OnInit {
        phone: new FormControl(),
        other: new FormControl()
      })*/
-
+    this.isWaiting = true;
     this.route.params.subscribe((params: Params) => {
       let id = params["id"];
       this.providerService.getByIdProvider(id).subscribe(oneProvider => {
@@ -50,10 +50,14 @@ export class EditproviderComponent implements OnInit {
           other: new FormControl(this.provider.other,)
         });
       });
+
+      this.isWaiting = false;
     });
   }
 
   editProvider() {
+    this.isWaiting = true;
+
     if (this.provider) {
       this.provider.name = this.form.value.name,
         this.provider.email = this.form.value.email,
@@ -69,9 +73,12 @@ export class EditproviderComponent implements OnInit {
       else {
         this.errorMessage();
       }
+      this.isWaiting = false;
     },
       err => {
         this.errorMessage();
+
+        this.isWaiting = false;
       })
   }
 

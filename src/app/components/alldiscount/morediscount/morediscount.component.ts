@@ -27,6 +27,7 @@ export class MorediscountComponent implements OnInit {
   public discountId!: Guid;
   public DiscountType = DiscountType;
   public role: any;
+  public p: any = 0;
   roleType: Array<string> = Object.keys(Role).filter(key => isNaN(+key))
   public isShow: boolean = false;
 

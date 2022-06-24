@@ -1,76 +1,103 @@
-<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 minheight" style="padding: 5px;">
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
-
-        <h1 style="text-align: center;">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.List' | translate}} {{discount.name}}</h1>
-
-
-        <table class="table table-striped" style="background: white;">
-            <thead>
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Name' | translate }}</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Image' | translate }}</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Barcode' | translate }}</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Price' | translate }}</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.PriceWithDiscount' |
-                        translate}}</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.TypeDiscount' | translate }}</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.NameDiscount' | translate }}</th>
-                    <th scope="col">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.Action' | translate }}</th>
-                </tr>
-                <div style="float: right" *ngIf="products.length >0">
-
-                    <label class="custom-big-checkbox">
-                        <input type="checkbox" name="otk" id="otkritka" class="align-self-center"
-                            [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"
-                            (change)="fieldsChangeShowUrna()">
-                        <span class="custom-big-checkbox__checkbox"></span>
-                    </label>
-
-
-                    <button class="btn btn-link" type="button" *ngIf='isShow'>
-                        <img src="/assets/AddDiscount.png" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            alt="Del" height="25" width="25"></button>
-                </div>
-
-            </thead>
-            <tbody>
-
-                <tr *ngFor="let product of products; let i = index">
-                    <td>{{i+1}}</td>
-                    <td>{{product.name}}</td>
-
-                    <td *ngIf="product?.image != null" style="text-align: center; "> <img id="image_1"
-                            [src]="product.image" alt="Product" height="50px" width="50px" /></td>
-                    <td *ngIf="product?.image == null" style="text-align: center;"> <img id="image_2"
-                            src="/assets/DefaultProduct.png" alt="Product" height="50px" width="50px" /></td>
-                    <td style="text-align: center;">{{product.barcode}}</td>
-                    <td style="text-align: center;">{{product.price}}</td>
-                    <td style="text-align: center;">{{product.priceWithDiscount}}</td>
-                    <td style="text-align: center;">
-                        {{product.index != null ? DiscountType[product.index] : ' '| translate}}
-                    </td>
-                    <td style="text-align: center;">
-                        {{ product.discount?.name }}
-                    </td>
-                    <td style="text-align: center;">
-
-                        <label class="custom-big-checkbox">
-                            <input type="checkbox" name="otk" id="otkritka" value="{{product.id}}"
-                                class="align-self-center" [(ngModel)]="product.checked"
-                                (change)="fieldsChangeShowUrna()">
-                            <span class="custom-big-checkbox__checkbox"></span>
-                        </label>
-
-                    </td>
-
-                </tr>
-            </tbody>
-        </table>
-
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
 </div>
 
+<div style="margin-top: 48px;">
+    <div class="p-5 wow fadeInUp"
+        style="border:solid; border-width: 2px 2px 2px 2px; border-color: rgb(254, 161 ,22); padding: 30px;"
+        data-wow-delay="0.2s">
+        <h1 style="text-align: center;">{{'DISCOUNT.ADDDISCOUNTPRODUCT.HEADER.List' | translate}} {{discount.name}}</h1>
+
+
+        <div style="float: right" *ngIf="products.length >0">
+
+            <label class="custom-big-checkbox">
+                <input type="checkbox" name="otk" id="otkritka" class="align-self-center"
+                    [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"
+                    (change)="fieldsChangeShowUrna()">
+                <span class="custom-big-checkbox__checkbox"></span>
+            </label>
+
+
+            <button class="btn btn-square btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                style="margin-bottom: 5px;" type="button" *ngIf='isShow'>
+                <i class="fas fa-plus"></i></button>
+        </div>
+
+
+        <table class="table table-striped" style="background: white;">
+
+            <tbody>
+                <tr *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage:  p } ; let i = index ">
+                    <td colspan="6">
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane fade show p-0 active">
+                                <div class="row g-4">
+                                    <div class="col-lg-12">
+                                        <div class="d-flex align-items-center">
+
+                                            <div style="margin-right:15px;">{{i+1}} </div>
+                                            <img *ngIf="product?.image != null" class="flex-shrink-0 img-fluid rounded"
+                                                style="text-align: center; " id="image_1" [src]="product.image"
+                                                alt="Product" height="70px" width="70px" />
+                                            <img *ngIf="product?.image == null" class="flex-shrink-0 img-fluid rounded"
+                                                style="text-align: center;" id="image_2"
+                                                src="/assets/DefaultProduct.png" alt="Product" height="70px"
+                                                width="70px" />
+
+                                            <div class="w-100 d-flex flex-column text-start ps-4">
+                                                <h5 class="d-flex justify-content-between pb-2">
+                                                    <div style="width: 220px;">{{product?.name}}</div>
+                                                    <div>{{product.barcode}}</div>
+                                                    <div>{{product.index != null ? DiscountType[product.index] : ' '|
+                                                        translate}}</div>
+                                                    <div>{{ product.discount?.name }}</div>
+                                                    <div class=" text-primary"
+                                                        style="text-decoration:line-through; color:#0F172B !important">
+                                                        <div
+                                                            style="color:rgb(254, 161 ,22) !important; margin-bottom: 15px;">
+                                                            {{product?.price}}
+                                                            <i class="fas fa-coins"></i>
+                                                        </div>
+                                                        <div class="text-primary" style="float: right;">
+                                                            {{product.priceWithDiscount}}
+                                                            <i class="fas fa-coins"></i>
+                                                        </div>
+                                                    </div>
+                                                    <label class="custom-big-checkbox">
+                                                        <input type="checkbox" name="otk" id="otkritka"
+                                                            value="{{product.id}}" class="align-self-center"
+                                                            [(ngModel)]="product.checked"
+                                                            (change)="fieldsChangeShowUrna()">
+                                                        <span class="custom-big-checkbox__checkbox"></span>
+                                                    </label>
+                                                </h5>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
+        <div style="text-align: center;" *ngIf='products.length>0'>
+            <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+                nextLabel="{{'PAGINATION.Next' | translate}}">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
 
 
 <!-- Modal Add -->
@@ -90,7 +117,7 @@
                 <button type="button" class="btn btn-light"
                     data-bs-dismiss="modal">{{'DISCOUNT.ADDDISCOUNTPRODUCTMODAL.BUTTON_ADDDISCOUNTPRODUCTMODAL.No' |
                     translate }}</button>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="
                     addAllProducts()">
                     {{'DISCOUNT.ADDDISCOUNTPRODUCTMODAL.BUTTON_ADDDISCOUNTPRODUCTMODAL.Yes' | translate }}</button>
             </div>

@@ -1,12 +1,11 @@
-<form [formGroup]="form" (ngSubmit)="addProvider()">
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
-
-        <div>
-            <h5 class="card-header bg-success rounded-header" style="margin-bottom: 30px; text-align: center;">
-                {{'PROVIDER.PROVIDERADD.HEADER.Header' | translate }}</h5>
+<div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+    <!-- <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>-->
+    <h1 class="text-white mb-4"> {{'PROVIDER.PROVIDERADD.HEADER.Header' | translate }}</h1>
 
 
-            <div class="marginInput">
+    <form [formGroup]="form" (ngSubmit)="addProvider()">
+        <div class="row g-3">
+            <div class="col-12">
                 <label>{{'PROVIDER.PROVIDERADD.HEADER.Name' | translate }}</label>
 
                 <input id="name" type="text" name="name" formControlName="name" class="form-control"
@@ -18,8 +17,7 @@
                         | translate }}</span>
                 </div>
             </div>
-
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'PROVIDER.PROVIDERADD.HEADER.Email' | translate }}</label>
                 <input id="email" type="email"
                     placeholder="{{'PROVIDER.PROVIDERADD.INPUT_PROVIDERADD_PLACEHOLDER.Email' | translate}}"
@@ -31,20 +29,14 @@
                         translate }}</span>
                 </div>
             </div>
-
-            <div class="marginInput">
-                <label>{{'PROVIDER.PROVIDERADD.HEADER.Phone' | translate }}</label>
+            <div class="col-12">
                 <!--       <input type="tel" formControlName="phone" id="phone" class="form-control" placeholder="+38(000)000-000"
-                    prefix="+38(0" mask="00)-000-00-00" style="margin-bottom: 20px;">-->
-
-
-                <div >
-                    <label>{{'PROVIDER.PROVIDERADD.HEADER.Phone' | translate }}</label>         
-                    <input  formControlName="phone" placeholder="+380 XXX XX-XX-XX"
-                        class="form-control" mask=" (000) 000-00-00" prefix="+38" type="tel" [showMaskTyped]="true">
+                                prefix="+38(0" mask="00)-000-00-00" style="margin-bottom: 20px;">-->
+                <div>
+                    <label>{{'PROVIDER.PROVIDERADD.HEADER.Phone' | translate }}</label>
+                    <input formControlName="phone" placeholder="+380 XXX XX-XX-XX" class="form-control"
+                        mask=" (000) 000-00-00" prefix="+38" type="tel" [showMaskTyped]="true">
                 </div>
-
-
                 <div style="color:red"
                     *ngIf="this.form.controls['phone'].invalid && this.form.controls['phone'].touched">
                     <span class="error-message" *ngIf="this.form.controls['phone'].errors?.['required']">
@@ -53,20 +45,20 @@
                 </div>
             </div>
 
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'PROVIDER.PROVIDERADD.HEADER.Other' | translate }}</label>
                 <textarea id="other" type="text" name="other" formControlName="other" class="form-control"
                     placeholder="{{'PROVIDER.PROVIDERADD.INPUT_PROVIDERADD_PLACEHOLDER.Other' | translate}}">
                 </textarea>
             </div>
 
-
-            <div class="container-buttons">
-                <button class="btn btn-success" style="margin-right: 70px;" [disabled]="form.invalid || form.disabled"
+            <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                    [disabled]="form.invalid || form.disabled"
                     type="submit">{{'EMPLOYEE.EMPLOYEEADD.BUTTON_EMPLOYEEADD.Save' | translate }}</button>
             </div>
 
-
         </div>
-    </div>
-</form>
+    </form>
+
+</div>

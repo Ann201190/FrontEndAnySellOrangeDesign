@@ -20,6 +20,7 @@ export class ListdiscountComponent implements OnInit {
   public DiscountType = DiscountType;
   public idDiscountForDeleted!: Guid;
   public oneDiscount!: Discount;
+  public p: any = 0;
 
   constructor(
 

@@ -1,23 +1,21 @@
-<form [formGroup]="form" (ngSubmit)="addEmployee()">
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+<div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+    <!-- <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>-->
+    <h1 class="text-white mb-4">{{'EMPLOYEE.EMPLOYEEADD.HEADER.Header' | translate }}</h1>
 
-        <div>
-            <h5 class="card-header bg-success rounded-header" style="margin-bottom: 30px; text-align: center;">
-                {{'EMPLOYEE.EMPLOYEEADD.HEADER.Header' | translate }}</h5>
+    <form [formGroup]="form" (ngSubmit)="addEmployee()">
+        <div class="row g-3">
 
-
-
-            <div style="margin-bottom: 10px;">
-                <img *ngIf="image != null"  id="image_1" [src]="image" alt="Employee" height="150" />
-                <img *ngIf="image == null"  id="image_2" src="/assets/DefaultContact.png" alt="Employee"
-                    height="150" />
-
+            <div class="col-12">
+                <div style="margin-bottom: 10px;">
+                    <img *ngIf="image != null" id="image_1" [src]="image" alt="Employee" height="150" />
+                    <img *ngIf="image == null" id="image_2" src="/assets/DefaultContact.png" alt="Employee"
+                        height="150" />
+                </div>
+                <button *ngIf="image != null" type="button" class="btn btn-primary" style="padding: 2px;"
+                    (click)="deleteImg()">{{'EMPLOYEE.EMPLOYEEADD.BUTTON_EMPLOYEEADD.Delete' | translate }}</button>
             </div>
 
-            <button *ngIf="image != null" type="button" class="restar-button-img"
-                (click)="deleteImg()">{{'EMPLOYEE.EMPLOYEEADD.BUTTON_EMPLOYEEADD.Delete' | translate }}</button>
-
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'EMPLOYEE.EMPLOYEEADD.HEADER.Photo' | translate }}</label>
 
                 <input id="file" #file type="file" name="file" (change)="onFileChanged($event)"
@@ -25,7 +23,7 @@
                     formControlName="file" class="form-control">
             </div>
 
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'EMPLOYEE.EMPLOYEEADD.HEADER.Name' | translate }}</label>
 
                 <input id="name" type="text" name="name" formControlName="name" class="form-control"
@@ -38,8 +36,7 @@
                 </div>
             </div>
 
-
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'EMPLOYEE.EMPLOYEEADD.HEADER.Surname' | translate }}</label>
 
                 <input id="surname" type="text" name="surname" formControlName="surname" class="form-control"
@@ -52,8 +49,7 @@
                 </div>
             </div>
 
-
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'EMPLOYEE.EMPLOYEEADD.HEADER.Address' | translate }}</label>
 
                 <input id="address" type="text" name="address" formControlName="address" class="form-control"
@@ -66,10 +62,7 @@
                 </div>
             </div>
 
-
-
-
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'EMPLOYEE.EMPLOYEEADD.HEADER.Email' | translate }}</label>
                 <input id="email" type="email"
                     placeholder="{{'EMPLOYEE.EMPLOYEEADD.INPUT_EMPLOYEEADD_PLACEHOLDER.Email' | translate}}"
@@ -84,8 +77,7 @@
                 </div>
             </div>
 
-
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'EMPLOYEE.EMPLOYEEADD.HEADER.Phone' | translate }}</label>
                 <input formControlName="phone" placeholder="+380 XXX XX-XX-XX" class="form-control"
                     mask=" (000) 000-00-00" prefix="+38" type="tel" [showMaskTyped]="true" style="margin-bottom: 20px;">
@@ -98,18 +90,17 @@
                 </div>
             </div>
 
-            <div class="marginInput">
+            <div class="col-12">
                 <label>{{'EMPLOYEE.EMPLOYEEADD.HEADER.Other' | translate }}</label>
                 <textarea id="other" type="text" name="other" formControlName="other" class="form-control"
                     placeholder="{{'EMPLOYEE.EMPLOYEEADD.INPUT_EMPLOYEEADD_PLACEHOLDER.Other' | translate}}"></textarea>
             </div>
 
-            <div class="container-buttons">
-                <button class="btn btn-success" style="margin-right: 70px;" [disabled]="form.invalid || form.disabled"
+            <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                    [disabled]="form.invalid || form.disabled ||(this.form.controls['discount'].value=='Percent'  && this.form.controls['value'].value>100)"
                     type="submit">{{'EMPLOYEE.EMPLOYEEADD.BUTTON_EMPLOYEEADD.Save' | translate }}</button>
             </div>
-
-
         </div>
-    </div>
-</form>
+    </form>
+</div>

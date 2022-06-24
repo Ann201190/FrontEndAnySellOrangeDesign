@@ -22,6 +22,7 @@ export class AdddiscountproductComponent implements OnInit {
 
   public isWaiting = false;  //ожидание
   discountId!: Guid;
+  public p: any = 0;
   public discount!: Discount;
   public products: ProductWithDiscount[] = [];
   public isShow: boolean = false;
@@ -54,7 +55,7 @@ export class AdddiscountproductComponent implements OnInit {
 
       this.discountService.getByIdDiscount(this.discountId).subscribe(dic => {
         this.discount = dic
-        this.isWaiting = false;  //ожидание
+      //  this.isWaiting = false;  //ожидание
       });
 
       this.productService.getProductsWithoutDiscount(this.discountId)

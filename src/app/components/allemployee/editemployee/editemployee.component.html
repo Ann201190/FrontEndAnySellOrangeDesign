@@ -1,105 +1,140 @@
-<form [formGroup]="form" (ngSubmit)="editEmployee()" class="minheight">
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
-
-        <div>
-            <h5 class="card-header bg-success rounded-header" style="margin-bottom: 30px; text-align: center;">
-                {{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Header' | translate }}</h5>
-
-
-            <div style="margin-bottom: 10px;">
-                <img *ngIf="employee?.photo != null" id="image_1" [src]="employee.photo" alt="Employee" height="150" />
-                <img *ngIf="employee?.photo == null" id="image_2" src="/assets/DefaultContact.png" alt="Employee"
-                    height="150" />
-            </div>
-
-            <button *ngIf="employee?.photo != null" type="button" class="restar-button-img"
-                (click)="deleteImg()">{{'EMPLOYEE.EMPLOYEEEDIT.BUTTON_EMPLOYEEEDIT.Delete' | translate }}</button>
-
-            <div class="marginInput">
-                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Photo' | translate }}</label>
-
-                <input id="file" #file type="file" name="file" (change)="onFileChanged($event)"
-                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Photo' | translate}}"
-                    formControlName="file" class="form-control">
-            </div>
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 
 
-            <div class="marginInput">
-                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Name' | translate }}</label>
 
-                <input id="name" type="text" name="name" formControlName="name" class="form-control"
-                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Name' | translate}}">
 
-                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
-                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
-                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.NameEmpty'
-                        | translate }}</span>
+<div class="container-xxl bg-dark hero-emploee mb-5">
+    <div class="container my-5">
+        <div class="row" style="margin-top: 48px;">
+            <div class="col-lg-6  text-lg-start">
+
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <h1 class="text-white mb-4"> {{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Header' | translate }}</h1>
+
+
+                    <form [formGroup]="form" (ngSubmit)="editEmployee()">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div style="margin-bottom: 10px;">
+                                    <img *ngIf="employee?.photo != null" id="image_1" [src]="employee.photo"
+                                        alt="Employee" height="150" />
+                                    <img *ngIf="employee?.photo == null" id="image_2" src="/assets/DefaultContact.png"
+                                        alt="Employee" height="150" />
+                                </div>
+
+                                <button *ngIf="employee?.photo != null" type="button" class="btn btn-primary"
+                                    style="padding: 2px;"
+                                    (click)="deleteImg()">{{'EMPLOYEE.EMPLOYEEEDIT.BUTTON_EMPLOYEEEDIT.Delete' |
+                                    translate }}</button>
+
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Photo' | translate }}</label>
+
+                                <input id="file" #file type="file" name="file" (change)="onFileChanged($event)"
+                                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Photo' | translate}}"
+                                    formControlName="file" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Name' | translate }}</label>
+
+                                <input id="name" type="text" name="name" formControlName="name" class="form-control"
+                                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Name' | translate}}">
+
+                                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+                                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
+                                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.NameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Surname' | translate }}</label>
+
+                                <input id="surname" type="text" name="surname" formControlName="surname"
+                                    class="form-control"
+                                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Surname' | translate}}">
+
+                                <div *ngIf="form.controls['surname'].invalid && form.controls['surname'].touched">
+                                    <span class="error-message" *ngIf="form.controls['surname'].errors?.['required']">
+                                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.SurnameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Address' | translate }}</label>
+
+                                <input id="address" type="text" name="address" formControlName="address"
+                                    class="form-control"
+                                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Address' | translate}}">
+
+                                <div *ngIf="form.controls['address'].invalid && form.controls['address'].touched">
+                                    <span class="error-message" *ngIf="form.controls['address'].errors?.['required']">
+                                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.AddressEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Email' | translate }}</label>
+                                <input readonly="readonly" id="email" type="email " formControlName="email"
+                                    class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Phone' | translate }}</label>
+                                <input formControlName="phone" placeholder="+380 XXX XX-XX-XX" class="form-control"
+                                    mask=" (000) 000-00-00" prefix="+38" type="tel" [showMaskTyped]="true"
+                                    style="margin-bottom: 20px;">
+
+                                <div style="color:red"
+                                    *ngIf="this.form.controls['phone'].invalid && this.form.controls['phone'].touched">
+                                    <span class="error-message"
+                                        *ngIf="this.form.controls['phone'].errors?.['required']">
+                                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.PhoneEmpty'
+                                        | translate }} </span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Other' | translate }}</label>
+                                <textarea id="other" type="text" name="other" formControlName="other"
+                                    class="form-control"
+                                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Other' | translate}}"></textarea>
+                            </div>
+
+                            <div class="col-12">
+
+                                <button class="btn btn-primary " style="margin-right: 70px;"
+                                    [disabled]="form.invalid || form.disabled"
+                                    type="submit">{{'EMPLOYEE.EMPLOYEEEDIT.BUTTON_EMPLOYEEEDIT.Edit' | translate
+                                    }}</button>
+
+                                <button class="btn btn-light" [routerLink]="['/employee']" style=" float: right;"
+                                    type="submit">{{'EMPLOYEE.EMPLOYEEEDIT.BUTTON_EMPLOYEEEDIT.Cancel' | translate
+                                    }}</button>
+
+                            </div>
+
+                        </div>
+                    </form>
+
                 </div>
+
+
+
             </div>
+            <div class="col-lg-6 text-lg-start">
 
 
-            <div class="marginInput">
-                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Surname' | translate }}</label>
-
-                <input id="surname" type="text" name="surname" formControlName="surname" class="form-control"
-                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Surname' | translate}}">
-
-                <div *ngIf="form.controls['surname'].invalid && form.controls['surname'].touched">
-                    <span class="error-message" *ngIf="form.controls['surname'].errors?.['required']">
-                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.SurnameEmpty'
-                        | translate }}</span>
-                </div>
             </div>
-
-
-
-            <div class="marginInput">
-                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Address' | translate }}</label>
-
-                <input id="address" type="text" name="address" formControlName="address" class="form-control"
-                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Address' | translate}}">
-
-                <div *ngIf="form.controls['address'].invalid && form.controls['address'].touched">
-                    <span class="error-message" *ngIf="form.controls['address'].errors?.['required']">
-                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.AddressEmpty'
-                        | translate }}</span>
-                </div>
-            </div>
-
-            <div sclass="marginInput">
-                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Email' | translate }}</label>
-                <input readonly="readonly" id="email" type="email " formControlName="email" class="form-control">
-            </div>
-
-
-            <div class="marginInput" style="margin-top: 10px;">
-                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Phone' | translate }}</label>
-                <input formControlName="phone" placeholder="+380 XXX XX-XX-XX" class="form-control"
-                    mask=" (000) 000-00-00" prefix="+38" type="tel" [showMaskTyped]="true" style="margin-bottom: 20px;">
-
-                <div style="color:red"
-                    *ngIf="this.form.controls['phone'].invalid && this.form.controls['phone'].touched">
-                    <span class="error-message" *ngIf="this.form.controls['phone'].errors?.['required']">
-                        {{'EMPLOYEE.EMPLOYEEEDIT.SPAN.PhoneEmpty'
-                        | translate }} </span>
-                </div>
-            </div>
-
-
-            <div class="marginInput">
-                <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Other' | translate }}</label>
-                <textarea id="other" type="text" name="other" formControlName="other" class="form-control"
-                    placeholder="{{'EMPLOYEE.EMPLOYEEEDIT.INPUT_EMPLOYEEEDIT_PLACEHOLDER.Other' | translate}}"></textarea>
-            </div>
-
-            <div class="container-buttons">
-                <button class="btn btn-success" style="margin-right: 70px;" [disabled]="form.invalid || form.disabled"
-                    type="submit">{{'EMPLOYEE.EMPLOYEEEDIT.BUTTON_EMPLOYEEEDIT.Edit' | translate }}</button>
-                <button class="btn btn-light" [routerLink]="['/employee']" style="margin-right: 70px;"
-                    type="submit">{{'EMPLOYEE.EMPLOYEEEDIT.BUTTON_EMPLOYEEEDIT.Cancel' | translate }}</button>
-            </div>
-
-
         </div>
     </div>
-</form>
+</div>

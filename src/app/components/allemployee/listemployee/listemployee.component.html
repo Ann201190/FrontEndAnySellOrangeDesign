@@ -1,56 +1,94 @@
-<ngx-loading [show]="isWaiting"
-    [config]="{ backdropBorderRadius: '10px', backdropBackgroundColour: 'rgba(255, 255 255, 0.7)' }">
-</ngx-loading>
-<div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 
+
+<div class="p-5 wow fadeInUp"
+    style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22);  height: 1000px; "
+    data-wow-delay="0.2s">
     <h1 style="text-align: center;">{{'EMPLOYEE.EMPLOYEELIST.HEADER.List' | translate }}</h1>
+
     <table class="table table-striped" style="background: white;">
-        <thead>
-            <tr>
-                <th scope="col">№</th>
-                <th scope="col">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Photo' | translate }}</th>
-                <th scope="col">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Role' | translate }}</th>
-                <th scope="col">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Name' | translate }}</th>
-                <th scope="col" colspan="3">{{'EMPLOYEE.EMPLOYEELIST.HEADER.Action' | translate }}</th>
-            </tr>
-        </thead>
+
         <tbody>
 
-            <tr *ngFor="let employee of employees; let i = index">
-                <td>{{i+1}}</td>
+            <tr *ngFor="let employee of employees | paginate: { itemsPerPage: 8, currentPage:  p } ; let i = index">
+
+                <td colspan="6">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+
+                                        <div style="margin-right:15px;">{{i+1}} </div>
+                                        <img *ngIf="employee?.photo != null" class="flex-shrink-0 img-fluid rounded"
+                                            style="text-align: center; " id="image_1" [src]="employee.photo"
+                                            alt="Employee" height="70px" width="70px" />
+                                        <img *ngIf="employee?.photo == null" class="flex-shrink-0 img-fluid rounded"
+                                            style="text-align: center;" id="image_2" src="/assets/DefaultContact.png"
+                                            alt="Employee" height="70px" width="70px" />
+
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <div style="width: 220px;">{{employee.name}} {{employee.surName}} </div>
+                                                <div> {{roleType[employee.role] | translate}}</div>
+                                                <!--  <div class=" text-primary">
+                                                        {{product?.price}}
+                                                        <i class="fas fa-coins"></i>
+                                                    </div>-->
+                                            </h5>
+
+                                            <div class="fst-italic" style="float: right;">
+                                                <div style="float: right;">
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="updateEmployee(employee.id)"><i
+                                                            class="fas fa-edit"></i></a>
 
 
-                <td *ngIf="employee.photo != null" style="text-align: center;"> <img id="image_1" [src]="employee.photo"
-                        alt="..." height="70" width="70" /></td>
-                <td *ngIf="employee.photo == null" style="text-align: center;"> <img id="image_2"
-                        src="/assets/DefaultContact.png" alt="..." height="70" width="70" /></td>
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="moreEmployee(employee)" data-bs-toggle="modal"
+                                                        data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
 
+                                                    <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal"
+                                                        *ngIf='roleType[employee.role]==roleType[0]'
+                                                        (click)="deleteEmployee(employee)"><i
+                                                            class="fas fa-trash-alt"></i></a>
 
-                <td style="text-align: center;">{{roleType[employee.role] | translate}}</td>
-                <td>{{employee.name}} {{employee.surName}}</td>
-
-                <td>
-                    <button class="btn btn-link" (click)="updateEmployee(employee.id)">
-                        <img src="/assets/Edit.png" alt="Edit" height="27" width="27"></button>
-                </td>
-                <td>
-                    <button class="btn btn-link" (click)="moreEmployee(employee)" data-bs-toggle="modal"
-                        data-bs-target="#moreModal">
-                        <img src="/assets/TrioButton.png" alt="More" height="25" width="25"></button>
-                </td>
-                <td>
-                    <button type="button" *ngIf='roleType[employee.role]==roleType[0]'
-                        (click)="deleteEmployee(employee)" class="btn btn-link" data-bs-toggle="modal"
-                        data-bs-target="#deleteModal">
-                        <img src="/assets/Urna.png" alt="Del" height="25" width="25">
-                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
 
             </tr>
 
         </tbody>
     </table>
+
+    <div style="text-align: center;" *ngIf='employees.length>0'>
+        <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+            nextLabel="{{'PAGINATION.Next' | translate}}">
+        </pagination-controls>
+    </div>
+
 </div>
+
+
+
+
+
+
+
+
 
 
 <!-- Modal Delete -->
@@ -76,8 +114,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light"
-                    data-bs-dismiss="modal">{{'EMPLOYEE.EMPLOYEEMODAL.BUTTON_EMPLOYEEMODEL.No' | translate }}</button>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    data-bs-dismiss="modal">{{'EMPLOYEE.EMPLOYEEMODAL.BUTTON_EMPLOYEEMODEL.No' | translate
+                    }}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
                     (click)="idEmployee(idEmployeeForDeleted)">
                     {{'EMPLOYEE.EMPLOYEEMODAL.BUTTON_EMPLOYEEMODEL.Yes' | translate }}</button>
             </div>
@@ -91,7 +130,8 @@
     <div class="modal-dialog" style="width: 400px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="moreModalLabel">{{'EMPLOYEE.EMPLOYEEMODAL.HEADER.HeaderMore' | translate }}
+                <h5 class="modal-title" id="moreModalLabel">{{'EMPLOYEE.EMPLOYEEMODAL.HEADER.HeaderMore' |
+                    translate }}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

@@ -21,6 +21,7 @@ export class ListproviderComponent implements OnInit {
   public idProviderForDeleted!: Guid;
   public oneProvider!: Provider;
   public comingsProvider: Coming[] = [];
+  public p: any = 0;
 
   constructor(
     private storage: LocalStorageService,

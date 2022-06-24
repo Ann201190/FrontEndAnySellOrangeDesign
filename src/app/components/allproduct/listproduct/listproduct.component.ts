@@ -27,6 +27,7 @@ export class ListproductComponent implements OnInit {
   public oneProduct!: ProductWithDiscount;
   public DiscountType = DiscountType;
   public index!: number;
+  public p: any = 0;
   productUnitType: Array<string> = Object.keys(ProductUnit).filter(key => isNaN(+key))
 
   constructor(

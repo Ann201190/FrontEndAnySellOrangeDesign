@@ -181,6 +181,20 @@
     background-size: cover;
 }
 
+.hero-provider {
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../img/onlineshopping2.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-emploee {
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../img/46c543764e1a2ca700a18c203957f8a7.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 .hero-header img {
     /*  animation: imgRotate 50s linear infinite;*/
@@ -529,4 +543,47 @@ span {
 
 .md-toast-success {
     background-color: rgb(254, 161, 22) !important;
+}
+
+
+
+.custom-big-checkbox input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.custom-big-checkbox {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.custom-big-checkbox__checkbox {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border: 2px solid silver;
+    transition: border 0.3s ease;
+}
+
+.custom-big-checkbox input[type="checkbox"]:checked+.custom-big-checkbox__checkbox {
+    border-color: #0F172B !important;
+    background: url('/assets/Check.png')center center no-repeat;
+    background-size: contain;
+}
+
+.custom-big-checkbox:hover .custom-big-checkbox__checkbox {
+    border-color: #0F172B !important;
+}
+
+
+.error-message {
+    color: red !important;
+}
+
+span {
+    color: #0F172B !important;
+}
+
+.ngx-pagination .current {
+    background: rgb(254, 161, 22) !important;
 }

@@ -5,7 +5,8 @@
     </div>
 </div>
 
-<div class="p-5 wow fadeInUp" style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22); "
+<div class="p-5 wow fadeInUp"
+    style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22);  height: 800px; "
     data-wow-delay="0.2s">
     <h1 style="text-align: center;">{{'PRODUCT.PRODUCTLIST.HEADER.List' | translate }}</h1>
 
@@ -13,7 +14,7 @@
 
         <tbody>
 
-            <tr *ngFor="let product of products; let i = index">
+            <tr *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
 
                 <td colspan="6">
                     <div class="tab-content">
@@ -25,17 +26,18 @@
                                         <div style="margin-right:15px;">{{i+1}} </div>
                                         <img *ngIf="product?.image != null" class="flex-shrink-0 img-fluid rounded"
                                             style="text-align: center; " id="image_1" [src]="product.image"
-                                            alt="Product" height="50px" width="50px" />
+                                            alt="Product" height="70px" width="70px" />
                                         <img *ngIf="product?.image == null" class="flex-shrink-0 img-fluid rounded"
                                             style="text-align: center;" id="image_2" src="/assets/DefaultProduct.png"
-                                            alt="Product" height="50px" width="50px" />
+                                            alt="Product" height="70px" width="70px" />
 
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                 <div style="width: 220px;">{{product?.name}}</div>
                                                 <div class=" text-primary">
                                                     {{product?.price}}
-                                                    <i class="fas fa-coins"></i></div>
+                                                    <i class="fas fa-coins"></i>
+                                                </div>
                                             </h5>
 
                                             <div class="fst-italic" style="float: right;">
@@ -69,7 +71,17 @@
         </tbody>
     </table>
 
+    <div style="text-align: center;" *ngIf='products.length>0'>
+        <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+            nextLabel="{{'PAGINATION.Next' | translate}}">
+        </pagination-controls>
+    </div>
+
 </div>
+
+
+
+
 <!-- Modal Delete -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">

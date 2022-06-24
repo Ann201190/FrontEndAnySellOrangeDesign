@@ -23,6 +23,7 @@ export class ListStoreComponent implements OnInit {
   public idSelected!: string;
   public isWaiting = false;  //ожидание
   public role: any;
+  public p: any = 0;
   roleType: Array<string> = Object.keys(Role).filter(key => isNaN(+key))
 
   constructor(
@@ -81,8 +82,7 @@ export class ListStoreComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  addStore()
-  {
+  addStore() {
     this.router.navigate(['addstore']);
   }
 

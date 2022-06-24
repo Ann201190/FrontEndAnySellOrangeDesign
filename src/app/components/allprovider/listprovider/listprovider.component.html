@@ -1,39 +1,75 @@
-<ngx-loading [show]="isWaiting"
-    [config]="{ backdropBorderRadius: '10px', backdropBackgroundColour: 'rgba(255, 255 255, 0.7)' }">
-</ngx-loading>
-<div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 
+
+<div class="p-5 wow fadeInUp"
+    style="border:solid; border-width: 2px 2px 2px 0px; border-color: rgb(254, 161 ,22);  height: 562px; "
+    data-wow-delay="0.2s">
     <h1 style="text-align: center;">{{'PROVIDER.PROVIDERLIST.HEADER.List' | translate }}</h1>
+
     <table class="table table-striped" style="background: white;">
-        <thead>
-            <tr>
-                <th scope="col">№</th>
-                <th scope="col">{{'PROVIDER.PROVIDERLIST.HEADER.Name' | translate }}</th>
-                <th scope="col" colspan="3">{{'PROVIDER.PROVIDERLIST.HEADER.Action' | translate }}</th>
-            </tr>
-        </thead>
+
         <tbody>
 
-            <tr *ngFor="let provider of providers; let i = index">
-                <td>{{i+1}}</td>
-                <td>{{provider?.name}}</td>
-                <td>
-                    <button class="btn btn-link" (click)="updateProvider(provider.id)">
-                        <img src="/assets/Edit.png" alt="Del" height="27" width="27"></button>
+            <tr *ngFor="let provider of providers | paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
+
+                <td colspan="6">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+
+                                        <div style="margin-right:15px;">{{i+1}} </div>
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between  pb-2">
+                                                <div>{{provider?.name}}</div>
+
+                                                
+                                                <div class="fst-italic" style="float: right;">
+                                                <div style="float: right;">
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="updateProvider(provider.id)"><i
+                                                            class="fas fa-edit"></i></a>
+
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="moreProvider(provider)" data-bs-toggle="modal"
+                                                        data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+
+                                                    <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal"
+                                                        (click)="deleteProvider(provider)"><i
+                                                            class="fas fa-trash-alt"></i></a>
+                                                </div>
+                                            </div>
+                                            </h5>
+                                            
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
-                <td>
-                    <button class="btn btn-link" (click)="moreProvider(provider)" data-bs-toggle="modal"
-                        data-bs-target="#moreModal">
-                        <img src="/assets/TrioButton.png" alt="More" height="25" width="25"></button>
-                </td>
-                <td>
-                    <button class="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                        (click)="deleteProvider(provider)">
-                        <img src="/assets/Urna.png" alt="Del" height="25" width="25"></button>
-                </td>
+
             </tr>
+
         </tbody>
     </table>
+
+    <div style="text-align: center;" *ngIf='providers.length>0'>
+        <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+            nextLabel="{{'PAGINATION.Next' | translate}}">
+        </pagination-controls>
+    </div>
+
 </div>
 
 
@@ -56,7 +92,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-light"
                     data-bs-dismiss="modal">{{'PROVIDER.PROVIDERMODAL.BUTTON_PROVIDERMODAL.No' | translate }}</button>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
                     (click)="idProvider(idProviderForDeleted)">
                     {{'PROVIDER.PROVIDERMODAL.BUTTON_PROVIDERMODAL.Yes' | translate }}</button>
             </div>

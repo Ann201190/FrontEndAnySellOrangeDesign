@@ -19,6 +19,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class EditproductComponent implements OnInit {
 
   public files: any = 0;
+  public isWaiting: boolean = false;
   form!: FormGroup;
   public product!: Product;
   @ViewChild('file', { static: false })
@@ -45,7 +46,7 @@ export class EditproductComponent implements OnInit {
        barcode: new FormControl(),
        productUnit: new FormControl()
      })*/
-
+    this.isWaiting = true;
     this.route.params.subscribe((params: Params) => {
       let id = params["id"];
       this.productService.getByIdProduct(id).subscribe(oneProduct => {
@@ -65,6 +66,7 @@ export class EditproductComponent implements OnInit {
         });
 
       });
+      this.isWaiting = false;
     });
 
   }
@@ -100,7 +102,7 @@ export class EditproductComponent implements OnInit {
 
 
   editProduct() {
-
+    this.isWaiting = true;
     if (this.product) {
       this.product.name = this.form.value.name,
         this.product.price = this.form.value.price,
@@ -135,6 +137,7 @@ export class EditproductComponent implements OnInit {
       }
     }, err => {
       this.errorMessage();
+      this.isWaiting = false;
     });
   }
 

@@ -6,6 +6,10 @@
     "Liter": "Литр",
     "Cashier": "Кассир",
     "Manager": "Директор",
+    "PAGINATION": {
+        "Previous": "Предыдущая",
+        "Next": "Следующая"
+    },
     "HOME": {
         "HEADER": {
             "Header": "Вход в систему",

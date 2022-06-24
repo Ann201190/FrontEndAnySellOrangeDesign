@@ -22,6 +22,7 @@ export class ListemployeeComponent implements OnInit {
   public employees: Employee[] = [];
   public idEmployeeForDeleted!: Guid;
   public oneEmployee!: Employee;
+  public p: any = 0;
   roleType: Array<string> = Object.keys(Role).filter(key => isNaN(+key))
 
 

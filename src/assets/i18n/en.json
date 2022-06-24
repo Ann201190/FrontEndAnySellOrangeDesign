@@ -6,6 +6,10 @@
     "Liter": "Liter",
     "Cashier": "Cashier",
     "Manager": "Manager",
+    "PAGINATION": {
+        "Previous": "Previous",
+        "Next": "Next"
+    },
     "HOME": {
         "HEADER": {
             "Header": "Login",
