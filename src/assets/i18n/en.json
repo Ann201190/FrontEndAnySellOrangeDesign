@@ -536,7 +536,8 @@
                 "Product": "Products",
                 "Count": "Count",
                 "Price": "Price",
-                "Sum": "Total"
+                "Sum": "Total",
+                "Add": "Add coming"
             },
             "INPUT_COMINGADD_PLACEHOLDER": {
                 "Number": "Enter number coming",

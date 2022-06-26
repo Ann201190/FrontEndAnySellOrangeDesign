@@ -9,7 +9,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class ProductComponent implements OnInit {
 
-  public path: string = `https://localhost:44350/api/Product/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
+  public path: string = `https://localhost:44350/api/BalanceProduct/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
   constructor(
     private storage: LocalStorageService,
     public translateService: TranslateService
@@ -21,6 +21,6 @@ export class ProductComponent implements OnInit {
 
 
   download() {
-    this.path = `https://localhost:44350/api/Product/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
+    this.path = `https://localhost:44350/api/BalanceProduct/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
   }
 }

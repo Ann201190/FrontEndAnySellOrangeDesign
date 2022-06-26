@@ -1,266 +1,185 @@
-<ngx-loading [show]="isWaiting"
-    [config]="{ backdropBorderRadius: '10px', backdropBackgroundColour: 'rgba(255, 255 255, 0.7)' }">
-</ngx-loading>
-
-
-<div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData minheight" style="margin: 20px;">
-
-    <h5 class="card-header bg-success rounded-header" style="margin-bottom: 30px; text-align: center;">
-        {{'COMING.COMINGADD.HEADER.Header' | translate }}</h5>
-
-    <div class="row">
-
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="padding: 5px;">
-            <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData"
-                style="margin: 20px; height: 270px;">
-
-                <form [formGroup]="form_1" (ngSubmit)="addComing()">
-
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Number' | translate }}</label>
-
-                        <input id="numberComing" type="text" name="numberComing" formControlName="numberComing"
-                            class="form-control"
-                            placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Number' | translate}}">
-
-                        <div *ngIf="form_1.controls['numberComing'].invalid && form_1.controls['numberComing'].touched">
-                            <span class="error-message" *ngIf="form_1.controls['numberComing'].errors?.['required']">
-                                {{'COMING.COMINGADD.SPAN.NumberEmpty'
-                                | translate }}</span>
-                        </div>
-                    </div>
-
-
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Provider' | translate }}</label>
-
-                        <ng-select [items]="providers" bindLabel="name" class="form-control" formControlName="providers"
-                            [(ngModel)]="selectedProviderId" bindValue="id"></ng-select>
-                        <span style="color:red" [hidden]="selectedProviderId"> {{'COMING.COMINGADD.SPAN.ProviderEmpty'
-                            | translate }} </span>
-                    </div>
-
-                    <div class="container-buttons">
-                        <button class="btn btn-success" style="margin-right: 70px;"
-                            [disabled]="form_1.invalid || form_1.disabled ||!selectedProviderId || productsAdd.length == 0"
-                            type="submit">{{'COMING.COMINGADD.BUTTON_COMINGADD.Save' | translate }}</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="padding: 5px;">
-            <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
-                <form [formGroup]="form_2" (ngSubmit)="addProducts()">
-
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Product' | translate }}</label>
-
-                        <ng-select [items]="products" bindLabel="name" class="form-control" formControlName="products"
-                            [(ngModel)]="selectedProductId" bindValue="id"></ng-select>
-                        <span style="color:red" [hidden]="selectedProductId">{{'COMING.COMINGADD.SPAN.ProductEmpty'
-                            | translate }}</span>
-                    </div>
-
-
-
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Count' | translate }}</label>
-
-                        <input id="count" type="number" name="count" formControlName="count" class="form-control"
-                            [(ngModel)]="count"
-                            placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Count' | translate}}">
-
-                        <div *ngIf="form_2.controls['count'].invalid && form_2.controls['count'].touched">
-                            <span class="error-message" *ngIf="form_2.controls['count'].errors?.['required']">
-                                {{'COMING.COMINGADD.SPAN.CountEmpty'
-                                | translate }}</span>
-                            <span class="error-message" *ngIf="this.form_2.controls['count'].errors?.['min']">
-                                {{'COMING.COMINGADD.SPAN.CountMin'
-                                | translate }} </span>
-                        </div>
-                    </div>
-
-
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Price' | translate }}</label>
-
-                        <input id="price" type="number" name="price" formControlName="price" class="form-control"
-                            [(ngModel)]="price"
-                            placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Price' | translate}}">
-
-                        <div *ngIf="form_2.controls['price'].invalid && form_2.controls['price'].touched">
-                            <span class="error-message" *ngIf="form_2.controls['price'].errors?.['required']">
-                                {{'COMING.COMINGADD.SPAN.PriceEmpty'
-                                | translate }}</span>
-                            <span class="error-message" *ngIf="this.form_2.controls['price'].errors?.['min']">
-                                {{'COMING.COMINGADD.SPAN.PriceMin'
-                                | translate }} </span>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div sclass="marginInput" style="margin-bottom: 20px;">
-                        <label>{{'COMING.COMINGADD.HEADER.Sum' | translate }}</label>
-                        <input readonly="readonly" id="sumTotal" type="number " value="{{ price*count }}"
-                            formControlName="sum" class="form-control">
-
-                    </div>
-
-                    <div class="container-buttons">
-                        <button class="btn btn-success" style="margin-right: 70px;"
-                            [disabled]="form_2.invalid || form_2.disabled ||!selectedProductId"
-                            type="submit">{{'COMING.COMINGADD.BUTTON_COMINGADD.Save' | translate }}</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-
-
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
-        <table class="table table-striped" style="background: white;">
-            <thead>
-
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">{{'COMING.COMINGADD.HEADERTABLE.Name' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGADD.HEADERTABLE.Count' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGADD.HEADERTABLE.Price' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGADD.HEADERTABLE.Sum' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGADD.HEADERTABLE.Action' | translate }}</th>
-                </tr>
-
-            </thead>
-            <tbody>
-
-
-
-
-
-                <tr *ngFor="let productAdd of productsAdd; let i = index">
-                    <td>{{i+1}}</td>
-                    <td>{{productAdd?.product?.name }}</td>
-
-                    <td style="text-align: center;">{{productAdd.count}}</td>
-                    <td style="text-align: center;">{{productAdd.comingPrice}}</td>
-                    <td style="text-align: center;">{{productAdd.comingPrice*productAdd.count}}</td>
-                    <!--    <td style="text-align: center;">{{DiscountType[discount.discountType] | translate}}</td>-->
-                    <td>
-                        <button class="btn btn-link" (click)="updateProduct(productAdd)" data-bs-toggle="modal"
-                            data-bs-target="#editModal">
-                            <img src="/assets/Edit.png" alt="Edit" height="27" width="27"></button>
-                    </td>
-                    <td>
-                        <button class="btn btn-link" type="button" (click)="deleteProduct(productAdd)">
-                            <img src="/assets/Urna.png" alt="Del" height="25" width="25"></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table *ngIf='totalSum!=0' class="table table-striped rounded-bottom" style="background: white;">
-            <tr style="height: 35px;">
-                <th style="text-align: right">{{'COMING.COMINGADD.HEADERTABLE.Total' | translate }}:</th>
-                <th style="text-align: center;">{{totalSum}}</th>
-            </tr>
-        </table>
-    </div>
-
-
-
 </div>
 
 
 
-<!-- Edit More -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true"
-    style=" margin-top: 60px;">
-    <div class="modal-dialog" style="width: 560px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Редактирование</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+<div class="bg-dark d-flex" style="margin-top: 48px">
 
-                <form [formGroup]="form_3" (ngSubmit)="updateModalProduct()">
+    <div class="row g-0">
+        <div class="col-md-6  ">
 
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h1 class="text-white mb-4">{{'COMING.COMINGADD.HEADER.Header' | translate }}</h1>
 
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Product' | translate }}</label>
+                <form [formGroup]="form_1" (ngSubmit)="addComing()">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label>{{'COMING.COMINGADD.HEADER.Number' | translate }}</label>
 
-                        <ng-select [items]="products" bindLabel="name" class="form-control" formControlName="products"
-                            [(ngModel)]="selectedProductId" bindValue="id"></ng-select>
-                        <span style="color:red" [hidden]="selectedProductId">{{'COMING.COMINGADD.SPAN.ProductEmpty'
-                            | translate }}</span>
-                    </div>
+                            <input id="numberComing" type="text" name="numberComing" formControlName="numberComing"
+                                class="form-control"
+                                placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Number' | translate}}">
 
+                            <div
+                                *ngIf="form_1.controls['numberComing'].invalid && form_1.controls['numberComing'].touched">
+                                <span class="error-message"
+                                    *ngIf="form_1.controls['numberComing'].errors?.['required']">
+                                    {{'COMING.COMINGADD.SPAN.NumberEmpty'
+                                    | translate }}</span>
+                            </div>
+                        </div>
 
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Count' | translate }}</label>
+                        <div class="col-12">
+                            <label>{{'COMING.COMINGADD.HEADER.Provider' | translate }}</label>
 
-                        <input id="count" type="number" name="count" formControlName="count" class="form-control"
-                            [(ngModel)]="countModal"
-                            placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Count' | translate}}">
-
-                        <div *ngIf="form_3.controls['count'].invalid && form_3.controls['count'].touched">
-                            <span class="error-message" *ngIf="form_3.controls['count'].errors?.['required']">
-                                {{'COMING.COMINGADD.SPAN.CountEmpty'
-                                | translate }}</span>
-                            <span class="error-message" *ngIf="this.form_3.controls['count'].errors?.['min']">
-                                {{'COMING.COMINGADD.SPAN.CountMin'
+                            <ng-select [items]="providers" bindLabel="name" class="form-control"
+                                formControlName="providers" [(ngModel)]="selectedProviderId" bindValue="id"></ng-select>
+                            <span style="color:red" [hidden]="selectedProviderId">
+                                {{'COMING.COMINGADD.SPAN.ProviderEmpty'
                                 | translate }} </span>
                         </div>
-                    </div>
 
-
-
-                    <div class="marginInput">
-                        <label>{{'COMING.COMINGADD.HEADER.Price' | translate }}</label>
-
-                        <input id="price" type="number" name="price" formControlName="price" class="form-control"
-                            [(ngModel)]="priceModal"
-                            placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Price' | translate}}">
-
-                        <div *ngIf="form_3.controls['price'].invalid && form_3.controls['price'].touched">
-                            <span class="error-message" *ngIf="form_3.controls['price'].errors?.['required']">
-                                {{'COMING.COMINGADD.SPAN.PriceEmpty'
-                                | translate }}</span>
-                            <span class="error-message" *ngIf="this.form_3.controls['price'].errors?.['min']">
-                                {{'COMING.COMINGADD.SPAN.PriceMin'
-                                | translate }} </span>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                                [disabled]="form_1.invalid || form_1.disabled ||!selectedProviderId || productsAdd.length == 0"
+                                type="submit">{{'COMING.COMINGADD.BUTTON_COMINGADD.Save' | translate }}</button>
                         </div>
+
                     </div>
-
-
-                    <div sclass="marginInput" style="margin-bottom: 20px;">
-                        <label>{{'COMING.COMINGADD.HEADER.Sum' | translate }}</label>
-                        <input readonly="readonly" id="sumModal" type="number " value="{{ countModal*priceModal }}"
-                            formControlName="sum" class="form-control">
-                    </div>
-
-
-
                 </form>
-
-
-            </div>
-            <div class="modal-footer">
-                <div class="container-buttons">
-                    <button class="btn btn-success" style="margin-right: 70px;" data-bs-dismiss="modal"
-                        [disabled]="form_3.invalid || form_3.disabled ||!selectedProductId"
-                        type="submit">{{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.Close' | translate }}</button>
-                    <button type="button" class="btn btn-light" style="margin-right: 70px;"
-                        data-bs-dismiss="modal">{{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.Close' | translate}}</button>
-                </div>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <form [formGroup]="form_2" (ngSubmit)="addProducts()">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label>{{'COMING.COMINGADD.HEADER.Product' | translate }}</label>
+
+                            <ng-select [items]="products" bindLabel="name" class="form-control"  [virtualScroll]="true"
+                                formControlName="products" [(ngModel)]="selectedProductId" bindValue="id"></ng-select>
+                            <span style="color:red" [hidden]="selectedProductId">{{'COMING.COMINGADD.SPAN.ProductEmpty'
+                                | translate }}</span>
+                        </div>
+
+                  
+
+                        <div class="col-12">
+                            <label>{{'COMING.COMINGADD.HEADER.Count' | translate }}</label>
+
+                            <input id="count" type="number" name="count" formControlName="count" class="form-control"
+                                [(ngModel)]="count"
+                                placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Count' | translate}}">
+
+                            <div *ngIf="form_2.controls['count'].invalid && form_2.controls['count'].touched">
+                                <span class="error-message" *ngIf="form_2.controls['count'].errors?.['required']">
+                                    {{'COMING.COMINGADD.SPAN.CountEmpty'
+                                    | translate }}</span>
+                                <span class="error-message" *ngIf="this.form_2.controls['count'].errors?.['min']">
+                                    {{'COMING.COMINGADD.SPAN.CountMin'
+                                    | translate }} </span>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label>{{'COMING.COMINGADD.HEADER.Price' | translate }}</label>
+
+                            <input id="price" type="number" name="price" formControlName="price" class="form-control"
+                                [(ngModel)]="price"
+                                placeholder="{{'COMING.COMINGADD.INPUT_COMINGADD_PLACEHOLDER.Price' | translate}}">
+
+                            <div *ngIf="form_2.controls['price'].invalid && form_2.controls['price'].touched">
+                                <span class="error-message" *ngIf="form_2.controls['price'].errors?.['required']">
+                                    {{'COMING.COMINGADD.SPAN.PriceEmpty'
+                                    | translate }}</span>
+                                <span class="error-message" *ngIf="this.form_2.controls['price'].errors?.['min']">
+                                    {{'COMING.COMINGADD.SPAN.PriceMin'
+                                    | translate }} </span>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label>{{'COMING.COMINGADD.HEADER.Sum' | translate }}</label>
+                            <input readonly="readonly" id="sumTotal" type="number " value="{{ price*count }}"
+                                formControlName="sum" class="form-control">
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                                [disabled]="form_2.invalid || form_2.disabled ||!selectedProductId"
+                                type="submit">{{'COMING.COMINGADD.BUTTON_COMINGADD.Save' | translate }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf="productsAdd.length>0" class="p-5 wow fadeInUp"
+    style="border:solid; margin-top: 48px; border-width: 2px; border-color: rgb(254, 161 ,22);" data-wow-delay="0.2s">
+    <table class="table table-striped" style="background: white;">
+        <tbody>
+            <tr *ngFor="let productAdd of productsAdd| paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
+                <td colspan="6">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between  pb-2">
+                                                <div style="margin-right:15px;">{{i+1}} </div>
+                                                <div>{{productAdd?.product?.name}}</div>
+                                                <div>{{productAdd.count}}</div>
+
+                                                <div style="color:rgb(254, 161 ,22)">{{productAdd.comingPrice}} <i
+                                                        class="fas fa-coins"></i></div>
+                                                <div style="color:rgb(254, 161 ,22)">
+                                                    {{productAdd.comingPrice*productAdd.count}} <i
+                                                        class="fas fa-coins"></i></div>
+
+                                                <div class="fst-italic" style="float: right;">
+                                                    <div style="float: right;">
+
+                                                        <a class="btn btn-square btn-primary mx-1"
+                                                            (click)="deleteProduct(productAdd)"><i
+                                                                class="fas fa-trash-alt"></i></a>
+                                                    </div>
+                                                </div>
+
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+
+            <div
+                style="float: right !important;  font-size: 1.45rem; font-weight: 800;   font-family: 'Nunito',sans-serif; color:rgb(254, 161 ,22)">
+
+                {{'COMING.COMINGADD.HEADERTABLE.Total' | translate }}:
+                {{totalSum}}<i class="fas fa-coins"></i>
+            </div>
+        </tbody>
+
+    </table>
+
+    <div *ngIf='productsAdd.length>0' style="text-align: center;">
+        <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+            nextLabel="{{'PAGINATION.Next' | translate}}">
+        </pagination-controls>
     </div>
 </div>

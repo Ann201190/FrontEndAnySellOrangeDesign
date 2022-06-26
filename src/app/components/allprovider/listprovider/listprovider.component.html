@@ -24,30 +24,31 @@
                                 <div class="col-lg-12">
                                     <div class="d-flex align-items-center">
 
-                                        <div style="margin-right:15px;">{{i+1}} </div>
+
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between  pb-2">
+                                                <div style="margin-right:15px;">{{i+1}} </div>
                                                 <div>{{provider?.name}}</div>
 
-                                                
+
                                                 <div class="fst-italic" style="float: right;">
-                                                <div style="float: right;">
-                                                    <a class="btn btn-square btn-primary mx-1"
-                                                        (click)="updateProvider(provider.id)"><i
-                                                            class="fas fa-edit"></i></a>
+                                                    <div style="float: right;">
+                                                        <a class="btn btn-square btn-primary mx-1"
+                                                            (click)="updateProvider(provider.id)"><i
+                                                                class="fas fa-edit"></i></a>
 
-                                                    <a class="btn btn-square btn-primary mx-1"
-                                                        (click)="moreProvider(provider)" data-bs-toggle="modal"
-                                                        data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+                                                        <a class="btn btn-square btn-primary mx-1"
+                                                            (click)="moreProvider(provider)" data-bs-toggle="modal"
+                                                            data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
 
-                                                    <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
-                                                        data-bs-target="#deleteModal"
-                                                        (click)="deleteProvider(provider)"><i
-                                                            class="fas fa-trash-alt"></i></a>
+                                                        <a class="btn btn-square btn-primary mx-1"
+                                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                            (click)="deleteProvider(provider)"><i
+                                                                class="fas fa-trash-alt"></i></a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </h5>
-                                            
+
 
 
 

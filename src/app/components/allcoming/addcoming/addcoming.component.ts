@@ -30,6 +30,7 @@ export class AddcomingComponent implements OnInit {
   public comingProducts: BalanceProduct[] = [];
   public productsAdd: any[] = [];
   public totalSum: number = 0;
+  public p: any = 0;
   public oneComingBalanceProduct!: BalanceProduct
 
   public price = 0;
@@ -103,8 +104,8 @@ export class AddcomingComponent implements OnInit {
             })
 
             this.form_2 = new FormGroup({
-              price: new FormControl('', [Validators.required, Validators.min(0)]),
-              count: new FormControl('', [Validators.required, Validators.min(0)]),
+              price: new FormControl('', [Validators.required, Validators.min(0.01)]),
+              count: new FormControl('', [Validators.required, Validators.min(1)]),
               products: new FormControl(this.products[this.products.length - 1].name, [Validators.required]),
               sum: new FormControl(0)
             })

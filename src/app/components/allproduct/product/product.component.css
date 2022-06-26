@@ -2,3 +2,13 @@ center {
     margin: 0 auto !important;
     text-align: center !important;
 }
+
+
+.download {
+    color: white;
+    text-decoration: none !important;
+}
+
+.download:hover {
+    color: black;
+}

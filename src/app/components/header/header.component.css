@@ -49,7 +49,7 @@
     */
     background: inherit;
     /* цвет текста */
-    color: #dadada !important;
+    color: white !important;
     /* вид курсора */
     cursor: pointer;
     /* размер шрифта */
@@ -313,7 +313,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 1.2em;
-    color: #dadada !important;
+    color: white !important;
     width: 100%;
     text-decoration: none;
     /* плавный переход */

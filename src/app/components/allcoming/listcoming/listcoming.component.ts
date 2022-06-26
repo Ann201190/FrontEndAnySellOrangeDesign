@@ -17,6 +17,8 @@ export class ListcomingComponent implements OnInit {
   public comings: Coming[] = [];
   public oneComing!: Coming;
   public totalSum: number = 0;
+  public p: any = 0;
+  public path: string = `https://localhost:44350/api/Product/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
 
   constructor(
     private storage: LocalStorageService,
@@ -31,6 +33,11 @@ export class ListcomingComponent implements OnInit {
     this.allList();
   }
 
+
+
+  download() {
+    this.path = `https://localhost:44350/api/Product/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
+  }
 
   moreComing(coming: Coming) {
     this.oneComing = coming;

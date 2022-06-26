@@ -30,6 +30,8 @@ export class ListproductComponent implements OnInit {
   public p: any = 0;
   productUnitType: Array<string> = Object.keys(ProductUnit).filter(key => isNaN(+key))
 
+
+
   constructor(
     private storage: LocalStorageService,
     public translateService: TranslateService,

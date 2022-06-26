@@ -1,122 +1,147 @@
-<ngx-loading [show]="isWaiting"
-    [config]="{ backdropBorderRadius: '10px', backdropBackgroundColour: 'rgba(255, 255 255, 0.7)' }">
-</ngx-loading>
-<div class="minheight">
-    <header>
-        <h2>{{'COMING.HEADER.Header' | translate }}</h2>
-    </header>
-
-    <div class="container-buttons" style="margin-bottom:15px ;">
-        <button class="shadow button_add" type="submit" [routerLink]="['/addcoming']">
-        </button>
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
+</div>
 
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
 
-        <h1 style="text-align: center;">{{'COMING.COMINGLIST.HEADER.List' | translate }}</h1>
-        <table class="table table-striped" style="background: white;">
-            <thead>
 
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">{{'COMING.COMINGLIST.HEADER.Number' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGLIST.HEADER.Provider' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGLIST.HEADER.Date' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGLIST.HEADER.Sum' | translate }}</th>
-                    <th scope="col">{{'COMING.COMINGLIST.HEADER.Action' | translate }}</th>
-                </tr>
+<div class="p-5 wow fadeInUp"
+    style="border:solid; margin-top: 48px; border-width: 2px; border-color: rgb(254, 161 ,22); height: 500px;"
+    data-wow-delay="0.2s">
+    <h1 style="text-align: center;">{{'COMING.HEADER.Header' | translate }}</h1>
 
-            </thead>
-            <tbody>
 
-                <tr *ngFor="let coming of comings; let i = index">
-                    <td>{{i+1}}</td>
-                    <td>{{coming.number}}</td>
-                    <td style="text-align: center;">{{coming.provider?.name}}</td>
-                    <td style="text-align: center;">{{coming.date | date:'dd-MM-yyyy, H:mm:ss'}}</td>
-                    <td style="text-align: center;">
-                        {{coming.balanceProducts[i].comingPrice*coming.balanceProducts[i].count}}</td>
-                    <td>
-                        <button class="btn btn-link" (click)="moreComing(coming)" data-bs-toggle="modal"
-                            data-bs-target="#moreModal">
-                            <img src="/assets/TrioButton.png" alt="More" height="25" width="25"></button>
-                    </td>
-                    <!--   <td>
-                    <button class="btn btn-link" (click)="updateDiscount(discount.id)">
-                        <img src="/assets/Edit.png" alt="Edit" height="27" width="27"></button>
+    <button class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" style="margin-top: 25px; margin-bottom: 25px;"
+        type="submit" [routerLink]="['/addcoming']"><i class="fas fa-plus"></i> {{'COMING.COMINGADD.HEADER.Add'
+        | translate }}
+    </button>
+
+
+    <a href={{path}} download class="download"> <button class="btn btn-primary py-sm-3 px-sm-5 me-3 animated download"
+            (click)="download()" style="margin-bottom: 25px; margin-top: 25px"> <i class="fas fa-download"></i>
+            {{'PRODUCT.PRODUCT.HEADER.Download' | translate }} </button></a>
+
+
+    <table class="table table-striped" style="background: white;">
+
+        <tbody>
+
+            <tr *ngFor="let coming of comings| paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
+
+                <td colspan="6">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between  pb-2">
+                                                <div style="margin-right:15px;">{{i+1}} </div>
+                                                <div>{{coming.number}}</div>
+                                                <div>{{coming.provider?.name}}</div>
+                                                <div>{{coming.date | date:'dd-MM-yyyy, H:mm:ss'}}</div>
+                                                <div class=" text-primary">
+                                                    {{coming.balanceProducts[i].comingPrice*coming.balanceProducts[i].count}}
+                                                    <i class="fas fa-coins"></i>
+                                                </div>
+                                                <div class="fst-italic" style="float: right;">
+                                                    <div style="float: right;">
+
+
+
+                                                        <a class="btn btn-square btn-primary mx-1"
+                                                            (click)="moreComing(coming)" data-bs-toggle="modal"
+                                                            data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                            </h5>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
-                <td>
-                    <button class="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                        (click)="deleteComing(discount)">
-                        <img src="/assets/Urna.png" alt="Del" height="25" width="25"></button>
-                </td>-->
-                </tr>
-            </tbody>
-        </table>
+
+            </tr>
+
+        </tbody>
+    </table>
+    <div *ngIf='comings.length>0' style="text-align: center;">
+        <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+            nextLabel="{{'PAGINATION.Next' | translate}}">
+        </pagination-controls>
     </div>
+</div>
 
 
-    <!-- Modal More -->
-    <div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
-        style=" margin-top: 60px;">
-        <div class="modal-dialog" style="width: 560px ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="moreModalLabel">{{'COMING.COMINGMODAL.HEADER.Number' | translate }}
-                        {{oneComing?.number}}
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><b>{{'COMING.COMINGMODAL.BODY.Name' | translate }}: </b>{{oneComing?.provider?.name}}</p>
-                    <p><b>{{'COMING.COMINGMODAL.BODY.Email' | translate }}: </b>{{oneComing?.provider?.email}}</p>
-                    <p><b>{{'COMING.COMINGMODAL.BODY.Phone' | translate }}: </b>{{oneComing?.provider?.phone}}</p>
-                    <p><b>{{'COMING.COMINGMODAL.BODY.Other' | translate }}: </b>{{oneComing?.provider?.other}}</p>
-                    <p><b>{{'COMING.COMINGMODAL.BODY.Date' | translate }}: </b>{{oneComing?.date |
-                        date:'dd-MM-yyyy, H:mm:ss'}}</p>
+<!-- Modal More -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
+    style=" margin-top: 60px;">
+    <div class="modal-dialog" style="width: 560px ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moreModalLabel">{{'COMING.COMINGMODAL.HEADER.Number' | translate }}
+                    {{oneComing?.number}}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><b>{{'COMING.COMINGMODAL.BODY.Name' | translate }}: </b>{{oneComing?.provider?.name}}</p>
+                <p><b>{{'COMING.COMINGMODAL.BODY.Email' | translate }}: </b>{{oneComing?.provider?.email}}</p>
+                <p><b>{{'COMING.COMINGMODAL.BODY.Phone' | translate }}: </b>{{oneComing?.provider?.phone}}</p>
+                <p><b>{{'COMING.COMINGMODAL.BODY.Other' | translate }}: </b>{{oneComing?.provider?.other}}</p>
+                <p><b>{{'COMING.COMINGMODAL.BODY.Date' | translate }}: </b>{{oneComing?.date |
+                    date:'dd-MM-yyyy, H:mm:ss'}}</p>
 
-                    <h4 style="text-align:center ;">{{'COMING.COMINGMODAL.BODY.List' | translate }}</h4>
+                <h4 style="text-align:center ;">{{'COMING.COMINGMODAL.BODY.List' | translate }}</h4>
 
-                    <table class="table table-striped" style="background: white;">
-                        <thead>
+                <table class="table table-striped" style="background: white;">
+                    <thead>
 
-                            <tr>
-                                <th scope="col">№</th>
-                                <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Name' | translate }}</th>
-                                <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Count' | translate }}</th>
-                                <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Price' | translate }}</th>
-                                <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Sum' | translate }}</th>
-                            </tr>
-
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let balanceProduct of oneComing?.balanceProducts; let i = index">
-                                <td>{{i+1}}</td>
-                                <td>{{balanceProduct?.product?.name }}</td>
-                                <td style="text-align: center;">{{balanceProduct.count}}</td>
-                                <td style="text-align: center;">{{balanceProduct.comingPrice}}</td>
-                                <td style="text-align: center;">{{balanceProduct.comingPrice*balanceProduct.count}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table *ngIf='totalSum!=0' class="table table-striped rounded-bottom" style="background: white;">
-                        <tr style="height: 35px;">
-                            <th style="text-align: right">{{'COMING.COMINGMODAL.HEADERTABLE.Total' | translate }}:</th>
-                            <th style="text-align: center;">{{totalSum}}</th>
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Name' | translate }}</th>
+                            <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Count' | translate }}</th>
+                            <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Price' | translate }}</th>
+                            <th scope="col">{{'COMING.COMINGMODAL.HEADERTABLE.Sum' | translate }}</th>
                         </tr>
-                    </table>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let balanceProduct of oneComing?.balanceProducts; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{balanceProduct?.product?.name }}</td>
+                            <td style="text-align: center;">{{balanceProduct.count}}</td>
+                            <td style="text-align: center;">{{balanceProduct.comingPrice}}</td>
+                            <td style="text-align: center;">{{balanceProduct.comingPrice*balanceProduct.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table *ngIf='totalSum!=0' class="table table-striped rounded-bottom" style="background: white;">
+                    <tr style="height: 35px;">
+                        <th style="text-align: right">{{'COMING.COMINGMODAL.HEADERTABLE.Total' | translate }}:</th>
+                        <th style="text-align: center;">{{totalSum}}</th>
+                    </tr>
+                </table>
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light"
-                        data-bs-dismiss="modal">{{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.Close' | translate
-                        }}</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.Close' | translate
+                    }}</button>
             </div>
         </div>
     </div>
-
-
 </div>

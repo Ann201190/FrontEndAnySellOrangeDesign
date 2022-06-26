@@ -587,3 +587,8 @@ span {
 .ngx-pagination .current {
     background: rgb(254, 161, 22) !important;
 }
+
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    background: white;
+}

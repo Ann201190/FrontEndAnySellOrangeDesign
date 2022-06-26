@@ -24,10 +24,10 @@
                                     <div class="d-flex align-items-center">
 
                                         <div style="margin-right:15px;">{{i+1}} </div>
-                                        <img *ngIf="product?.image != null" class="flex-shrink-0 img-fluid rounded"
+                                        <img *ngIf="product.image != null" class="flex-shrink-0 img-fluid rounded"
                                             style="text-align: center; " id="image_1" [src]="product.image"
                                             alt="Product" height="70px" width="70px" />
-                                        <img *ngIf="product?.image == null" class="flex-shrink-0 img-fluid rounded"
+                                        <img *ngIf="product.image == null" class="flex-shrink-0 img-fluid rounded"
                                             style="text-align: center;" id="image_2" src="/assets/DefaultProduct.png"
                                             alt="Product" height="70px" width="70px" />
 
@@ -136,13 +136,13 @@
 
                 <p><b>{{'PRODUCT.PRODUCTMODAL.BODY.Name' | translate }}: </b>{{oneProduct?.name}}</p>
                 <p><b>{{'PRODUCT.PRODUCTMODAL.BODY.Price' | translate }}: </b>{{oneProduct?.price}}</p>
-                <p *ngIf="oneProduct.discount?.value != null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.Discount' | translate }}:
-                    </b>{{oneProduct.discount?.value}}</p>
-                <p *ngIf="oneProduct.discount?.value != null"> <b>{{'PRODUCT.PRODUCTMODAL.BODY.TypeDiscount' | translate
+                <p *ngIf="oneProduct.discount != null && oneProduct.discount.value != null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.Discount' | translate }}:
+                    </b>{{oneProduct.discount.value}}</p>
+                <p *ngIf="oneProduct.discount != null &&  oneProduct.discount.value != null"> <b>{{'PRODUCT.PRODUCTMODAL.BODY.TypeDiscount' | translate
                         }}: </b>{{DiscountType[index] | translate}}</p>
-                <p *ngIf="oneProduct.discount?.value != null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.PriceWithDiscount' |
+                <p *ngIf=" oneProduct.discount != null && oneProduct.discount.value != null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.PriceWithDiscount' |
                         translate }}:
-                    </b>{{oneProduct?.priceWithDiscount}}</p>
+                    </b>{{oneProduct.priceWithDiscount}}</p>
                 <p><b>{{'PRODUCT.PRODUCTMODAL.BODY.Barcode' | translate }}: </b>{{oneProduct?.barcode}}</p>
                 <p *ngIf="oneProduct.productUnit!= null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.Unit' | translate }}:
                     </b>{{productUnitType[oneProduct.productUnit] | translate}}</p>
