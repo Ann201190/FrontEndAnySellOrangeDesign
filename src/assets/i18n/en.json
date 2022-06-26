@@ -537,7 +537,9 @@
                 "Count": "Count",
                 "Price": "Price",
                 "Sum": "Total",
-                "Add": "Add coming"
+                "Add": "Add coming",
+                "Download": "Download zero balances"
+
             },
             "INPUT_COMINGADD_PLACEHOLDER": {
                 "Number": "Enter number coming",

@@ -5,7 +5,7 @@
  * выдвигающаяся по клику слева
  */
 
-.nav {
+.nav-side {
     /*  ширна произвольная, не стесняйтесь экспериментировать */
     width: 320px;
     min-width: 320px;
@@ -35,7 +35,7 @@
  * тег <label>
  */
 
-.nav-toggle {
+.nav-side-toggle {
     /* абсолютно позиционируем */
     position: absolute;
     /* относительно левого края панели */
@@ -68,7 +68,7 @@
  * символ Unicode (TRIGRAM FOR HEAVEN)
 */
 
-.nav-toggle:after {
+.nav-side-toggle:after {
     content: '\2630';
     text-decoration: none;
 }
@@ -76,7 +76,7 @@
 
 /* цвет текста при наведении */
 
-.nav-toggle:hover {
+.nav-side-toggle:hover {
     color: #f4f4f4;
 }
 
@@ -87,7 +87,7 @@
  * имя селектора атрибут флажка
  */
 
-[id='nav-toggle'] {
+[id='nav-side-toggle'] {
     position: absolute;
     display: none;
 }
@@ -99,7 +99,7 @@
  * когда навигация раскрыта, распологаем внутри панели
 */
 
-[id='nav-toggle']:checked~.nav>.nav-toggle {
+[id='nav-side-toggle']:checked~.nav-side>.nav-side-toggle {
     left: auto;
     right: 2px;
     top: 1em;
@@ -111,7 +111,7 @@
  * используем псевдокласс:checked
  */
 
-[id='nav-toggle']:checked~.nav {
+[id='nav-side-toggle']:checked~.nav-side {
     left: 0;
     box-shadow: 4px 0px 20px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 4px 0px 20px 0px rgba(0, 0, 0, 0.5);
@@ -126,7 +126,7 @@
  * фишка необязательная, на любителя
 */
 
-[id='nav-toggle']:checked~main>article {
+[id='nav-side-toggle']:checked~main>article {
     -webkit-transform: translateX(320px);
     -moz-transform: translateX(320px);
     transform: translateX(320px);
@@ -139,7 +139,7 @@
  * вы можете испльзовать любой другой значок
 */
 
-[id='nav-toggle']:checked~.nav>.nav-toggle:after {
+[id='nav-side-toggle']:checked~.nav-side>.nav-side-toggle:after {
     content: '\2715';
 }
 
@@ -182,7 +182,7 @@ body {
         overflow-x: hidden;
     }
 
-    .nav {
+    .nav-side {
         width: 100%;
         box-shadow: none
     }
@@ -193,7 +193,7 @@ body {
  * Формируем стиль заголовка (логотип) панели 
 */
 
-.nav h2 {
+.nav-side h2 {
     width: 90%;
     padding: 0;
     margin: 10px 0;
@@ -216,7 +216,7 @@ body {
     -webkit-transition: opacity 0.8s, -webkit-transform 0.8s;
 }
 
-.nav h2 a {
+.nav-side h2 a {
     color: #dadada !important;
     text-decoration: none;
     text-transform: uppercase;
@@ -225,7 +225,7 @@ body {
 
 /*плавное появление заголовка (логотипа) при раскрытии панели */
 
-[id='nav-toggle']:checked~.nav h2 {
+[id='nav-side-toggle']:checked~.nav-side h2 {
     opacity: 1;
     transform: scale(1, 1);
     -ms-transform: scale(1, 1);
@@ -240,14 +240,14 @@ body {
  * прикрутим трансфомации и плавные переходы
  */
 
-.nav>ul {
+.nav-side>ul {
     display: block;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.nav>ul>li {
+.nav-side>ul>li {
     line-height: 2.5;
     opacity: 0;
     -webkit-transform: translateX(-50%);
@@ -260,7 +260,7 @@ body {
     transition: opacity .5s .1s, transform .5s .1s;
 }
 
-[id='nav-toggle']:checked~.nav>ul>li {
+[id='nav-side-toggle']:checked~.nav-side>ul>li {
     opacity: 1;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
@@ -271,32 +271,32 @@ body {
 
 /* определяем интервалы появления пунктов меню */
 
-.nav>ul>li:nth-child(2) {
+.nav-side>ul>li:nth-child(2) {
     -webkit-transition: opacity .5s .2s, -webkit-transform .5s .2s;
     transition: opacity .5s .2s, transform .5s .2s;
 }
 
-.nav>ul>li:nth-child(3) {
+.nav-side>ul>li:nth-child(3) {
     -webkit-transition: opacity .5s .3s, -webkit-transform .5s .3s;
     transition: opacity .5s .3s, transform .5s .3s;
 }
 
-.nav>ul>li:nth-child(4) {
+.nav-side>ul>li:nth-child(4) {
     -webkit-transition: opacity .5s .4s, -webkit-transform .5s .4s;
     transition: opacity .5s .4s, transform .5s .4s;
 }
 
-.nav>ul>li:nth-child(5) {
+.nav-side>ul>li:nth-child(5) {
     -webkit-transition: opacity .5s .5s, -webkit-transform .5s .5s;
     transition: opacity .5s .5s, transform .5s .5s;
 }
 
-.nav>ul>li:nth-child(6) {
+.nav-side>ul>li:nth-child(6) {
     -webkit-transition: opacity .5s .6s, -webkit-transform .5s .6s;
     transition: opacity .5s .6s, transform .5s .6s;
 }
 
-.nav>ul>li:nth-child(7) {
+.nav-side>ul>li:nth-child(7) {
     -webkit-transition: opacity .5s .7s, -webkit-transform .5s .7s;
     transition: opacity .5s .7s, transform .5s .7s;
 }
@@ -306,7 +306,7 @@ body {
  * оформление ссылок пунктов меню
  */
 
-.nav>ul>li>a {
+.nav-side>ul>li>a {
     display: inline-block;
     position: relative;
     padding: 0;
@@ -327,8 +327,8 @@ body {
  * состояние ссылок меню при наведении
  */
 
-.nav>ul>li>a:hover,
-.nav>ul>li>a:focus {
+.nav-side>ul>li>a:hover,
+.nav-side>ul>li>a:focus {
     color: white !important;
     padding-left: 15px;
 }
@@ -338,7 +338,7 @@ body {
  * линия подчеркивания ссылок меню
  */
 
-.nav>ul>li>a:before {
+.nav-side>ul>li>a:before {
     content: '';
     display: block;
     position: absolute;
@@ -350,7 +350,7 @@ body {
     transition: width 0s ease;
 }
 
-.nav>ul>li>a:after {
+.nav-side>ul>li>a:after {
     content: '';
     display: block;
     position: absolute;
@@ -369,14 +369,14 @@ body {
  * ссылок при наведении
  */
 
-.nav>ul>li>a:hover:before {
+.nav-side>ul>li>a:hover:before {
     width: 0%;
     background: rgb(254, 161, 22);
     -webkit-transition: width .5s ease;
     transition: width .5s ease;
 }
 
-.nav>ul>li>a:hover:after {
+.nav-side>ul>li>a:hover:after {
     width: 0%;
     background: transparent;
     -webkit-transition: width 0s ease;
@@ -404,10 +404,12 @@ body {
     opacity: 0;
 }
 
-[id='nav-toggle']:checked ~ .mask-content {
+[id='nav-side-toggle']:checked ~ .mask-content {
     visibility: visible;
     opacity: 1;
     -webkit-transition: opacity .5s, visibility .5s;
     transition: opacity .5s, visibility .5s;
 }
 */
+
+
