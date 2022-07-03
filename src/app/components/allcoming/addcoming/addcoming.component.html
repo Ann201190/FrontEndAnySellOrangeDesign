@@ -5,7 +5,10 @@
     </div>
 </div>
 
-
+<div class="text-center wow">
+    <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
+    </h5>
+</div>
 
 <div class="bg-dark d-flex" style="margin-top: 48px">
 
@@ -61,13 +64,13 @@
                         <div class="col-12">
                             <label>{{'COMING.COMINGADD.HEADER.Product' | translate }}</label>
 
-                            <ng-select [items]="products" bindLabel="name" class="form-control"  [virtualScroll]="true"
+                            <ng-select [items]="products" bindLabel="name" class="form-control" [virtualScroll]="true"
                                 formControlName="products" [(ngModel)]="selectedProductId" bindValue="id"></ng-select>
                             <span style="color:red" [hidden]="selectedProductId">{{'COMING.COMINGADD.SPAN.ProductEmpty'
                                 | translate }}</span>
                         </div>
 
-                  
+
 
                         <div class="col-12">
                             <label>{{'COMING.COMINGADD.HEADER.Count' | translate }}</label>

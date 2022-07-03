@@ -48,7 +48,7 @@ export class AddcomingComponent implements OnInit {
     public comingService: ComingService,
     private toast: HotToastService,
     public translateService: TranslateService,
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     private router: Router,
     private producrService: ProductService
   ) { }
@@ -58,8 +58,6 @@ export class AddcomingComponent implements OnInit {
   ngOnInit(): void {
 
     this.translateService.use(this.storage.getItem('lang'))
-
-    console.log(this.comingProducts.length)
 
     this.form_1 = new FormGroup({
       numberComing: new FormControl(),
@@ -210,59 +208,21 @@ export class AddcomingComponent implements OnInit {
   }
 
 
-  updateProduct(product: BalanceProduct) {
-
-    this.oneComingBalanceProduct = product;
-
-    this.selectedProductId = this.oneComingBalanceProduct.productId
-
-    this.form_3 = new FormGroup({
-      price: new FormControl(this.oneComingBalanceProduct.comingPrice, [Validators.required, Validators.min(0)]),
-      count: new FormControl(this.oneComingBalanceProduct.count, [Validators.required, Validators.min(0)]),
-      products: new FormControl(this.selectedProductId),
-      sum: new FormControl(this.oneComingBalanceProduct.comingPrice * this.oneComingBalanceProduct.count)
-
-    });
-
-  }
-
-
-  updateModalProduct() {
-
-    if (this.oneComingBalanceProduct) {
-      this.oneComingBalanceProduct.count = this.form_3.value.count,
-        this.oneComingBalanceProduct.comingPrice = this.form_3.value.price,
-        this.oneComingBalanceProduct.productId = this.form_3.value.products,
-        this.oneComingBalanceProduct.product = this.products.find(el => el.id == this.form_3.value.products)
-    }
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!УДАЛИТЬ ИЗ СПИСКА И ДОБАВИТЬ НОВЫЙ ОБНОВЛЕННЫЙ
-    const index: number = this.productsAdd.indexOf(this.oneComingBalanceProduct);
-    if (index !== -1) {
-      this.totalSum = this.totalSum - (this.oneComingBalanceProduct.count * this.oneComingBalanceProduct.comingPrice);
-      this.productsAdd.splice(index, 1);
-      this.productsAdd[index] = this.oneComingBalanceProduct;
-    }
-
-
-  }
-
-  /* this.isWaiting = false;
-   this.comingService.editComing(this.oneComingBalanceProduct).subscribe(disc => {
+  /* updateProduct(product: BalanceProduct) {
  
-     if (disc) {
-       this.successMessage();
-     }
-     else {
-       this.errorMessage();
-     }
-     this.isWaiting = false;
-   },
-     err => {
-       this.errorMessage();
-       this.isWaiting = false;
-     })*/
-
+     this.oneComingBalanceProduct = product;
+ 
+     this.selectedProductId = this.oneComingBalanceProduct.productId
+ 
+     this.form_3 = new FormGroup({
+       price: new FormControl(this.oneComingBalanceProduct.comingPrice, [Validators.required, Validators.min(0)]),
+       count: new FormControl(this.oneComingBalanceProduct.count, [Validators.required, Validators.min(0)]),
+       products: new FormControl(this.selectedProductId),
+       sum: new FormControl(this.oneComingBalanceProduct.comingPrice * this.oneComingBalanceProduct.count)
+ 
+     });
+ 
+   }*/
 
 
 }

@@ -10,7 +10,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class DiscountComponent implements OnInit {
 
   constructor(
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService
   ) { }
 

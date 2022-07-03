@@ -10,6 +10,7 @@
         "Previous": "Previous",
         "Next": "Next"
     },
+    "Logout": "Logout",
     "HOME": {
         "HEADER": {
             "Header": "Login",
@@ -32,7 +33,7 @@
     },
     "BUTTON": {
         "LANG": {
-            "RU": "Russion",
+            "RU": "Русский",
             "EN": "English"
         }
     },
@@ -538,8 +539,8 @@
                 "Price": "Price",
                 "Sum": "Total",
                 "Add": "Add coming",
-                "Download": "Download zero balances"
-
+                "Download": "Download zero balances",
+                "DownloadAll": "Download balances"
             },
             "INPUT_COMINGADD_PLACEHOLDER": {
                 "Number": "Enter number coming",
@@ -604,6 +605,30 @@
                 "Yes": "Yes",
                 "No": "No",
                 "Close": "Close"
+            }
+        }
+    },
+    "ORDER": {
+        "HEADER": {
+            "Header": "Cashbox"
+        },
+        "ORDERADD": {
+            "HEADER": {
+                "Header": "Add product",
+                "Product": "Product",
+                "Count": "Count"
+            },
+            "INPUT_ORDERADD_PLACEHOLDER": {
+                "Product": "Enter product",
+                "Count": "Enter count product"
+            },
+            "SPAN": {
+                "CountEmpty": "Product's count must not be empty",
+                "ProductEmpty": "Orders's product must not be empty",
+                "CountMin": "The minimum count must be greater than 0"
+            },
+            "BUTTON_ORDERADD": {
+                "Save": "Add"
             }
         }
     }

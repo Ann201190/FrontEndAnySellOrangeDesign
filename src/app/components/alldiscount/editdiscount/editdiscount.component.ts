@@ -27,7 +27,7 @@ export class EditdiscountComponent implements OnInit {
     private discountService: DiscountService,
     private router: Router,
     private route: ActivatedRoute,
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService,
     private toast: HotToastService
   ) { }
@@ -35,11 +35,11 @@ export class EditdiscountComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.use(this.storage.getItem('lang'))
 
-   /* this.form = new FormGroup({
-      name: new FormControl(),
-      value: new FormControl(),
-      discount: new FormControl(),
-    })*/
+    /* this.form = new FormGroup({
+       name: new FormControl(),
+       value: new FormControl(),
+       discount: new FormControl(),
+     })*/
     this.isWaiting = true;
     this.route.params.subscribe((params: Params) => {
       let id = params["id"];

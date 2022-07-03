@@ -3,13 +3,13 @@ import { Inject, Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
 import { STORE_API_URL } from '../app-injection-tokens';
-import { Coming } from '../models/coming';
+import { OrderProduct } from '../models/OrderProduct';
 
 
 @Injectable(
     { providedIn: 'root' }
 )
-export class ComingService {
+export class OrderService {
 
     private baseApiUrl = `${this.apiUrl}api/`;
 
@@ -18,20 +18,18 @@ export class ComingService {
         @Inject(STORE_API_URL) private apiUrl: string) { }
 
 
-    getComingByIdStore(storeId: Guid): Observable<Coming[]> {
-        return this.http.get<Coming[]>(`${this.baseApiUrl}coming/getstorecoming/${storeId}`)
+    getOrderByIdStore(storeId: Guid): Observable<OrderProduct[]> {
+        return this.http.get<OrderProduct[]>(`${this.baseApiUrl}order/getcashboxproduct/${storeId}`)
     }
 
-    addComing(coming: Coming): Observable<boolean> {
-        return this.http.post<boolean>(`${this.baseApiUrl}coming`, coming)
-    }
-
-    deleteComing(id: Guid): Observable<boolean> {
-        return this.http.get<boolean>(`${this.baseApiUrl}coming/deletecoming/${id}`)
-    }
-    /*  editComing(coming: Coming): Observable<boolean> {
-          return this.http.post<boolean>(`${this.baseApiUrl}coming/updatecoming`, coming)
-      }*/
+    /* 
+     addComing(coming: Coming): Observable<boolean> {
+         return this.http.post<boolean>(`${this.baseApiUrl}coming`, coming)
+     }
+ 
+   editComing(coming: Coming): Observable<boolean> {
+           return this.http.post<boolean>(`${this.baseApiUrl}coming/updatecoming`, coming)
+       }*/
     /* getByIdDiscount(id: Guid): Observable<Discount> {
          return this.http.get<Discount>(`${this.baseApiUrl}discount/${id}`)
      }

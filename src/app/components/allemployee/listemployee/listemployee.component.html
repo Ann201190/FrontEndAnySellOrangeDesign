@@ -141,14 +141,14 @@
                 <p *ngIf="oneEmployee?.photo == null" style="text-align: center;"> <img id="image_2"
                         src="/assets/DefaultContact.png" alt="..." height="250" width="250" /></p>
 
-                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Role' | translate }}: </b> {{roleType[oneEmployee.role] |
-                    translate}}</p>
-                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Name' | translate }}: </b>{{oneEmployee?.name}}
-                    {{oneEmployee?.surName}}</p>
-                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Phone' | translate }}: </b>{{oneEmployee?.phone}}</p>
-                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Email' | translate }}: </b>{{oneEmployee?.email}}</p>
-                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Address' | translate }}: </b>{{oneEmployee?.address}}</p>
-                <p><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Other' | translate }}: </b>{{oneEmployee?.other}}</p>
+                <div><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Role' | translate }}: </b> {{roleType[oneEmployee.role] |
+                    translate}}</div>
+                <div><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Name' | translate }}: </b>{{oneEmployee?.name}}
+                    {{oneEmployee?.surName}}</div>
+                <div><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Phone' | translate }}: </b>{{oneEmployee?.phone}}</div>
+                <div><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Email' | translate }}: </b>{{oneEmployee?.email}}</div>
+                <div><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Address' | translate }}: </b>{{oneEmployee?.address}}</div>
+                <div><b>{{'EMPLOYEE.EMPLOYEEMODAL.BODY.Other' | translate }}: </b>{{oneEmployee?.other}}</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light"

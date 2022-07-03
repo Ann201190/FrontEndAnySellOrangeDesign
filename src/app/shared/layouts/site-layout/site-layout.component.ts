@@ -14,22 +14,10 @@ export class SiteLayoutComponent implements OnInit {
   @ViewChild('floating') floatingRef!: ElementRef
 
   constructor(
-    public translateService: TranslateService,
-    private storage: LocalStorageService) { }
+   ) { }
 
   ngOnInit(): void {
   }
 
-  changeSiteLanguage(localeCode: string) {
-    this.translateService.use(localeCode);
-    this.setLang(localeCode)
-  }
-
-  setLang(localeCode: any) {
-    this.storage.setItem('lang', localeCode);
-  }
-
-  getLang() {
-    return this.storage.getItem('lang');
-  }
+  
 }

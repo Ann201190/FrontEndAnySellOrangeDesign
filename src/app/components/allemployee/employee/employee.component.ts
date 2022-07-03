@@ -14,7 +14,7 @@ export class EmployeeComponent implements OnInit {
 
 
   constructor(
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService,
     public employeeService: EmployeeService
   ) { }

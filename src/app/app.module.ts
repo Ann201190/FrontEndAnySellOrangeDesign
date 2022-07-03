@@ -8,7 +8,6 @@ import { ACCESS_TOKEN_KEY } from './services/auth.service';
 import { AddProductComponent } from './components/allproduct/addproduct/addproduct.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
@@ -50,6 +49,13 @@ import { InformationsCashierComponent } from './components/informationscashier/i
 import { MorediscountComponent } from './components/alldiscount/morediscount/morediscount.component';
 import { AdddiscountproductComponent } from './components/alldiscount/adddiscountproduct/adddiscountproduct.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderComponent } from './components/allorder/order/order.component';
+import { ListorderComponent } from './components/allorder/listorder/listorder.component';
+
+import { HeaderComponent } from './components/header/header.component';
+import { SideBarComponent } from './components/sidebar/sidebar.component';
+import { AddorderComponent } from './components/allorder/addorder/addorder.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -64,7 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     AddProductComponent,
     FooterComponent,
-    HeaderComponent,
+    SideBarComponent,
     SiteLayoutComponent,
     ErrorComponent,
     RegistrationComponent,
@@ -94,7 +100,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListcomingComponent,
     InformationsCashierComponent,
     MorediscountComponent,
-    AdddiscountproductComponent
+    AdddiscountproductComponent,
+    OrderComponent,
+    ListorderComponent,
+    HeaderComponent,
+    AddorderComponent
   ],
   imports: [
     BrowserModule,

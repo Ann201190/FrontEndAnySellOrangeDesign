@@ -24,7 +24,7 @@ export class EditproviderComponent implements OnInit {
     private providerService: ProviderService,
     private router: Router,
     private route: ActivatedRoute,
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService,
     private toast: HotToastService) { }
 

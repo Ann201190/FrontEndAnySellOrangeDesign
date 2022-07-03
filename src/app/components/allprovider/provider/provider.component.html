@@ -1,6 +1,9 @@
 <div class="container-xxl pt-5 pb-3">
-    <h1 style="text-align: center;">{{'PROVIDER.HEADER.Header' | translate }}</h1>
-
+    <div class="text-center wow">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
+        </h5>
+        <h1 style="text-align: center;">{{'PROVIDER.HEADER.Header' | translate }}</h1>
+    </div>
     <div class="row g-0">
         <app-addprovider class="col-md-6 bg-dark d-flex "></app-addprovider>
         <app-listprovider class="col-md-6"></app-listprovider>

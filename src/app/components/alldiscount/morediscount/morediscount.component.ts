@@ -32,7 +32,7 @@ export class MorediscountComponent implements OnInit {
   public isShow: boolean = false;
 
   constructor(
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService,
     private productService: ProductService,
     private discountService: DiscountService,

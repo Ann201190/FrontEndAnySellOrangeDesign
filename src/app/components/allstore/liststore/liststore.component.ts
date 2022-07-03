@@ -28,7 +28,7 @@ export class ListStoreComponent implements OnInit {
 
   constructor(
     private storeService: StoreService,
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     private router: Router,
     private toast: HotToastService,
     public translateService: TranslateService,

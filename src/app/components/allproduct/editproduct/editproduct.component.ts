@@ -31,7 +31,7 @@ export class EditproductComponent implements OnInit {
     private router: Router,
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService,
     private toast: HotToastService
   ) { }

@@ -31,7 +31,7 @@ export class AdddiscountproductComponent implements OnInit {
 
 
   constructor(
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService,
     private productService: ProductService,
     private discountService: DiscountService,
@@ -55,7 +55,7 @@ export class AdddiscountproductComponent implements OnInit {
 
       this.discountService.getByIdDiscount(this.discountId).subscribe(dic => {
         this.discount = dic
-      //  this.isWaiting = false;  //ожидание
+        //  this.isWaiting = false;  //ожидание
       });
 
       this.productService.getProductsWithoutDiscount(this.discountId)

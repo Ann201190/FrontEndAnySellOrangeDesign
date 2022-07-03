@@ -23,6 +23,7 @@ import { ListcomingComponent } from './components/allcoming/listcoming/listcomin
 import { InformationsCashierComponent } from './components/informationscashier/informationscashier.component';
 import { MorediscountComponent } from './components/alldiscount/morediscount/morediscount.component';
 import { AdddiscountproductComponent } from './components/alldiscount/adddiscountproduct/adddiscountproduct.component';
+import { AddorderComponent } from './components/allorder/addorder/addorder.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,8 @@ const routes: Routes = [
 
         { path: 'listcoming', component: ListcomingComponent, canActivate: [AuthGard] },
         { path: 'addcoming', component: AddcomingComponent, canActivate: [AuthGard] },
+
+        { path: 'addorder', component: AddorderComponent, canActivate: [AuthGard] }
       ]
   },
   { path: 'error', component: ErrorComponent },

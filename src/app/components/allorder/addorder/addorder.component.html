@@ -1,0 +1,163 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div class="container-xxl pt-5 pb-3">
+    <div class="text-center wow">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">AnySell
+        </h5>
+
+        <h1 style="text-align: center;">{{'ORDER.HEADER.Header' | translate }}</h1>
+
+    </div>
+    <div class="row g-0">
+        <div class="col-md-6 bg-dark d-flex ">
+
+
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h1 class="text-white mb-4">{{'ORDER.ORDERADD.HEADER.Header' | translate }}</h1>
+
+                <form [formGroup]="form" (ngSubmit)="addOrder()">
+                    <div class="row g-3">
+
+
+                        <div class="col-12">
+                            <label>{{'ORDER.ORDERADD.HEADER.Product' | translate }}</label>
+
+                            <ng-select [items]="producrForOrder" bindLabel="name" class="form-control"
+                                [virtualScroll]="true" formControlName="products" [(ngModel)]="selectedProductId"
+                                bindValue="id"></ng-select>
+                            <span style="color:red" [hidden]="selectedProductId">{{'ORDER.ORDERADD.SPAN.ProductEmpty'
+                                | translate }}</span>
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <label>{{'ORDER.ORDERADD.HEADER.Count' | translate }}</label>
+
+                            <input id="count" type="number" name="count" formControlName="count" class="form-control"
+                                placeholder="{{'ORDER.ORDERADD.INPUT_ORDERADD_PLACEHOLDER.Count' | translate}}">
+
+                            <div *ngIf="form.controls['count'].invalid && form.controls['count'].touched">
+                                <span class="error-message" *ngIf="form.controls['count'].errors?.['required']">
+                                    {{'ORDER.ORDERADD.SPAN.CountEmpty'
+                                    | translate }}</span>
+                                <span class="error-message" *ngIf="this.form.controls['count'].errors?.['min']">
+                                    {{'ORDER.ORDERADD.SPAN.CountMin'
+                                    | translate }} </span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                                [disabled]="form.invalid || form.disabled ||!selectedProductId "
+                                type="submit">{{'ORDER.ORDERADD.BUTTON_ORDERADD.Save' | translate }}</button>
+                        </div>
+                        <!--|| productsAdd.length == 0-->
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+
+
+
+
+
+
+
+
+
+
+            <!--       <div *ngIf="productsAdd.length>0" class="p-5 wow fadeInUp"
+                style="border:solid; margin-top: 48px; border-width: 2px; border-color: rgb(254, 161 ,22);" data-wow-delay="0.2s">
+                <table class="table table-striped" style="background: white;">
+                    <tbody>
+                        <tr *ngFor="let productAdd of productsAdd| paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
+                            <td colspan="6">
+                                <div class="tab-content">
+                                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                                        <div class="row g-4">
+                                            <div class="col-lg-12">
+                                                <div class="d-flex align-items-center">
+            
+                                                    <div class="w-100 d-flex flex-column text-start ps-4">
+                                                        <h5 class="d-flex justify-content-between  pb-2">
+                                                            <div style="margin-right:15px;">{{i+1}} </div>
+                                                            <div>{{productAdd?.product?.name}}</div>
+                                                            <div>{{productAdd.count}}</div>
+            
+                                                            <div style="color:rgb(254, 161 ,22)">{{productAdd.comingPrice}} <i
+                                                                    class="fas fa-coins"></i></div>
+                                                            <div style="color:rgb(254, 161 ,22)">
+                                                                {{productAdd.comingPrice*productAdd.count}} <i
+                                                                    class="fas fa-coins"></i></div>
+            
+                                                            <div class="fst-italic" style="float: right;">
+                                                                <div style="float: right;">
+            
+                                                                    <a class="btn btn-square btn-primary mx-1"
+                                                                        (click)="deleteProduct(productAdd)"><i
+                                                                            class="fas fa-trash-alt"></i></a>
+                                                                </div>
+                                                            </div>
+            
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+            
+            
+                        <div
+                            style="float: right !important;  font-size: 1.45rem; font-weight: 800;   font-family: 'Nunito',sans-serif; color:rgb(254, 161 ,22)">
+            
+                            {{'COMING.COMINGADD.HEADERTABLE.Total' | translate }}:
+                            {{totalSum}}<i class="fas fa-coins"></i>
+                        </div>
+                    </tbody>
+            
+                </table>
+            
+                <div *ngIf='productsAdd.length>0' style="text-align: center;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+                        nextLabel="{{'PAGINATION.Next' | translate}}">
+                    </pagination-controls>
+                </div>
+            </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</div>

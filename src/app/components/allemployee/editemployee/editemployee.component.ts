@@ -29,7 +29,7 @@ export class EditemployeeComponent implements OnInit {
     private employeeService: EmployeeService,
     private router: Router,
     private route: ActivatedRoute,
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService,
     private toast: HotToastService,
     private sanitizer: DomSanitizer,) { }

@@ -11,7 +11,7 @@ export class ProductComponent implements OnInit {
 
   public path: string = `https://localhost:44350/api/BalanceProduct/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
   constructor(
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     public translateService: TranslateService
   ) { }
 

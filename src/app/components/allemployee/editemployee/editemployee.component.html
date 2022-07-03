@@ -6,7 +6,10 @@
 </div>
 
 
-
+<div class="text-center wow">
+    <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
+    </h5>
+</div>
 
 <div class="container-xxl bg-dark hero-emploee mb-5">
     <div class="container my-5">
@@ -88,6 +91,8 @@
                                 <input readonly="readonly" id="email" type="email " formControlName="email"
                                     class="form-control">
                             </div>
+
+
                             <div class="col-12">
                                 <label>{{'EMPLOYEE.EMPLOYEEEDIT.HEADER.Phone' | translate }}</label>
                                 <input formControlName="phone" placeholder="+380 XXX XX-XX-XX" class="form-control"
