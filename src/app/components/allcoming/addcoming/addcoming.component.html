@@ -140,7 +140,7 @@
 
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between  pb-2">
-                                                <div style="margin-right:15px;">{{i+1}} </div>
+                                                <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}} </div>
                                                 <div>{{productAdd?.product?.name}}</div>
                                                 <div>{{productAdd.count}}</div>
 

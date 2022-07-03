@@ -23,7 +23,7 @@
                                 <div class="col-lg-12">
                                     <div class="d-flex align-items-center">
 
-                                        <div style="margin-right:15px;">{{i+1}} </div>
+                                        <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}} </div>
                                         <img *ngIf="product.image != null" class="flex-shrink-0 img-fluid rounded"
                                             style="text-align: center; " id="image_1" [src]="product.image"
                                             alt="Product" height="70px" width="70px" />
@@ -138,14 +138,17 @@
                 <div><b>{{'PRODUCT.PRODUCTMODAL.BODY.Price' | translate }}: </b>{{oneProduct?.price}}</div>
                 <div *ngIf="oneProduct.discount != null && oneProduct.discount.value != null">
                     <b>{{'PRODUCT.PRODUCTMODAL.BODY.Discount' | translate }}:
-                    </b>{{oneProduct.discount.value}}</div>
+                    </b>{{oneProduct.discount.value}}
+                </div>
                 <div *ngIf="oneProduct.discount != null &&  oneProduct.discount.value != null">
                     <b>{{'PRODUCT.PRODUCTMODAL.BODY.TypeDiscount' | translate
-                        }}: </b>{{DiscountType[index] | translate}}</div>
+                        }}: </b>{{DiscountType[index] | translate}}
+                </div>
                 <div *ngIf=" oneProduct.discount != null && oneProduct.discount.value != null">
                     <b>{{'PRODUCT.PRODUCTMODAL.BODY.PriceWithDiscount' |
                         translate }}:
-                    </b>{{oneProduct.priceWithDiscount}}</div>
+                    </b>{{oneProduct.priceWithDiscount}}
+                </div>
                 <div><b>{{'PRODUCT.PRODUCTMODAL.BODY.Barcode' | translate }}: </b>{{oneProduct?.barcode}}</div>
                 <div *ngIf="oneProduct.productUnit!= null"><b>{{'PRODUCT.PRODUCTMODAL.BODY.Unit' | translate }}:
                     </b>{{productUnitType[oneProduct.productUnit] | translate}}</div>

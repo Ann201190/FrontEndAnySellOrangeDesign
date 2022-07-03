@@ -3,8 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Guid } from 'guid-typescript';
 import { ProductUnit } from 'src/app/models/enum/productunit';
+import { Order } from 'src/app/models/order';
 import { OrderProduct } from 'src/app/models/OrderProduct';
-
+import { Product } from 'src/app/models/product';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -17,19 +18,21 @@ export class AddorderComponent implements OnInit {
 
   public isWaiting = false;  //ожидание
   form!: FormGroup;
+  public totalSum: number = 0
   producrForOrder: OrderProduct[] = []
   public selectedProductId?: Guid;
+  public p: any = 0;
+  public productsAdd: any[] = [];
   productUnitType: Array<string> = Object.keys(ProductUnit).filter(key => isNaN(+key))
 
   constructor(
     public translateService: TranslateService,
-    private storage: LocalStorageService,
+    public storage: LocalStorageService,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
 
     this.translateService.use(this.storage.getItem('lang'))
-
 
     this.form = new FormGroup({
       products: new FormControl(),
@@ -42,8 +45,6 @@ export class AddorderComponent implements OnInit {
       prodforord => {
         this.producrForOrder = prodforord
 
-        console.log(this.producrForOrder)
-
         this.producrForOrder = prodforord.map((i) => { i.name = i.name + ' (' + i.barcode + ')'; return i; });
 
         this.selectedProductId = this.producrForOrder[this.producrForOrder.length - 1].id;
@@ -51,7 +52,6 @@ export class AddorderComponent implements OnInit {
         this.isWaiting = false;
       }
     )
-
 
     this.form = new FormGroup({
       count: new FormControl('', [Validators.required, Validators.min(0)]),
@@ -61,10 +61,44 @@ export class AddorderComponent implements OnInit {
   }
 
 
+  addProduct() {
 
+    let prod = this.producrForOrder.find(el => el.id == this.form.value.products)
+    console.log(prod)
+    //массив для вывода на фронт
 
+    let oneProduct: any = {
+      name: prod?.name,
+      productId: prod?.id,
+      count: this.form.value.count,
+      price: prod?.priceWithDiscount,
+      barcode: prod?.barcode,
+      productUnit: prod?.productUnit
+    };
 
+    if (prod != null) {
+      this.totalSum = this.totalSum + (prod?.priceWithDiscount * this.form.value.count)
+    }
 
+    this.productsAdd.push(oneProduct);
+
+    // this.form_2.reset(); //очищение формы
+
+    this.selectedProductId = this.producrForOrder[this.producrForOrder.length - 1].id;
+    this.form.reset({
+      'count': '',
+      'products': this.selectedProductId,
+    });
+    // this.selectedProductId = this.products[this.products.length - 1].id;
+  }
+
+  deleteProduct(product: any) {
+    const index: number = this.productsAdd.indexOf(product);
+    if (index !== -1) {
+      this.totalSum = this.totalSum - (product.price * product.count);
+      this.productsAdd.splice(index, 1);
+    }
+  }
 
   addOrder() {
 

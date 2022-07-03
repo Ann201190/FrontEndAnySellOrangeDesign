@@ -19,7 +19,7 @@ export class ListcomingComponent implements OnInit {
   public comings: Coming[] = [];
   public oneComing!: Coming;
   public totalSum: number = 0;
-  public Sum: number = 0;
+  public sum: number = 0;
   public p: any = 0;
   public idComingForDeleted!: Guid;
   public path: string = `https://localhost:44350/api/Product/download/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
@@ -44,7 +44,7 @@ export class ListcomingComponent implements OnInit {
       this.idComingForDeleted = coming.id;
     }
     this.oneComing = coming;
-    this.Sum = this.ComingTotalPrice(this.oneComing);
+    this.sum = this.ComingTotalPrice(this.oneComing);
   }
 
 

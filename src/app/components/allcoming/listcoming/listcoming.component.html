@@ -13,9 +13,9 @@
     <div class="text-center wow">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
         </h5>
-    <h1 style="text-align: center;">{{'COMING.HEADER.Header' | translate }}</h1>
+        <h1 style="text-align: center;">{{'COMING.HEADER.Header' | translate }}</h1>
 
-</div>
+    </div>
     <button class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" style="margin-top: 25px; margin-bottom: 25px;"
         type="submit" [routerLink]="['/addcoming']"><i class="fas fa-plus"></i> {{'COMING.COMINGADD.HEADER.Add'
         | translate }}
@@ -46,7 +46,7 @@
 
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between  pb-2">
-                                                <div style="margin-right:15px;">{{i+1}} </div>
+                                                <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}} </div>
                                                 <div>{{coming.number}}</div>
                                                 <div>{{coming.provider?.name}}</div>
                                                 <div>{{coming.date | date:'dd-MM-yyyy, H:mm:ss'}}</div>
@@ -145,17 +145,12 @@
                         <th style="text-align: center;">{{totalSum}}</th>
                     </tr>
                 </table>
-                <div style="text-align: center;">
-                    <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
-                        nextLabel="{{'PAGINATION.Next' | translate}}">
-                    </pagination-controls>
-                </div>
-
             </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-light"
-                    data-bs-dismiss="modal">{{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.Close' | translate
-                    }}</button>
+                    data-bs-dismiss="modal">{{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.Close' | translate}}</button>
             </div>
         </div>
     </div>
@@ -175,7 +170,7 @@
                 <div> {{'PRODUCT.PRODUCTMODAL.BODY.Content' | translate }}
                     <div>{{oneComing?.number}} </div>
                     <div>{{oneComing?.date | date:'dd-MM-yyyy, H:mm:ss'}}</div>
-                    <p> {{Sum}} <i class="fas fa-coins"></i> ?</p>
+                    <p> {{sum}} <i class="fas fa-coins"></i> ?</p>
                 </div>
             </div>
             <div class="modal-footer">

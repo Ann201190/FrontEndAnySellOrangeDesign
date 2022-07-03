@@ -55,7 +55,7 @@ export class AddproviderComponent implements OnInit {
 
   addProvider() {
 
-    console.log(this.form.value.phone);
+    //   console.log(this.form.value.phone);
 
     var provider: Provider = {
       name: this.form.value.name,
