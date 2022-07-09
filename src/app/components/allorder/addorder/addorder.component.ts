@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Guid } from 'guid-typescript';
+import { Language } from 'src/app/models/enum/language';
 import { ProductUnit } from 'src/app/models/enum/productunit';
 import { Order } from 'src/app/models/order';
 import { OrderProduct } from 'src/app/models/OrderProduct';
@@ -22,12 +24,14 @@ export class AddorderComponent implements OnInit {
   producrForOrder: OrderProduct[] = []
   public selectedProductId?: Guid;
   public p: any = 0;
+  public cashboxProduct: any[] = [];
   public productsAdd: any[] = [];
   productUnitType: Array<string> = Object.keys(ProductUnit).filter(key => isNaN(+key))
 
   constructor(
     public translateService: TranslateService,
     public storage: LocalStorageService,
+    private toast: HotToastService,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
@@ -36,7 +40,7 @@ export class AddorderComponent implements OnInit {
 
     this.form = new FormGroup({
       products: new FormControl(),
-      count: new FormControl()
+      count: new FormControl('', [Validators.required, Validators.min(1)])
     })
 
     this.isWaiting = true;
@@ -54,7 +58,7 @@ export class AddorderComponent implements OnInit {
     )
 
     this.form = new FormGroup({
-      count: new FormControl('', [Validators.required, Validators.min(0)]),
+      count: new FormControl('', [Validators.required, Validators.min(1)]),
       products: new FormControl(this.producrForOrder[this.producrForOrder.length - 1].name, [Validators.required]),
 
     })
@@ -64,9 +68,8 @@ export class AddorderComponent implements OnInit {
   addProduct() {
 
     let prod = this.producrForOrder.find(el => el.id == this.form.value.products)
-    console.log(prod)
-    //массив для вывода на фронт
 
+    //массив для вывода на фронт
     let oneProduct: any = {
       name: prod?.name,
       productId: prod?.id,
@@ -76,21 +79,27 @@ export class AddorderComponent implements OnInit {
       productUnit: prod?.productUnit
     };
 
+    if (this.productsAdd.some(x => x.productId === prod?.id)) {
+
+      let index = this.productsAdd.findIndex(x => x.productId === prod?.id)
+      this.productsAdd[index].count = this.productsAdd[index].count + this.form.value.count;
+    }
+    else {
+      this.productsAdd.push(oneProduct);
+    }
+
     if (prod != null) {
       this.totalSum = this.totalSum + (prod?.priceWithDiscount * this.form.value.count)
     }
-
-    this.productsAdd.push(oneProduct);
-
-    // this.form_2.reset(); //очищение формы
 
     this.selectedProductId = this.producrForOrder[this.producrForOrder.length - 1].id;
     this.form.reset({
       'count': '',
       'products': this.selectedProductId,
     });
-    // this.selectedProductId = this.products[this.products.length - 1].id;
   }
+
+
 
   deleteProduct(product: any) {
     const index: number = this.productsAdd.indexOf(product);
@@ -102,41 +111,48 @@ export class AddorderComponent implements OnInit {
 
   addOrder() {
 
-    /*  var product: Product = {
-        name: this.form.value.name,
-        price: this.form.value.price,
-        barcode: this.form.value.barcode,
-        storeId: this.storage.getItem('storeId'),
-        productUnit: ProductUnit[this.form.value.productUnit as keyof typeof ProductUnit]
-      }*/
+    //массив BalanceProduct для передачи на бек
+    for (let i = 0; i < this.productsAdd.length; i++) {
+      let product: any = {
+        productId: this.productsAdd[i].productId,
+        count: this.productsAdd[i].count
+      };
+      this.cashboxProduct.push(product);
+    }
 
-    /*  this.producrService.addProductWithoutImage(product).subscribe(id => {
-      this.isWaiting = true;
-    if (id != null) {
-        if (this.files) {
-  
-          const formData = new FormData();
-  
-          formData.append(this.files.name, this.files);
-  
-          this.producrService.addProductImage(formData, id).subscribe(() => {
-  
-            this.successMessage();
-          })
-        }
-        else {
-          this.successMessageWithoutImg();
-        }
+    var order: any = {
+
+      storeId: this.storage.getItem('storeId'),
+      product: this.cashboxProduct
+    }
+    this.isWaiting = true;
+
+    this.orderService.addOrder(order).subscribe(addCom => {
+      if (addCom === 'error') {
+        this.errorMessage();
       }
       else {
-        this.errorMessage();
+        this.successMessage();
       }
       this.isWaiting = false
     }, err => {
       this.errorMessage();
       this.isWaiting = false;
-    })*/
+    })
   }
 
+  successMessage() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.success('Sale successful!');
+    else this.toast.success('Продажа успешна!');
 
+    this.form.reset(); //очищение формы
+    window.location.reload();
+  }
+
+  errorMessage() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.error('Sale not successful! Try again.');
+    else this.toast.error('Продажа не успешна! Попробуйте еще.');
+    this.form.reset(); //очищение формы
+    window.location.reload();
+  }
 }

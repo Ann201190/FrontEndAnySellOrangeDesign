@@ -22,14 +22,14 @@ export class OrderService {
         return this.http.get<OrderProduct[]>(`${this.baseApiUrl}order/getcashboxproduct/${storeId}`)
     }
 
-    /* 
-     addComing(coming: Coming): Observable<boolean> {
-         return this.http.post<boolean>(`${this.baseApiUrl}coming`, coming)
-     }
- 
-   editComing(coming: Coming): Observable<boolean> {
-           return this.http.post<boolean>(`${this.baseApiUrl}coming/updatecoming`, coming)
-       }*/
+
+    addOrder(order: any): Observable<string> {
+        return this.http.post<string>(`${this.baseApiUrl}order`, order)
+    }
+
+    /*   editComing(coming: Coming): Observable<boolean> {
+             return this.http.post<boolean>(`${this.baseApiUrl}coming/updatecoming`, coming)
+         }*/
     /* getByIdDiscount(id: Guid): Observable<Discount> {
          return this.http.get<Discount>(`${this.baseApiUrl}discount/${id}`)
      }

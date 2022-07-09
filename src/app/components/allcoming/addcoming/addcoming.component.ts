@@ -111,8 +111,8 @@ export class AddcomingComponent implements OnInit {
 
 
             this.form_3 = new FormGroup({
-              price: new FormControl('', [Validators.required, Validators.min(0)]),
-              count: new FormControl('', [Validators.required, Validators.min(0)]),
+              price: new FormControl('', [Validators.required, Validators.min(1)]),
+              count: new FormControl('', [Validators.required, Validators.min(1)]),
               products: new FormControl(this.products[this.products.length - 1].name, [Validators.required]),
               sum: new FormControl(0)
             })
