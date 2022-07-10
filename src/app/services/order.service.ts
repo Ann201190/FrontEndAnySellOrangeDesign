@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
 import { STORE_API_URL } from '../app-injection-tokens';
+import { Order } from '../models/order';
 import { OrderProduct } from '../models/OrderProduct';
 
 
@@ -18,10 +19,13 @@ export class OrderService {
         @Inject(STORE_API_URL) private apiUrl: string) { }
 
 
-    getOrderByIdStore(storeId: Guid): Observable<OrderProduct[]> {
+    getProductByStoreIdAsync(storeId: Guid): Observable<OrderProduct[]> {
         return this.http.get<OrderProduct[]>(`${this.baseApiUrl}order/getcashboxproduct/${storeId}`)
     }
 
+    getByStoreIdAsync(storeId: Guid): Observable<Order[]> {
+        return this.http.get<Order[]>(`${this.baseApiUrl}order/getstoreorder/${storeId}`)
+    }
 
     addOrder(order: any): Observable<string> {
         return this.http.post<string>(`${this.baseApiUrl}order`, order)

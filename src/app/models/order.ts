@@ -1,10 +1,14 @@
 import { Guid } from "guid-typescript";
 import { BaseEntity } from "./baseEntity";
+import { OrderStatus } from "./enum/orderstatus";
 import { ReservationProduct } from "./reservationProduct";
 
 
 export interface Order extends BaseEntity {
     idStore: Guid;
-    reservationProduct: ReservationProduct[]
+    orderNumber?: string
+    orderStatus?: OrderStatus
+    orderDate?: Date
+    reservationProducts: ReservationProduct[]
 }
 

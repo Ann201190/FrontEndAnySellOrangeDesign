@@ -1,4 +1,4 @@
 export enum OrderStatus {
-      Paid,
-      Сanceled 
+      Paid = 0,
+      Сanceled = 1
 }

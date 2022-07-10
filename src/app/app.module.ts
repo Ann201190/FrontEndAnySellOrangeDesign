@@ -49,12 +49,12 @@ import { InformationsCashierComponent } from './components/informationscashier/i
 import { MorediscountComponent } from './components/alldiscount/morediscount/morediscount.component';
 import { AdddiscountproductComponent } from './components/alldiscount/adddiscountproduct/adddiscountproduct.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { OrderComponent } from './components/allorder/order/order.component';
 import { ListorderComponent } from './components/allorder/listorder/listorder.component';
-
 import { HeaderComponent } from './components/header/header.component';
 import { SideBarComponent } from './components/sidebar/sidebar.component';
 import { AddorderComponent } from './components/allorder/addorder/addorder.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { QRCodeComponent } from './components/qrcode/qrcode.component';
 
 
 export function tokenGetter() {
@@ -101,10 +101,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     InformationsCashierComponent,
     MorediscountComponent,
     AdddiscountproductComponent,
-    OrderComponent,
     ListorderComponent,
     HeaderComponent,
-    AddorderComponent
+    AddorderComponent,
+    QRCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -113,6 +113,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    QRCodeModule,
     NgSelectModule,
     NgxPaginationModule,
     NgxMaskModule.forRoot(),

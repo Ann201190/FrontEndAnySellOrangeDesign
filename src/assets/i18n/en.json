@@ -6,6 +6,8 @@
     "Liter": "Liter",
     "Cashier": "Cashier",
     "Manager": "Manager",
+    "Paid": "Paid",
+    "Сanceled": "Сanceled",
     "PAGINATION": {
         "Previous": "Previous",
         "Next": "Next"
@@ -584,7 +586,7 @@
                 "Number": "Coming No "
             },
             "BODY": {
-                "Content": "Are you sure you want to delete the provider ",
+                "Content": "Are you sure you want to delete the coming ",
                 "List": "Product's list",
                 "Name": "Provider",
                 "Phone": "Phone",
@@ -610,7 +612,8 @@
     },
     "ORDER": {
         "HEADER": {
-            "Header": "Cashbox"
+            "Header": "Cashbox",
+            "Check": "Check's list"
         },
         "ORDERADD": {
             "HEADER": {
@@ -627,8 +630,40 @@
                 "ProductEmpty": "Orders's product must not be empty",
                 "CountMin": "The minimum count must be greater than 0"
             },
+            "HEADERTABLE": {
+                "Total": "TOTAL"
+            },
             "BUTTON_ORDERADD": {
-                "Save": "Add"
+                "Save": "Add",
+                "Sell": "Sell"
+            }
+        },
+        "ORDERLIST": {
+            "HEADER": {
+                "Sell": "Add sell"
+            }
+        },
+        "ORDERMODAL": {
+            "HEADER": {
+                "OrderNumber": "Check No "
+            },
+            "BODY": {
+                "List": "Product's list",
+                "OrderStatus": "OrderStatus",
+                "OrderDate": "OrderDate"
+            },
+            "HEADERTABLE": {
+                "Name": "Name",
+                "Count": "Count",
+                "Price": "Price",
+                "Sum": "Total",
+                "Action": "Action",
+                "Total": "TOTAL"
+            },
+            "BUTTON_ORDERMODAL": {
+                "Yes": "Yes",
+                "No": "No",
+                "Close": "Close"
             }
         }
     }

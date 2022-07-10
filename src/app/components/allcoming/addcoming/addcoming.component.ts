@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgSelectConfig } from '@ng-select/ng-select';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Guid } from 'guid-typescript';
@@ -207,22 +206,33 @@ export class AddcomingComponent implements OnInit {
     }
   }
 
+  minusProduct(product: any) {
 
-  /* updateProduct(product: BalanceProduct) {
- 
-     this.oneComingBalanceProduct = product;
- 
-     this.selectedProductId = this.oneComingBalanceProduct.productId
- 
-     this.form_3 = new FormGroup({
-       price: new FormControl(this.oneComingBalanceProduct.comingPrice, [Validators.required, Validators.min(0)]),
-       count: new FormControl(this.oneComingBalanceProduct.count, [Validators.required, Validators.min(0)]),
-       products: new FormControl(this.selectedProductId),
-       sum: new FormControl(this.oneComingBalanceProduct.comingPrice * this.oneComingBalanceProduct.count)
- 
-     });
- 
-   }*/
+    let prod = this.products.find(el => el.id == product.productId)
 
+    if (this.productsAdd.some(x => x.productId === prod?.id)) {
+      let index = this.productsAdd.findIndex(x => x.productId === prod?.id)
 
+      if (this.productsAdd[index].count > 1) {
+        this.productsAdd[index].count = this.productsAdd[index].count - 1;
+        if (prod != null) {
+          this.totalSum = this.totalSum - this.productsAdd[index].comingPrice
+        }
+      }
+    }
+  }
+
+  plusProduct(product: any) {
+
+    let prod = this.products.find(el => el.id == product.productId)
+
+    if (this.productsAdd.some(x => x.productId === prod?.id)) {
+      let index = this.productsAdd.findIndex(x => x.productId === prod?.id)
+
+      this.productsAdd[index].count = this.productsAdd[index].count + 1;
+      if (prod != null) {
+        this.totalSum = this.totalSum + this.productsAdd[index].comingPrice
+      }
+    }
+  }
 }

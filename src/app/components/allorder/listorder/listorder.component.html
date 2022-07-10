@@ -1,1 +1,139 @@
-<p>ghbdtn</p>
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+
+<div class="p-5 wow fadeInUp"
+    style="border:solid; margin-top: 48px; border-width: 2px; border-color: rgb(254, 161 ,22); height: 700px;"
+    data-wow-delay="0.2s">
+    <div class="text-center wow">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
+        </h5>
+        <h1 style="text-align: center;">{{'ORDER.HEADER.Check' | translate }}</h1>
+
+    </div>
+    <button class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" style="margin-top: 25px; margin-bottom: 25px;"
+        type="submit" [routerLink]="['/addorder']"><i class="fas fa-plus"></i> {{'ORDER.ORDERLIST.HEADER.Sell'
+        | translate }}
+    </button>
+
+    <table class="table table-striped" style="background: white;">
+
+        <tbody>
+
+            <tr *ngFor="let order of orders| paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
+
+                <td colspan="6">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between  pb-2">
+                                                <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}} </div>
+                                                <div>{{order.orderNumber}}</div>
+
+                                                <div>{{order.orderDate | date:'dd-MM-yyyy, H:mm:ss'}}</div>
+                                                <div class=" text-primary">
+                                                    {{OrderTotalPrice(order)}}
+                                                    <i class="fas fa-coins"></i>
+                                                </div>
+                                                <div class="fst-italic" style="float: right;">
+                                                    <div style="float: right;">
+
+
+
+                                                        <a class="btn btn-square btn-primary mx-1"
+                                                            (click)="moreOrder(order)" data-bs-toggle="modal"
+                                                            data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+
+                                                    </div>
+                                                </div>
+
+                                            </h5>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    <div *ngIf='orders.length>0' style="text-align: center;">
+        <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+            nextLabel="{{'PAGINATION.Next' | translate}}">
+        </pagination-controls>
+    </div>
+</div>
+
+
+<!-- Modal More -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
+    style=" margin-top: 60px;">
+    <div class="modal-dialog" style="width: 560px ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moreModalLabel">{{'ORDER.ORDERMODAL.HEADER.OrderNumber' | translate }}
+                    {{oneOrder?.orderNumber}}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div><b>{{'ORDER.ORDERMODAL.BODY.OrderStatus' | translate }}: </b>{{ OrderStatus[index] |translate }}
+                </div>
+                <div><b>{{'ORDER.ORDERMODAL.BODY.OrderDate' | translate }}: </b>{{oneOrder?.orderDate |
+                    date:'dd-MM-yyyy, H:mm:ss'}}</div>
+
+                <h4 style="text-align:center ;">{{'ORDER.ORDERMODAL.BODY.List' | translate }}</h4>
+
+                <table class="table table-striped" style="background: white;">
+                    <thead>
+
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Name' | translate }}</th>
+                            <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Count' | translate }}</th>
+                            <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Price' | translate }}</th>
+                            <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Sum' | translate }}</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let reservationProduct of oneOrder?.reservationProducts; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{reservationProduct?.product?.name }}</td>
+                            <td style="text-align: center;">{{reservationProduct?.count}}</td>
+                            <td style="text-align: center;">{{reservationProduct?.price}}</td>
+                            <td style="text-align: center;">{{reservationProduct.price*reservationProduct.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table *ngIf='totalSum!=0' class="table table-striped rounded-bottom" style="background: white;">
+                    <tr style="height: 35px;">
+                        <th style="text-align: right">{{'ORDER.ORDERMODAL.HEADERTABLE.Total' | translate }}:</th>
+                        <th style="text-align: center;">{{totalSum}}</th>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'ORDER.ORDERMODAL.BUTTON_ORDERMODAL.Close' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

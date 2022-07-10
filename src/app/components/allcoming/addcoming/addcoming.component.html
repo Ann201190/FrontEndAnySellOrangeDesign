@@ -142,7 +142,18 @@
                                             <h5 class="d-flex justify-content-between  pb-2">
                                                 <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}} </div>
                                                 <div>{{productAdd?.product?.name}}</div>
+
+
+                                                <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal" (click)="plusProduct(productAdd)"><i
+                                                        class="fas fa-plus"></i></a>
+
                                                 <div>{{productAdd.count}}</div>
+
+                                                <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal" (click)="minusProduct(productAdd)"><i
+                                                        class="fas fa-minus"></i></a>
+
 
                                                 <div style="color:rgb(254, 161 ,22)">{{productAdd.comingPrice}} <i
                                                         class="fas fa-coins"></i></div>

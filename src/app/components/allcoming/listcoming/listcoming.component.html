@@ -35,7 +35,7 @@
 
         <tbody>
 
-            <tr *ngFor="let coming of comings| paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
+            <tr *ngFor="let coming of comings| paginate: { itemsPerPage: 15, currentPage:  p } ; let i = index">
 
                 <td colspan="6">
                     <div class="tab-content">
@@ -46,7 +46,8 @@
 
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between  pb-2">
-                                                <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}} </div>
+                                                <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*15))}}
+                                                </div>
                                                 <div>{{coming.number}}</div>
                                                 <div>{{coming.provider?.name}}</div>
                                                 <div>{{coming.date | date:'dd-MM-yyyy, H:mm:ss'}}</div>
@@ -161,13 +162,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel"> {{'PRODUCT.PRODUCTMODAL.HEADER.HeaderDelete' |
+                <h5 class="modal-title" id="deleteModalLabel"> {{'COMING.COMINGMODAL.HEADER.HeaderDelete' |
                     translate }}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="text-align:center;">
-                <div> {{'PRODUCT.PRODUCTMODAL.BODY.Content' | translate }}
+                <div> {{'COMING.COMINGMODAL.BODY.Content' | translate }}
                     <div>{{oneComing?.number}} </div>
                     <div>{{oneComing?.date | date:'dd-MM-yyyy, H:mm:ss'}}</div>
                     <p> {{sum}} <i class="fas fa-coins"></i> ?</p>
@@ -176,10 +177,10 @@
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-light"
-                    data-bs-dismiss="modal">{{'PRODUCT.PRODUCTMODAL.BUTTON_PRODUCTMODAL.No' | translate }}</button>
+                    data-bs-dismiss="modal">{{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.No' | translate }}</button>
                 <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
                     (click)="idComing(idComingForDeleted)">
-                    {{'PRODUCT.PRODUCTMODAL.BUTTON_PRODUCTMODAL.Yes' | translate }}</button>
+                    {{'COMING.COMINGMODAL.BUTTON_COMINGMODAL.Yes' | translate }}</button>
 
             </div>
         </div>

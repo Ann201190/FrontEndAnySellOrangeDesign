@@ -24,6 +24,10 @@ import { InformationsCashierComponent } from './components/informationscashier/i
 import { MorediscountComponent } from './components/alldiscount/morediscount/morediscount.component';
 import { AdddiscountproductComponent } from './components/alldiscount/adddiscountproduct/adddiscountproduct.component';
 import { AddorderComponent } from './components/allorder/addorder/addorder.component';
+import { ListorderComponent } from './components/allorder/listorder/listorder.component';
+import { QRCodeComponent } from './components/qrcode/qrcode.component';
+
+
 
 const routes: Routes = [
   {
@@ -60,7 +64,11 @@ const routes: Routes = [
         { path: 'listcoming', component: ListcomingComponent, canActivate: [AuthGard] },
         { path: 'addcoming', component: AddcomingComponent, canActivate: [AuthGard] },
 
-        { path: 'addorder', component: AddorderComponent, canActivate: [AuthGard] }
+        { path: 'addorder', component: AddorderComponent, canActivate: [AuthGard] },
+        { path: 'listorder', component: ListorderComponent, canActivate: [AuthGard] },
+
+        { path: 'qrcode', component: QRCodeComponent, canActivate: [AuthGard] }
+
       ]
   },
   { path: 'error', component: ErrorComponent },

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Guid } from 'guid-typescript';
 import { Language } from 'src/app/models/enum/language';
 import { ProductUnit } from 'src/app/models/enum/productunit';
-import { Order } from 'src/app/models/order';
 import { OrderProduct } from 'src/app/models/OrderProduct';
-import { Product } from 'src/app/models/product';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -21,7 +20,7 @@ export class AddorderComponent implements OnInit {
   public isWaiting = false;  //ожидание
   form!: FormGroup;
   public totalSum: number = 0
-  producrForOrder: OrderProduct[] = []
+  public producrForOrder: OrderProduct[] = []
   public selectedProductId?: Guid;
   public p: any = 0;
   public cashboxProduct: any[] = [];
@@ -32,6 +31,7 @@ export class AddorderComponent implements OnInit {
     public translateService: TranslateService,
     public storage: LocalStorageService,
     private toast: HotToastService,
+    private router: Router,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class AddorderComponent implements OnInit {
 
     this.isWaiting = true;
 
-    this.orderService.getOrderByIdStore(this.storage.getItem('storeId')).subscribe(
+    this.orderService.getProductByStoreIdAsync(this.storage.getItem('storeId')).subscribe(
       prodforord => {
         this.producrForOrder = prodforord
 
@@ -62,6 +62,37 @@ export class AddorderComponent implements OnInit {
       products: new FormControl(this.producrForOrder[this.producrForOrder.length - 1].name, [Validators.required]),
 
     })
+  }
+
+  minusProduct(product: any) {
+
+    let prod = this.producrForOrder.find(el => el.id == product.productId)
+
+    if (this.productsAdd.some(x => x.productId === prod?.id)) {
+      let index = this.productsAdd.findIndex(x => x.productId === prod?.id)
+
+      if (this.productsAdd[index].count > 1) {
+        this.productsAdd[index].count = this.productsAdd[index].count - 1;
+        if (prod != null) {
+          this.totalSum = this.totalSum - prod?.priceWithDiscount
+        }
+      }
+    }
+  }
+
+  plusProduct(product: any) {
+
+    let prod = this.producrForOrder.find(el => el.id == product.productId)
+
+    if (this.productsAdd.some(x => x.productId === prod?.id)) {
+      let index = this.productsAdd.findIndex(x => x.productId === prod?.id)
+
+      this.productsAdd[index].count = this.productsAdd[index].count + 1;
+      if (prod != null) {
+        this.totalSum = this.totalSum + prod?.priceWithDiscount
+      }
+
+    }
   }
 
 
@@ -133,6 +164,8 @@ export class AddorderComponent implements OnInit {
       }
       else {
         this.successMessage();
+        this.storage.setItem('qrcode', addCom);
+        this.router.navigate(['qrcode']);
       }
       this.isWaiting = false
     }, err => {

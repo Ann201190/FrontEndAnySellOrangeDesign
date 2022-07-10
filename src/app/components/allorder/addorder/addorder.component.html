@@ -70,11 +70,6 @@
 
 
 
-
-
-
-
-
             <div *ngIf="productsAdd.length>0" class="p-5 wow fadeInUp"
                 style="border:solid; border-width: 2px; border-color: rgb(254, 161 ,22);   height: 650px; "
                 data-wow-delay="0.2s">
@@ -96,11 +91,22 @@
                                                     <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*2))}}
                                                     </div>
 
-
                                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <div style="width: 220px;">{{productAdd?.name}}</div>
+
+                                                            <a class="btn btn-square btn-primary mx-1"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                (click)="plusProduct(productAdd)"><i
+                                                                    class="fas fa-plus"></i></a>
+
                                                             <div>{{productAdd.count}}</div>
+
+                                                            <a class="btn btn-square btn-primary mx-1"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                (click)="minusProduct(productAdd)"><i
+                                                                    class="fas fa-minus"></i></a>
+
                                                             <div> {{productUnitType[productAdd.productUnit] |
                                                                 translate}}</div>
                                                             <div class=" text-primary">
@@ -140,7 +146,7 @@
                         <div
                             style="float: right !important;  font-size: 1.45rem; font-weight: 800;   font-family: 'Nunito',sans-serif; color:rgb(254, 161 ,22)">
 
-                            {{'COMING.COMINGADD.HEADERTABLE.Total' | translate }}:
+                            {{'ORDER.ORDERADD.HEADERTABLE.Total' | translate }}:
                             {{totalSum}}<i class="fas fa-coins"></i>
                         </div>
 
@@ -157,11 +163,8 @@
                 </div>
 
                 <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;" style="margin-bottom: 25px"
-                    (click)="addOrder()" type="submit">{{'ORDER.ORDERADD.BUTTON_ORDERADD.Save' | translate }}</button>
+                    (click)="addOrder()" type="submit">{{'ORDER.ORDERADD.BUTTON_ORDERADD.Sell' | translate }}</button>
             </div>
-
-
-
 
         </div>
     </div>
