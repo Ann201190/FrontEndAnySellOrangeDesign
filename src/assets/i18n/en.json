@@ -184,7 +184,8 @@
                 "Phone": "Your phone",
                 "Other": "Other",
                 "Photo": "Your photo",
-                "Address": "Your address"
+                "Address": "Your address",
+                "AddressStore": "Address store"
             },
             "INPUT_STOREADD_PLACEHOLDER": {
                 "Logo": "Select logo",
@@ -193,7 +194,8 @@
                 "Lastname": "Enter your last name employee",
                 "Other": "Enter other",
                 "Photo": "Select photo",
-                "Address": "Enter your address"
+                "Address": "Enter your address",
+                "AddressStore": "Enter address store"
             },
             "SPAN": {
                 "NameEmpty": "Name must not be empty",
@@ -214,7 +216,8 @@
             "HEADER": {
                 "Header": "Edit store",
                 "Logo": "Logo",
-                "Name": "Name store"
+                "Name": "Name store",
+                "Address": "Address store"
             },
             "BUTTON_STOREEDIT": {
                 "Edit": "Edit",
@@ -223,7 +226,8 @@
             },
             "INPUT_STOREEDIT_PLACEHOLDER": {
                 "Logo": "Select logo",
-                "Name": "Enter name store"
+                "Name": "Enter name store",
+                "Address": "Enter address store"
             },
             "SPAN": {
                 "NameEmpty": "Name must not be empty"
@@ -666,5 +670,15 @@
                 "Close": "Close"
             }
         }
+    },
+    "SIDEBAR": {
+        "Stores": "Stores",
+        "Cashbox": "Cashbox",
+        "Products": "Products",
+        "Discounts": "Discounts",
+        "Providers": "Providers",
+        "Comings": "Comings",
+        "Employees": "Employee",
+        "Analytics": "Analytics"
     }
 }

@@ -10,6 +10,7 @@ export interface ReservationProduct extends BaseEntity {
     productId?: Guid;
     orderId?: Guid;
     order: Order;
+    discount?: number;
 }
 
 

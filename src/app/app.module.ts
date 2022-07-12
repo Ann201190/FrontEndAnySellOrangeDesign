@@ -55,6 +55,7 @@ import { SideBarComponent } from './components/sidebar/sidebar.component';
 import { AddorderComponent } from './components/allorder/addorder/addorder.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QRCodeComponent } from './components/qrcode/qrcode.component';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
 
 
 export function tokenGetter() {
@@ -104,7 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListorderComponent,
     HeaderComponent,
     AddorderComponent,
-    QRCodeComponent
+    QRCodeComponent,
+    AnalyticsComponent
   ],
   imports: [
     BrowserModule,

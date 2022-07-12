@@ -57,6 +57,7 @@ export class EditstoreComponent implements OnInit {
         this.form = new FormGroup({
           name: new FormControl(this.store.name, [Validators.required]),
           file: new FormControl(this.store.logoImage),
+          address: new FormControl(this.store.address,),
         });
 
         this.isWaiting = false;
@@ -102,6 +103,7 @@ export class EditstoreComponent implements OnInit {
 
     if (this.store) {
       this.store.name = this.form.value.name
+      this.store.address = this.form.value.address
     }
 
     this.storeService.editStoreWithoutImge(this.store).subscribe(id => {

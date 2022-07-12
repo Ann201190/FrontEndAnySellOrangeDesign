@@ -39,7 +39,8 @@ export class AddstoreComponent implements OnInit {
     //для добавления магазина
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      file: new FormControl('')
+      file: new FormControl(''),
+      addressStore: new FormControl('')
     })
   }
 
@@ -85,7 +86,8 @@ export class AddstoreComponent implements OnInit {
   addStore() {
 
     var store = {
-      name: this.form.value.name
+      name: this.form.value.name,
+      address: this.form.value.addressStore
     }
     this.isWaiting = true;
     this.storeService.addStoretWithoutEmployeeWithoutImage(store).subscribe(id => {

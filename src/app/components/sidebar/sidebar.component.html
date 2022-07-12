@@ -19,24 +19,23 @@
         </h2>
         <ul>
                 <li><a [routerLink]="['/store']"><img src="/assets/Stores.png" alt="Store" height="35" width="35">
-                                Магазины</a>
+                                {{'SIDEBAR.Stores'| translate }}</a>
                 <li><a [routerLink]="['/listorder']"><img src="/assets/Cashbox.png" alt="Cashbox" height="35"
-                                        width="35">
-                                Касса</a>
+                                        width="35">  {{'SIDEBAR.Cashbox'| translate }}</a>
                 <li><a [routerLink]="['/product']"><img src="/assets/Products.png" alt="Product" height="35" width="35">
-                                Продукты</a>
+                                {{'SIDEBAR.Products'| translate }}</a>
                 <li><a [routerLink]="['/discount']"><img src="/assets/Discounts.png" alt="Discount" height="35"
                                         width="35">
-                                Cкидки</a>
+                                {{'SIDEBAR.Discounts'| translate }}</a>
+
                 <li *ngIf='role==roleType[1]'><a [routerLink]="['/provider']"><img src="/assets/Providers.png"
-                                        alt="Discount" height="35" width="35"> Поставщики</a>
+                                        alt="Discount" height="35" width="35"> {{'SIDEBAR.Providers'| translate }}</a>
                 <li *ngIf='role==roleType[1]'><a [routerLink]="['/listcoming']"><img src="/assets/Comings.png"
-                                        alt="Comings" height="35" width="35"> Приходы</a>
-                <li *ngIf='role==roleType[1]'><a [routerLink]="['/employee']"><img src="/assets/Users.png" alt="User"
-                                        height="35" width="35"> Сотрудники</a>
-                        <!--  <li><a href="#6">Шесть</a>
-        <li><a href="#7">Семь</a>-->
+                                        alt="Comings" height="35" width="35"> {{'SIDEBAR.Comings'| translate }}</a>
+                <li *ngIf='role==roleType[1]'><a [routerLink]="['/employee']"><img src="/assets/Employees.png"
+                                        alt="User" height="35" width="35"> {{'SIDEBAR.Employees'| translate }}</a>
+                <li *ngIf='role==roleType[1]'><a [routerLink]="['/analytics']"><img src="/assets/Analytics.png"
+                                        alt="Analytics" height="35" width="35"> {{'SIDEBAR.Analytics'| translate }}</a>
+
         </ul>
 </nav>
-
-<!--*ngIf='role==roleType[1] '-->

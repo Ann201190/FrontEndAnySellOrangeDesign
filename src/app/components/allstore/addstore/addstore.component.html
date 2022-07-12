@@ -49,6 +49,14 @@
                                 </div>
                             </div>
 
+                            <div class="marginInput">
+                                <label>{{'STORE.STOREADD.HEADER.AddressStore' | translate }}</label>
+                                <input id="addressStore" type="text" name="addressStore" formControlName="addressStore"
+                                    class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.AddressStore' | translate}}">
+                            </div>
+
+
                             <div class="col-12">
                                 <button class="btn btn-primary" style="margin-right: 70px;"
                                     [disabled]="form.invalid || form.disabled"
