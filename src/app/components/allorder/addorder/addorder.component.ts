@@ -25,6 +25,8 @@ export class AddorderComponent implements OnInit {
   public p: any = 0;
   public cashboxProduct: any[] = [];
   public productsAdd: any[] = [];
+  public myAngularxQrCode: string = "";
+  public order: string = "";
   productUnitType: Array<string> = Object.keys(ProductUnit).filter(key => isNaN(+key))
 
   constructor(
@@ -95,7 +97,6 @@ export class AddorderComponent implements OnInit {
     }
   }
 
-
   addProduct() {
 
     let prod = this.producrForOrder.find(el => el.id == this.form.value.products)
@@ -130,8 +131,6 @@ export class AddorderComponent implements OnInit {
     });
   }
 
-
-
   deleteProduct(product: any) {
     const index: number = this.productsAdd.indexOf(product);
     if (index !== -1) {
@@ -142,7 +141,7 @@ export class AddorderComponent implements OnInit {
 
   addOrder() {
 
-    //массив BalanceProduct для передачи на бек
+    //массив продуктов для передачи на бек
     for (let i = 0; i < this.productsAdd.length; i++) {
       let product: any = {
         productId: this.productsAdd[i].productId,
@@ -159,15 +158,21 @@ export class AddorderComponent implements OnInit {
     this.isWaiting = true;
 
     this.orderService.addOrder(order).subscribe(addCom => {
-      if (addCom === 'error') {
+      if (addCom.access_qrcode == 'error') {
         this.errorMessage();
+
+        this.order = addCom.access_qrcode
       }
       else {
         this.successMessage();
-        this.storage.setItem('qrcode', addCom);
-        this.router.navigate(['qrcode']);
+        this.myAngularxQrCode = addCom.access_qrcode
+
+        var n = addCom.access_qrcode.split("/");
+        this.order = n[n.length - 1];
+
       }
       this.isWaiting = false
+
     }, err => {
       this.errorMessage();
       this.isWaiting = false;
@@ -179,13 +184,17 @@ export class AddorderComponent implements OnInit {
     else this.toast.success('Продажа успешна!');
 
     this.form.reset(); //очищение формы
-    window.location.reload();
+    // window.location.reload();
   }
 
   errorMessage() {
     if (this.storage.getItem('lang') == Language.en) this.toast.error('Sale not successful! Try again.');
     else this.toast.error('Продажа не успешна! Попробуйте еще.');
     this.form.reset(); //очищение формы
+    //  window.location.reload();
+  }
+
+  Close() {
     window.location.reload();
   }
 }

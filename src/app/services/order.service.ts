@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { STORE_API_URL } from '../app-injection-tokens';
 import { Order } from '../models/order';
 import { OrderProduct } from '../models/OrderProduct';
+import { Qrcode } from '../models/qrcode';
 
 
 @Injectable(
@@ -27,8 +28,8 @@ export class OrderService {
         return this.http.get<Order[]>(`${this.baseApiUrl}order/getstoreorder/${storeId}`)
     }
 
-    addOrder(order: any): Observable<string> {
-        return this.http.post<string>(`${this.baseApiUrl}order`, order)
+    addOrder(order: any): Observable<Qrcode> {
+        return this.http.post<Qrcode>(`${this.baseApiUrl}order`, order)
     }
 
     /*   editComing(coming: Coming): Observable<boolean> {

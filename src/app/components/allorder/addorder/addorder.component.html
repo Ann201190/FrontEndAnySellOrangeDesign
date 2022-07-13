@@ -163,10 +163,49 @@
                 </div>
 
                 <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;" style="margin-bottom: 25px"
-                    (click)="addOrder()" type="submit">{{'ORDER.ORDERADD.BUTTON_ORDERADD.Sell' | translate }}</button>
+                    (click)="addOrder()" type="submit" data-bs-toggle="modal"
+                    data-bs-target="#moreModal">{{'ORDER.ORDERADD.BUTTON_ORDERADD.Sell' | translate }}</button>
             </div>
 
         </div>
     </div>
 
+</div>
+
+
+<!-- Modal More -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
+    style=" margin-top: 60px;">
+    <div class="modal-dialog" style="width: 560px ">
+        <div class="modal-content">
+
+
+            <!--     <div class="modal-header">
+                <h5 class="modal-title" id="moreModalLabel">{{'ORDER.ORDERMODAL.HEADER.OrderNumber' | translate }}
+                    {{oneOrder?.orderNumber}}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>-->
+
+
+            <div class="modal-body">
+                <div style="text-align: center;">
+                    <div *ngIf='order == "error"'>
+                        <p> "{{'ORDER.ORDERMODAL.BODY.MessageError' | translate}}" </p>
+                    </div>
+                    <div *ngIf='order!="error"'>
+                        <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                        <p style="font-size: 20px;"><b>{{order}}</b></p>
+                        <p> "{{'ORDER.ORDERMODAL.BODY.MessageOk' | translate}}" </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="Close()"
+                    data-bs-dismiss="modal">{{'ORDER.ORDERMODAL.BUTTON_ORDERMODAL.Close' | translate}}</button>
+            </div>
+        </div>
+    </div>
 </div>

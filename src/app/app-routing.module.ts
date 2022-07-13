@@ -25,7 +25,6 @@ import { MorediscountComponent } from './components/alldiscount/morediscount/mor
 import { AdddiscountproductComponent } from './components/alldiscount/adddiscountproduct/adddiscountproduct.component';
 import { AddorderComponent } from './components/allorder/addorder/addorder.component';
 import { ListorderComponent } from './components/allorder/listorder/listorder.component';
-import { QRCodeComponent } from './components/qrcode/qrcode.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 
 
@@ -67,8 +66,6 @@ const routes: Routes = [
 
         { path: 'addorder', component: AddorderComponent, canActivate: [AuthGard] },
         { path: 'listorder', component: ListorderComponent, canActivate: [AuthGard] },
-
-        { path: 'qrcode', component: QRCodeComponent, canActivate: [AuthGard] },
 
         { path: 'analytics', component: AnalyticsComponent, canActivate: [AuthGard] }
       ]

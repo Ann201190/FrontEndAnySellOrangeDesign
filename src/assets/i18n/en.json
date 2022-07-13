@@ -648,13 +648,16 @@
             }
         },
         "ORDERMODAL": {
+          
             "HEADER": {
                 "OrderNumber": "Check No "
             },
             "BODY": {
                 "List": "Product's list",
                 "OrderStatus": "OrderStatus",
-                "OrderDate": "OrderDate"
+                "OrderDate": "OrderDate",
+                "MessageOk":"Please, scan QR code for get your check!",
+                "MessageError":"Oops, something went wrong when trying to sell products. Please try again!"
             },
             "HEADERTABLE": {
                 "Name": "Name",
@@ -682,3 +685,4 @@
         "Analytics": "Analytics"
     }
 }
+
