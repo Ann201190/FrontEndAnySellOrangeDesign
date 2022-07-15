@@ -43,7 +43,7 @@ export class ListemployeeComponent implements OnInit {
 
   allList() {
     this.isWaiting = true;  //ожидание
-    this.employeeService.getByStoreAsync(this.storage.getItem('storeId'))
+    this.employeeService.getByStore(this.storage.getItem('storeId'))
       .subscribe(empl => {
         this.employees = empl
 

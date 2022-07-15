@@ -22,7 +22,7 @@ export class EmployeeService {
     return this.http.get<boolean>(`${this.baseApiUrl}employee`)
   }
 
-  getByStoreAsync(storeId: Guid): Observable<Employee[]> {
+  getByStore(storeId: Guid): Observable<Employee[]> {
     return this.http.get<Employee[]>(`${this.baseApiUrl}employee/getemployeestore/${storeId}`)
   }
 

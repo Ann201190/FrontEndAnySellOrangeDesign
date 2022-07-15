@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
 import { STORE_API_URL } from '../app-injection-tokens';
+import { GraphData } from '../models/graphData';
 import { Order } from '../models/order';
 import { OrderProduct } from '../models/OrderProduct';
 import { Qrcode } from '../models/qrcode';
@@ -20,12 +21,16 @@ export class OrderService {
         @Inject(STORE_API_URL) private apiUrl: string) { }
 
 
-    getProductByStoreIdAsync(storeId: Guid): Observable<OrderProduct[]> {
+    getProductByStoreId(storeId: Guid): Observable<OrderProduct[]> {
         return this.http.get<OrderProduct[]>(`${this.baseApiUrl}order/getcashboxproduct/${storeId}`)
     }
 
-    getByStoreIdAsync(storeId: Guid): Observable<Order[]> {
+    getByStoreId(storeId: Guid): Observable<Order[]> {
         return this.http.get<Order[]>(`${this.baseApiUrl}order/getstoreorder/${storeId}`)
+    }
+
+    getChecCashier(storeId: Guid): Observable<GraphData> {
+        return this.http.get<GraphData>(`${this.baseApiUrl}order/getcheccashier/${storeId}`)
     }
 
     addOrder(order: any): Observable<Qrcode> {

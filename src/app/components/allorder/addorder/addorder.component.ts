@@ -47,7 +47,7 @@ export class AddorderComponent implements OnInit {
 
     this.isWaiting = true;
 
-    this.orderService.getProductByStoreIdAsync(this.storage.getItem('storeId')).subscribe(
+    this.orderService.getProductByStoreId(this.storage.getItem('storeId')).subscribe(
       prodforord => {
         this.producrForOrder = prodforord
 

@@ -55,6 +55,9 @@ import { SideBarComponent } from './components/sidebar/sidebar.component';
 import { AddorderComponent } from './components/allorder/addorder/addorder.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { NgChartsModule } from 'ng2-charts';
+import { CommonModule } from '@angular/common';
+
 
 
 export function tokenGetter() {
@@ -110,9 +113,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
+    NgChartsModule,
     QRCodeModule,
     NgSelectModule,
     NgxPaginationModule,

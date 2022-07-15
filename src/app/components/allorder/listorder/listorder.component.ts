@@ -47,7 +47,7 @@ export class ListorderComponent implements OnInit {
 
   allList() {
     this.isWaiting = true;  //ожидание
-    this.orderService.getByStoreIdAsync(this.storage.getItem('storeId'))
+    this.orderService.getByStoreId(this.storage.getItem('storeId'))
       .subscribe(ord => {
         this.orders = ord
 

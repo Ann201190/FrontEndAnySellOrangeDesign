@@ -98,7 +98,7 @@
 
             <div class="col-12">
                 <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
-                    [disabled]="form.invalid || form.disabled ||(this.form.controls['discount'].value=='Percent'  && this.form.controls['value'].value>100)"
+                    [disabled]="form.invalid || form.disabled"
                     type="submit">{{'EMPLOYEE.EMPLOYEEADD.BUTTON_EMPLOYEEADD.Save' | translate }}</button>
             </div>
         </div>
