@@ -20,14 +20,14 @@ export class PrintService {
     }
 
     printPriceHolder(id: Guid): Observable<boolean> {
-        return this.http.get<boolean>(`${this.baseApiUrl}print/printpriceholder/${id}`)
+        return this.http.post<boolean>(`${this.baseApiUrl}print/printpriceholder/${id}`, {})
     }
 
     printAllPriceHolder(storeId: Guid): Observable<boolean> {
-        return this.http.get<boolean>(`${this.baseApiUrl}print/printallpriceholders/${storeId}`)
+        return this.http.post<boolean>(`${this.baseApiUrl}print/printallpriceholders/${storeId}`, {})
     }
 
     printCheck(orderNumber: string): Observable<boolean> {
-        return this.http.post<boolean>(`${this.baseApiUrl}print/${orderNumber}`, {})
+        return this.http.post<boolean>(`${this.baseApiUrl}print/print/${orderNumber}`, {})
     }
 }

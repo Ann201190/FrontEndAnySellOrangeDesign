@@ -45,7 +45,7 @@ export class ProductComponent implements OnInit {
   printAllPriceHolder() {
     this.isWaiting = true;
 
-    this.printService.printPriceHolder(this.storage.getItem('storeId')).subscribe(date => {
+    this.printService.printAllPriceHolder(this.storage.getItem('storeId')).subscribe(date => {
       if (date) {
         this.successMessage();
       }
