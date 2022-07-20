@@ -3,6 +3,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Language } from 'src/app/models/enum/language';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { PrintService } from 'src/app/services/print.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -16,8 +17,8 @@ export class ProductComponent implements OnInit {
   public path: string = `https://localhost:44350/api/Product/downloadprice/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
 
   constructor(
-    private producrService: ProductService,
     public storage: LocalStorageService,
+    private printService: PrintService,
     private toast: HotToastService,
     public translateService: TranslateService
   ) { }
@@ -43,8 +44,8 @@ export class ProductComponent implements OnInit {
 
   printAllPriceHolder() {
     this.isWaiting = true;
-    
-    this.producrService.printPriceHolder(this.storage.getItem('storeId')).subscribe(date => {
+
+    this.printService.printPriceHolder(this.storage.getItem('storeId')).subscribe(date => {
       if (date) {
         this.successMessage();
       }
@@ -56,6 +57,5 @@ export class ProductComponent implements OnInit {
       this.errorMessage();
       this.isWaiting = false;
     })
-
   }
 }

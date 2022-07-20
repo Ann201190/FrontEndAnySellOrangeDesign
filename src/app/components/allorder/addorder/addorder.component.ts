@@ -9,6 +9,7 @@ import { ProductUnit } from 'src/app/models/enum/productunit';
 import { OrderProduct } from 'src/app/models/OrderProduct';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OrderService } from 'src/app/services/order.service';
+import { PrintService } from 'src/app/services/print.service';
 
 @Component({
   selector: 'app-addorder',
@@ -34,6 +35,7 @@ export class AddorderComponent implements OnInit {
     public storage: LocalStorageService,
     private toast: HotToastService,
     private router: Router,
+    private printService: PrintService,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
@@ -95,9 +97,38 @@ export class AddorderComponent implements OnInit {
         this.totalSum = this.totalSum + prod?.priceWithDiscount
         this.totalSum = + this.totalSum.toFixed(2)
       }
-
     }
   }
+
+
+  printChack() {
+
+    this.isWaiting = true;
+
+    this.printService.printCheck(this.order).subscribe(date => {
+      if (date) {
+        this.successMessagePrint();
+      }
+      else {
+        this.errorMessagePrint();
+      }
+      this.isWaiting = false
+    }, err => {
+      this.errorMessagePrint();
+      this.isWaiting = false;
+    })
+  }
+
+  successMessagePrint() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.success('Print successful!');
+    else this.toast.success('Печать успешна!');
+  }
+
+  errorMessagePrint() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.error('Print not successful! Try again.');
+    else this.toast.error('Печать не успешна! Попробуйте еще.');
+  }
+
 
   addProduct() {
 

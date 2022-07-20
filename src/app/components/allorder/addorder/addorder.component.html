@@ -114,7 +114,7 @@
                                                                         (click)="minusProduct(productAdd)"><i
                                                                             class="fas fa-minus"></i></a>
                                                                 </div>
-                                                                <h5 >{{productAdd.count}}</h5>
+                                                                <h5>{{productAdd.count}}</h5>
                                                                 <div>
                                                                     <a class="btn btn-square btn-primary mx-1"
                                                                         (click)="plusProduct(productAdd)"><i
@@ -191,6 +191,11 @@
                         <p> "{{'ORDER.ORDERMODAL.BODY.MessageOk' | translate}}" </p>
                     </div>
                 </div>
+
+                <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" type="submit" (click)="printChack()"><i
+                        class="fas fa-tag"></i>
+                    {{'PRODUCT.PRODUCT.HEADER.PrintPriceHolder' | translate }} </a>
+
             </div>
 
 

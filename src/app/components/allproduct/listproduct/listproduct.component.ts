@@ -10,6 +10,7 @@ import { ProductUnit } from 'src/app/models/enum/productunit';
 import { Product } from 'src/app/models/product';
 import { ProductWithDiscount } from 'src/app/models/productWithDiscount';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { PrintService } from 'src/app/services/print.service';
 import { ProductService } from 'src/app/services/product.service';
 
 
@@ -37,6 +38,7 @@ export class ListproductComponent implements OnInit {
     public translateService: TranslateService,
     private producrService: ProductService,
     private router: Router,
+    private printService: PrintService,
     private toast: HotToastService,
     private sanitizer: DomSanitizer
   ) { }
@@ -103,7 +105,7 @@ export class ListproductComponent implements OnInit {
     this.isWaiting = true;
 
     if (id != null) {
-      this.producrService.printPriceHolder(id).subscribe(date => {
+      this.printService.printPriceHolder(id).subscribe(date => {
         if (date) {
           this.successMessage();
         }

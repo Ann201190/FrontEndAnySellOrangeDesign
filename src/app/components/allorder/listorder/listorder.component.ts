@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Guid } from 'guid-typescript';
+import { Language } from 'src/app/models/enum/language';
 import { OrderStatus } from 'src/app/models/enum/orderstatus';
 import { Order } from 'src/app/models/order';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OrderService } from 'src/app/services/order.service';
+import { PrintService } from 'src/app/services/print.service';
 
 @Component({
   selector: 'app-listorder',
@@ -24,8 +27,9 @@ export class ListorderComponent implements OnInit {
   public index!: number;
 
 
-
   constructor(
+    private toast: HotToastService,
+    private printService: PrintService,
     public storage: LocalStorageService,
     public orderService: OrderService,
     public translateService: TranslateService
@@ -90,6 +94,32 @@ export class ListorderComponent implements OnInit {
     return prices * count
   }
 
+  printChack(orderNumber: any) {
 
-  print() { }
+    this.isWaiting = true;
+
+    this.printService.printCheck(orderNumber).subscribe(date => {
+      if (date) {
+        this.successMessagePrint();
+      }
+      else {
+        this.errorMessagePrint();
+      }
+      this.isWaiting = false
+    }, err => {
+      this.errorMessagePrint();
+      this.isWaiting = false;
+    })
+
+  }
+
+  successMessagePrint() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.success('Print successful!');
+    else this.toast.success('Печать успешна!');
+  }
+
+  errorMessagePrint() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.error('Print not successful! Try again.');
+    else this.toast.error('Печать не успешна! Попробуйте еще.');
+  }
 }
