@@ -7,6 +7,7 @@ import { Guid } from 'guid-typescript';
 import { BalanceProduct } from 'src/app/models/balanceProduct';
 import { Coming } from 'src/app/models/coming';
 import { Language } from 'src/app/models/enum/language';
+import { ProductUnit } from 'src/app/models/enum/productunit';
 import { Product } from 'src/app/models/product';
 import { Provider } from 'src/app/models/provider';
 import { ComingService } from 'src/app/services/coming.service';
@@ -29,6 +30,7 @@ export class AddcomingComponent implements OnInit {
   public comingProducts: BalanceProduct[] = [];
   public productsAdd: any[] = [];
   public totalSum: number = 0;
+  public sumProduct: number = 0;
   public p: any = 0;
   public oneComingBalanceProduct!: BalanceProduct
 
@@ -123,28 +125,73 @@ export class AddcomingComponent implements OnInit {
 
   }
 
+
+  /*int(price: number, count: number, selectedProductId: any) {
+    let product = this.products.find(el => el.id == selectedProductId)
+    let countNew: number = 0.0;
+    if (product?.productUnit == ProductUnit.Piece) {
+      countNew = Number((parseInt(count.toString(), 10) * price).toFixed(2))
+    }
+    else {
+      countNew = Number((Number(count.toFixed(3)) * price).toFixed(2));
+    }
+    return countNew;
+  }*/
+
+  /*total(comingPrice: any, count: any) {
+
+    let product = this.products.find(el => el.id == this.form_2.value.products)
+    var count = this.form_2.value.count
+    if (product?.productUnit == ProductUnit.Piece) {
+      count = parseInt(count, 10)
+    }
+    else {
+      count = count.toFixed(3);
+    }
+  }*/
+
+
   addProducts() {
 
     //массив для вывода на фронт
+    let product = this.products.find(el => el.id == this.form_2.value.products)
+    var count: number = 0;
+
+    if (product?.productUnit == ProductUnit.Piece) {
+      count = parseInt(this.form_2.value.count, 10)
+    }
+    else {
+      count = this.form_2.value.count.toFixed(3);
+    }
+
     let oneProduct: any = {
-      comingPrice: this.form_2.value.price,
+      comingPrice: Number(this.form_2.value.price.toFixed(2)),
       productId: this.form_2.value.products,
-      count: this.form_2.value.count,
-      product: this.products.find(el => el.id == this.form_2.value.products)
+      count: count,
+      product: product
     };
 
-    this.totalSum = this.totalSum + (this.form_2.value.price * this.form_2.value.count)
+    this.sumProduct = Number((this.form_2.value.price.toFixed(2) * count).toFixed(2))
+    this.totalSum = this.totalSum + Number(this.sumProduct.toFixed(2))
+
     this.productsAdd.push(oneProduct);
 
     // this.form_2.reset(); //очищение формы
 
     this.selectedProductId = this.products[this.products.length - 1].id;
     this.form_2.reset({
+      'sum': '',
       'count': '',
       'price': '',
       'products': this.selectedProductId,
     });
     // this.selectedProductId = this.products[this.products.length - 1].id;
+  }
+
+
+  sum(price: any, count: any) {
+
+
   }
 
   addComing() {
@@ -202,6 +249,7 @@ export class AddcomingComponent implements OnInit {
     const index: number = this.productsAdd.indexOf(product);
     if (index !== -1) {
       this.totalSum = this.totalSum - (product.count * product.comingPrice);
+      this.totalSum = +this.totalSum.toFixed(2)
       this.productsAdd.splice(index, 1);
     }
   }
@@ -217,6 +265,7 @@ export class AddcomingComponent implements OnInit {
         this.productsAdd[index].count = this.productsAdd[index].count - 1;
         if (prod != null) {
           this.totalSum = this.totalSum - this.productsAdd[index].comingPrice
+          this.totalSum = +this.totalSum.toFixed(2)
         }
       }
     }
@@ -232,6 +281,7 @@ export class AddcomingComponent implements OnInit {
       this.productsAdd[index].count = this.productsAdd[index].count + 1;
       if (prod != null) {
         this.totalSum = this.totalSum + this.productsAdd[index].comingPrice
+        this.totalSum = +this.totalSum.toFixed(2)
       }
     }
   }

@@ -40,7 +40,11 @@ export class ListorderComponent implements OnInit {
   public OrderTotalPrice(order: Order): number {
     let count: number = 0;
     order.reservationProducts.forEach(rp => {
-      count += rp?.count * rp?.price;
+      let discount = 0
+      if (rp.discountValue != null && rp.discountValue != 0) {
+        discount = rp.discountValue;
+      }
+      count += rp?.count * (rp?.price - discount);
     });
     return count;
   }
@@ -69,4 +73,23 @@ export class ListorderComponent implements OnInit {
     });
   }
 
+
+  public priceWithDiscount(price: number, discount: any) {
+
+    if (discount != null) {
+      price = price - discount;
+    }
+    return price
+  }
+
+
+  public sumWithDiscount(price: number, discount: any, count: any) {
+
+    var prices = Number(this.priceWithDiscount(price, discount));
+
+    return prices * count
+  }
+
+
+  print() { }
 }

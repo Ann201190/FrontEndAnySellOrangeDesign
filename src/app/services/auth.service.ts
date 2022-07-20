@@ -33,7 +33,7 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     var token = localStorage.getItem(ACCESS_TOKEN_KEY);
-    return token != null && !this.jwtHelper.isTokenExpired(token);   
+    return token != null && !this.jwtHelper.isTokenExpired(token);
   }
 
   logout(): void {
@@ -52,6 +52,7 @@ export class AuthService {
   registrationCashier(email: string): Observable<boolean> {
     return this.http.post<boolean>(`${this.apiUrl}api/registration/registrationcashier`, { email })
   }
+
   confirm(stringConfirm: string): Observable<boolean> {
     return this.http.get<boolean>(`${this.apiUrl}api/auth/confirm/${stringConfirm}`);
   }

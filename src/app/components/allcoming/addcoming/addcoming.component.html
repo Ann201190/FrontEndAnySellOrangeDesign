@@ -106,11 +106,11 @@
                             </div>
                         </div>
 
-                        <div class="col-12">
+                     <!--  <div class="col-12">
                             <label>{{'COMING.COMINGADD.HEADER.Sum' | translate }}</label>
-                            <input readonly="readonly" id="sumTotal" type="number " value="{{ price*count }}"
+                            <input readonly="readonly" id="sumTotal" type="number " value="{{price*count}}"
                                 formControlName="sum" class="form-control">
-                        </div>
+                        </div>--> 
 
                         <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
@@ -141,25 +141,28 @@
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between  pb-2">
                                                 <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}} </div>
-                                                <div>{{productAdd?.product?.name}}</div>
+                                                <div style="width:250px ;">{{productAdd?.product?.name}}</div>
 
+                                                <div class="d-flex justify-content-between">
 
-                                                <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal" (click)="plusProduct(productAdd)"><i
-                                                        class="fas fa-plus"></i></a>
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="minusProduct(productAdd)"><i
+                                                            class="fas fa-minus"></i></a>
+                                                    <div>
+                                                        {{productAdd.count}}</div>
 
-                                                <div>{{productAdd.count}}</div>
-
-                                                <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal" (click)="minusProduct(productAdd)"><i
-                                                        class="fas fa-minus"></i></a>
-
-
-                                                <div style="color:rgb(254, 161 ,22)">{{productAdd.comingPrice}} <i
-                                                        class="fas fa-coins"></i></div>
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="plusProduct(productAdd)"><i
+                                                            class="fas fa-plus"></i></a>
+                                                </div>
                                                 <div style="color:rgb(254, 161 ,22)">
-                                                    {{productAdd.comingPrice*productAdd.count}} <i
-                                                        class="fas fa-coins"></i></div>
+                                                    {{productAdd.comingPrice}} <i class="fas fa-coins"></i>
+                                                </div>
+
+                                                <div style="color:rgb(254, 161 ,22)">
+                                                    {{(productAdd.count*productAdd.comingPrice).toFixed(2)}}
+                                                    <i class="fas fa-coins"></i>
+                                                </div>
 
                                                 <div class="fst-italic" style="float: right;">
                                                     <div style="float: right;">

@@ -1,4 +1,4 @@
-export interface DataSet {
+export interface DataSetBar {
     label: string
     data: number[]
 }

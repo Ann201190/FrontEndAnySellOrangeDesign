@@ -95,18 +95,6 @@
                                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <div style="width: 220px;">{{productAdd?.name}}</div>
 
-                                                            <a class="btn btn-square btn-primary mx-1"
-                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                                (click)="plusProduct(productAdd)"><i
-                                                                    class="fas fa-plus"></i></a>
-
-                                                            <div>{{productAdd.count}}</div>
-
-                                                            <a class="btn btn-square btn-primary mx-1"
-                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                                (click)="minusProduct(productAdd)"><i
-                                                                    class="fas fa-minus"></i></a>
-
                                                             <div> {{productUnitType[productAdd.productUnit] |
                                                                 translate}}</div>
                                                             <div class=" text-primary">
@@ -115,24 +103,28 @@
                                                             </div>
                                                         </h5>
 
-                                                        <div class="fst-italic" style="float: right;">
+                                                        <div class="fst-italic d-flex justify-content-between"
+                                                            style="float: right;">
                                                             <a class="btn btn-square btn-primary mx-1"
-                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
                                                                 (click)="deleteProduct(productAdd)"><i
                                                                     class="fas fa-trash-alt"></i></a>
-                                                            <div style="float: right;">
-
-
-
-
-                                                                <h5 class=" mx-1" style="color:rgb(254, 161 ,22); ">
-                                                                    {{productAdd.price*productAdd.count}} <i
-                                                                        class="fas fa-coins"></i></h5>
-
-
-
-
+                                                            <div class="d-flex justify-content-between">
+                                                                <div>
+                                                                    <a class="btn btn-square btn-primary mx-1"
+                                                                        (click)="minusProduct(productAdd)"><i
+                                                                            class="fas fa-minus"></i></a>
+                                                                </div>
+                                                                <h5 >{{productAdd.count}}</h5>
+                                                                <div>
+                                                                    <a class="btn btn-square btn-primary mx-1"
+                                                                        (click)="plusProduct(productAdd)"><i
+                                                                            class="fas fa-plus"></i></a>
+                                                                </div>
                                                             </div>
+
+                                                            <h5 class=" mx-1" style="color:rgb(254, 161 ,22); ">
+                                                                {{(productAdd.price*productAdd.count).toFixed(2)}} <i
+                                                                    class="fas fa-coins"></i></h5>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -57,4 +57,12 @@ export class ProductService {
     deleteImage(id: Guid): Observable<boolean> {
         return this.http.get<boolean>(`${this.baseApiUrl}product/deleteimage/${id}`)
     }
+
+    printPriceHolder(id: Guid): Observable<boolean> {
+        return this.http.get<boolean>(`${this.baseApiUrl}print/printpriceholder/${id}`)
+    }
+
+    printAllPriceHolder(storeId: Guid): Observable<boolean> {
+        return this.http.get<boolean>(`${this.baseApiUrl}print/printallpriceholders/${storeId}`)
+    }
 }

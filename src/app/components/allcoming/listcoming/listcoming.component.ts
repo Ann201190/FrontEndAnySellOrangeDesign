@@ -58,7 +58,7 @@ export class ListcomingComponent implements OnInit {
 
   moreComing(coming: Coming) {
     this.oneComing = coming;
-    this.totalSum =0;
+    this.totalSum = 0;
     this.oneComing.balanceProducts.forEach(element => {
       this.totalSum = this.ComingTotalPrice(coming)
     });

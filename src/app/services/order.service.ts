@@ -3,7 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
 import { STORE_API_URL } from '../app-injection-tokens';
-import { GraphData } from '../models/graphData';
+import { GraphBarData } from '../models/graphBarData';
+import { GraphLineData } from '../models/grapLineData';
 import { Order } from '../models/order';
 import { OrderProduct } from '../models/OrderProduct';
 import { Qrcode } from '../models/qrcode';
@@ -29,13 +30,18 @@ export class OrderService {
         return this.http.get<Order[]>(`${this.baseApiUrl}order/getstoreorder/${storeId}`)
     }
 
-    getChecCashier(storeId: Guid): Observable<GraphData> {
-        return this.http.get<GraphData>(`${this.baseApiUrl}order/getcheccashier/${storeId}`)
+    getChecCashier(storeId: Guid): Observable<GraphBarData> {
+        return this.http.get<GraphBarData>(`${this.baseApiUrl}order/getcheccashier/${storeId}`)
     }
 
     addOrder(order: any): Observable<Qrcode> {
         return this.http.post<Qrcode>(`${this.baseApiUrl}order`, order)
     }
+
+    getProfit(storeId: Guid): Observable<GraphLineData> {
+        return this.http.get<GraphLineData>(`${this.baseApiUrl}order/getprofit/${storeId}`)
+    }
+
 
     /*   editComing(coming: Coming): Observable<boolean> {
              return this.http.post<boolean>(`${this.baseApiUrl}coming/updatecoming`, coming)

@@ -77,6 +77,7 @@ export class AddorderComponent implements OnInit {
         this.productsAdd[index].count = this.productsAdd[index].count - 1;
         if (prod != null) {
           this.totalSum = this.totalSum - prod?.priceWithDiscount
+          this.totalSum = +this.totalSum.toFixed(2)
         }
       }
     }
@@ -92,6 +93,7 @@ export class AddorderComponent implements OnInit {
       this.productsAdd[index].count = this.productsAdd[index].count + 1;
       if (prod != null) {
         this.totalSum = this.totalSum + prod?.priceWithDiscount
+        this.totalSum = + this.totalSum.toFixed(2)
       }
 
     }
@@ -101,11 +103,19 @@ export class AddorderComponent implements OnInit {
 
     let prod = this.producrForOrder.find(el => el.id == this.form.value.products)
 
+    var count = this.form.value.count
+    if (prod?.productUnit == ProductUnit.Piece) {
+      count = parseInt(count, 10)
+    }
+    else {
+      count = count.toFixed(3);
+    }
+
     //массив для вывода на фронт
     let oneProduct: any = {
       name: prod?.name,
       productId: prod?.id,
-      count: this.form.value.count,
+      count: count,
       price: prod?.priceWithDiscount,
       barcode: prod?.barcode,
       productUnit: prod?.productUnit
@@ -122,6 +132,7 @@ export class AddorderComponent implements OnInit {
 
     if (prod != null) {
       this.totalSum = this.totalSum + (prod?.priceWithDiscount * this.form.value.count)
+      this.totalSum = +this.totalSum.toFixed(2)
     }
 
     this.selectedProductId = this.producrForOrder[this.producrForOrder.length - 1].id;
@@ -135,6 +146,7 @@ export class AddorderComponent implements OnInit {
     const index: number = this.productsAdd.indexOf(product);
     if (index !== -1) {
       this.totalSum = this.totalSum - (product.price * product.count);
+      this.totalSum = +this.totalSum.toFixed(2)
       this.productsAdd.splice(index, 1);
     }
   }

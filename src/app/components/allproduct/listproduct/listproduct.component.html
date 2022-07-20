@@ -42,14 +42,18 @@
 
                                             <div class="fst-italic" style="float: right;">
                                                 <div style="float: right;">
+
                                                     <a class="btn btn-square btn-primary mx-1"
                                                         (click)="updateProduct(product.id)"><i
                                                             class="fas fa-edit"></i></a>
 
-
                                                     <a class="btn btn-square btn-primary mx-1"
                                                         (click)="moreProduct(product)" data-bs-toggle="modal"
                                                         data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+
+                                                    <a class="btn btn-square btn-primary mx-1"
+                                                        (click)="printPriceHolde(product.id)"><i
+                                                            class="fas fa-tag"></i></a>
 
                                                     <a class="btn btn-square btn-primary mx-1" data-bs-toggle="modal"
                                                         data-bs-target="#deleteModal"

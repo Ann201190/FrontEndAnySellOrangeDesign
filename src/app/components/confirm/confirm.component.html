@@ -5,20 +5,21 @@
     </div>
 </div>
 
-
-
-<div *ngIf='!isWaiting' style="width: 600px; margin: 0 auto;" class="minheight">
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
-        <div class="card-body" style="margin: 0 auto; width: 450px;">
-            <div *ngIf='isRegistration' style="text-align:center">
-                <p> {{'CONFIRM.InfoTrue' | translate }}</p>
-                <button class="btn btn-success" [routerLink]="['']" style="margin-right: 70px;" type="submit">
-                    {{'CONFIRM.LogIn' | translate }}</button>
-            </div>
-
-            <div *ngIf='!isRegistration' style="text-align:center">
-                <p>{{'CONFIRM.InfoFalse' | translate }}</p>
+<div class="minheight">
+    <div *ngIf='!isWaiting' style="width: 600px; margin: 0 auto;">
+        <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+            <div class="card-body" style="margin: 0 auto; width: 450px;">
+                <div *ngIf='isRegistration' style="text-align:center">
+                    <p> {{'CONFIRM.InfoTrue' | translate }}</p>
+                    <button class="btn btn-primary" [routerLink]="['']" style="margin-right: 70px;" type="submit">
+                        {{'CONFIRM.LogIn' | translate }}</button>
+                </div>
+                <div *ngIf='!isRegistration' style="text-align:center">
+                    <p>{{'CONFIRM.InfoFalse' | translate }}</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+

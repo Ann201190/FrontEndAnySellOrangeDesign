@@ -53,6 +53,11 @@
                                                             (click)="moreOrder(order)" data-bs-toggle="modal"
                                                             data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
 
+
+                                                        <a class="btn btn-square btn-primary mx-1" (click)="print()"><i
+                                                                class="fas fa-print"></i></a>
+
+
                                                     </div>
                                                 </div>
 
@@ -106,6 +111,7 @@
                             <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Name' | translate }}</th>
                             <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Count' | translate }}</th>
                             <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Price' | translate }}</th>
+                            <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Discount' | translate }}</th>
                             <th scope="col">{{'ORDER.ORDERMODAL.HEADERTABLE.Sum' | translate }}</th>
                         </tr>
 
@@ -116,7 +122,12 @@
                             <td>{{reservationProduct?.product?.name }}</td>
                             <td style="text-align: center;">{{reservationProduct?.count}}</td>
                             <td style="text-align: center;">{{reservationProduct?.price}}</td>
-                            <td style="text-align: center;">{{reservationProduct.price*reservationProduct.count}}</td>
+                            <td style="text-align: center;">
+                                {{reservationProduct?.discountValue}}</td>
+                            <td style="text-align: center;">
+                                {{sumWithDiscount(reservationProduct.price, reservationProduct?.discountValue,
+                                reservationProduct.count)}}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -137,3 +148,5 @@
         </div>
     </div>
 </div>
+
+

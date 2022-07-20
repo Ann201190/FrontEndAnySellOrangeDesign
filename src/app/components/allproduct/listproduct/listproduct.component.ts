@@ -89,6 +89,40 @@ export class ListproductComponent implements OnInit {
     this.oneProduct = product;
   }
 
+  successMessage() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.success('Price tag printed successfully!');
+    else this.toast.success('Ценник распечатан успешно!');
+  }
+
+  errorMessage() {
+    if (this.storage.getItem('lang') == Language.en) this.toast.error('Price tag not printed! Try again.');
+    else this.toast.error('Ценник не распечатан! Попробуйте еще.');
+  }
+
+  printPriceHolde(id: Guid | undefined) {
+    this.isWaiting = true;
+
+    if (id != null) {
+      this.producrService.printPriceHolder(id).subscribe(date => {
+        if (date) {
+          this.successMessage();
+        }
+        else {
+          this.errorMessage();
+        }
+        this.isWaiting = false
+      }, err => {
+        this.errorMessage();
+        this.isWaiting = false;
+      })
+    } else {
+      if (this.storage.getItem('lang') == Language.en) this.toast.error('Product not delete! Try again.');
+      else this.toast.error('Price tag not printed! Try again.');
+      this.isWaiting = false;
+    }
+
+  }
+
   idProduct(id: Guid | undefined) {
     if (id != null) {
       this.isWaiting = true;  //ожидание

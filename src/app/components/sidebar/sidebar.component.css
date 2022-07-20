@@ -306,6 +306,11 @@ body {
     transition: opacity .5s .8s, transform .5s .8s;
 }
 
+.nav-side>ul>li:nth-child(9) {
+    -webkit-transition: opacity .5s .9s, -webkit-transform .5s .9s;
+    transition: opacity .5s .9s, transform .5s .9s;
+}
+
 
 /**
  * оформление ссылок пунктов меню

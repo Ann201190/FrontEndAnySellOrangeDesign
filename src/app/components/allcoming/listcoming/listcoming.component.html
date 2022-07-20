@@ -8,8 +8,7 @@
 
 
 <div class="p-5 wow fadeInUp"
-    style="border:solid; margin-top: 48px; border-width: 2px; border-color: rgb(254, 161 ,22); height: 700px;"
-    data-wow-delay="0.2s">
+    style="border:solid; margin-top: 48px; border-width: 2px; border-color: rgb(254, 161 ,22);" data-wow-delay="0.2s">
     <div class="text-center wow">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
         </h5>
@@ -48,11 +47,11 @@
                                             <h5 class="d-flex justify-content-between  pb-2">
                                                 <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*15))}}
                                                 </div>
-                                                <div>{{coming.number}}</div>
-                                                <div>{{coming.provider?.name}}</div>
+                                                <div  style="width: 180px;">{{coming.number}}</div>
+                                                <div style="width: 220px;">{{coming.provider?.name}}</div>
                                                 <div>{{coming.date | date:'dd-MM-yyyy, H:mm:ss'}}</div>
                                                 <div class=" text-primary">
-                                                    {{ComingTotalPrice(coming)}}
+                                                    {{ComingTotalPrice(coming).toFixed(2)}}
                                                     <i class="fas fa-coins"></i>
                                                 </div>
                                                 <div class="fst-italic" style="float: right;">

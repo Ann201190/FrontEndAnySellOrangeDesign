@@ -593,3 +593,7 @@ span {
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
     background: white;
 }
+
+.minheight {
+    min-height: calc(100vh - 494px);
+}

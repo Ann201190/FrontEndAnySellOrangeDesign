@@ -83,7 +83,8 @@
         },
         "PRODUCT": {
             "HEADER": {
-                "Download": "Download Price-list"
+                "Download": "Download Price-list",
+                "PrintPriceHolder": "Print price tags"
             }
         },
         "PRODUCTADD": {
@@ -648,7 +649,6 @@
             }
         },
         "ORDERMODAL": {
-          
             "HEADER": {
                 "OrderNumber": "Check No "
             },
@@ -656,13 +656,14 @@
                 "List": "Product's list",
                 "OrderStatus": "OrderStatus",
                 "OrderDate": "OrderDate",
-                "MessageOk":"Please, scan QR code for get your check!",
-                "MessageError":"Oops, something went wrong when trying to sell products. Please try again!"
+                "MessageOk": "Please, scan QR code for get your check!",
+                "MessageError": "Oops, something went wrong when trying to sell products. Please try again!"
             },
             "HEADERTABLE": {
                 "Name": "Name",
                 "Count": "Count",
                 "Price": "Price",
+                "Discount": "Discount",
                 "Sum": "Total",
                 "Action": "Action",
                 "Total": "TOTAL"
@@ -683,6 +684,17 @@
         "Comings": "Comings",
         "Employees": "Employee",
         "Analytics": "Analytics"
+    },
+    "FOOTER": {
+        "Developers": "Developers",
+        "Anna": "Zhelezniak Hanna",
+        "Ivan": "Zhelezniak Ivan",
+        "Time": "Working hours",
+        "Contact": "Contacts",
+        "Address": "Ukraine, Kharkiv, Nauky street 76/5",
+        "TimeMS": "Monday - Saturday",
+        "TimeS": "Sunday",
+        "TimeMEMS": "09AM - 09PM",
+        "TimeMES": "10AM - 08PM"
     }
 }
-
