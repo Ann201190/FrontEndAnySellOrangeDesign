@@ -26,6 +26,8 @@ import { AdddiscountproductComponent } from './components/alldiscount/adddiscoun
 import { AddorderComponent } from './components/allorder/addorder/addorder.component';
 import { ListorderComponent } from './components/allorder/listorder/listorder.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { SettingComponent } from './components/setting/setting.component';
+import { ReturnComponent } from './components/allorder/return/return.component';
 
 
 
@@ -67,7 +69,12 @@ const routes: Routes = [
         { path: 'addorder', component: AddorderComponent, canActivate: [AuthGard] },
         { path: 'listorder', component: ListorderComponent, canActivate: [AuthGard] },
 
-        { path: 'analytics', component: AnalyticsComponent, canActivate: [AuthGard] }
+        { path: 'analytics', component: AnalyticsComponent, canActivate: [AuthGard] },
+
+        { path: 'settings', component: SettingComponent, canActivate: [AuthGard] },
+
+        { path: 'return', component: ReturnComponent, canActivate: [AuthGard] }
+
       ]
   },
   { path: 'error', component: ErrorComponent },

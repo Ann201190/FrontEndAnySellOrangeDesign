@@ -645,7 +645,8 @@
         },
         "ORDERLIST": {
             "HEADER": {
-                "Sell": "Добавить продажу"
+                "Sell": "Добавить продажу",
+                "Return": "Возврат"
             }
         },
         "ORDERMODAL": {
@@ -657,7 +658,8 @@
                 "OrderStatus": "Статус",
                 "OrderDate": "Дата",
                 "MessageOk": "Пожалуйста, отсканируйте QR код для получения Вашего чека!",
-                "MessageError": "Упс, что-то пошло не так при продаже товаров! Попробуйте еще раз!"
+                "MessageError": "Упс, что-то пошло не так при продаже товаров! Попробуйте еще раз!",
+                "Print": "Печать чека"
             },
             "HEADERTABLE": {
                 "Name": "Наименование",
@@ -683,7 +685,77 @@
         "Providers": "Поставщики",
         "Comings": "Приходы",
         "Employees": "Сотрудники",
-        "Analytics": "Аналитика"
+        "Analytics": "Аналитика",
+        "Settings": "Настройки"
+    },
+    "SETTINGS": {
+        "HEADER": {
+            "Header": "Настройки"
+        },
+        "SETTINGS": {
+            "HEADER": {
+                "Header_1": "Изменение настроек принтера",
+                "Header_2": "Изменение пароля пользователя",
+                "NamePrinter": "Имя принтера",
+                "DPI": "DPI",
+                "Password": "Текущий пароль",
+                "PasswordNew": "Новый пароль",
+                "Repeat": "Повторите пароль"
+            },
+            "INPUT_SETTINGS_PLACEHOLDER": {
+                "DPI": "Введите DPI принтера",
+                "Password": "Ведите текущий пароль",
+                "PasswordRepeat": "Ведите пароль",
+                "PasswordNew": "Ведите новый пароль"
+            },
+            "SPAN": {
+                "DPIMin": "Минимальное DPI принтера должно быть больше 0",
+                "DPIEmpty": "DPI принтера не должно быть пустым",
+                "PasswordMin": "Пароль не может быть меньше",
+                "PasswordСorrect": "Пароль не должен быть пустым",
+                "PasswordMatch": "Пароль не совпадает",
+                "PasswordSymbol": "символов.",
+                "Now": "Сейчас"
+            },
+            "BUTTON_SETTINGS": {
+                "Save": "Cохранить"
+            }
+        }
+    },
+    "RETURN": {
+        "HEADER": {
+            "Header": "Возврат"
+        },
+        "RETURN": {
+            "HEADER": {
+                "Check": "Чек",
+                "OrderNumber": "Номер чека",
+                "Discount": "Скидка",
+                "Total": "Сумма",
+                "Info": "Служебная информация"
+            },
+            "INPUT_RETURN_PLACEHOLDER": {
+                "OrderNumber": "Введите номер чека"
+            },
+            "SPAN": {
+                "OrderNumberEmpty": "Номер чека не должн быть пустым"
+            },
+            "BUTTON_RETURN": {
+                "Search": "Поиск"
+            }
+        },
+        "RETURNMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Удаление продукта"
+            },
+            "BODY": {
+                "Content": "Вы действительно хотите удалить продукт из чека?"
+            },
+            "BUTTON_RETURNMODAL": {
+                "Yes": "Да",
+                "No": "Нет"
+            }
+        }
     },
     "FOOTER": {
         "Developers": "Разработчики",

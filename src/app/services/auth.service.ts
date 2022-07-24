@@ -56,4 +56,8 @@ export class AuthService {
   confirm(stringConfirm: string): Observable<boolean> {
     return this.http.get<boolean>(`${this.apiUrl}api/auth/confirm/${stringConfirm}`);
   }
+
+  changePassword(password: any): Observable<boolean> {
+    return this.http.post<boolean>(`${this.apiUrl}api/registration/changepassword`, { currentPassword: password.currentPassword, newPassword: password.newPassword })
+  }
 }

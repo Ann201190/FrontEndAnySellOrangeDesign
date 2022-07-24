@@ -1,0 +1,172 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div class="container-xxl pt-5 pb-3 minheight">
+
+    <div class="text-center wow">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
+        </h5>
+        <h1 style="text-align: center;">{{'RETURN.HEADER.Header' | translate }}</h1>
+
+    </div>
+
+
+    <form [formGroup]="form" (ngSubmit)="search()">
+        <div class="row g-3">
+            <label style="color:black">{{'RETURN.RETURN.HEADER.OrderNumber'
+                | translate }}</label>
+            <div class="box ">
+                <input id="orderNumber" type="text" name="orderNumber" formControlName="orderNumber"
+                    class="form-control"
+                    placeholder="{{'RETURN.RETURN.INPUT_RETURN_PLACEHOLDER.OrderNumber' | translate}}">
+
+                <div style="margin-left:50px ;">
+                    <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                        [disabled]="form.invalid || form.disabled" type="submit"><i class="fas fa-search"></i>
+                        {{'RETURN.RETURN.BUTTON_RETURN.Search'
+                        | translate }}</button>
+                </div>
+            </div>
+
+            <div *ngIf="form.controls['orderNumber'].invalid && form.controls['orderNumber'].touched">
+                <span class="error-message" *ngIf="form.controls['orderNumber'].errors?.['required']">
+                    {{'RETURN.RETURN.SPAN.OrderNumberEmpty'
+                    | translate }}</span>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="col-lg-12 text-lg-start" *ngIf="order!=null && order.reservationProducts.length >0"
+        style="margin-top:25px ;">
+
+        <div class="p-5 wow fadeInUp"
+            style="border:solid; border-width: 2px 2px 2px 2px; border-color: rgb(254, 161 ,22); padding: 30px;"
+            data-wow-delay="0.2s">
+            <h1 style="text-align: center;">{{'RETURN.RETURN.HEADER.Check' | translate
+                }} {{order.orderNumber}}</h1>
+
+            <div style="float: right">
+
+                <label class="custom-big-checkbox">
+                    <input type="checkbox" name="otk" id="otkritka" class="align-self-center"
+                        [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"
+                        (change)="fieldsChangeShowUrna()">
+                    <span class="custom-big-checkbox__checkbox"></span>
+                </label>
+
+
+                <button class="btn btn-square btn-primary mx-1" style="margin-bottom: 5px;" type="button" *ngIf='isShow'
+                    data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+
+
+
+            <table class="table table-striped" style="background: white;">
+                <tbody>
+                    <tr
+                        *ngFor="let product of order.reservationProducts | paginate: { itemsPerPage: 5, currentPage:  p } ; let i = index">
+                        <td colspan="6">
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane fade show p-0 active">
+                                    <div class="row g-4">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex align-items-center">
+                                                <div style="margin-right:15px;">{{i+1 + (p == 0? 0 : ((p-1)*5))}}
+                                                </div>
+                                                <div class="w-100 d-flex flex-column text-start ps-4">
+                                                    <h5 class="d-flex justify-content-between">
+                                                        <div>{{product.product.name}} </div>
+                                                    </h5>
+                                                    <div class="d-flex justify-content-between ">
+                                                        <div class="d-flex justify-content-between ">
+                                                            <div>{{(product.price).toFixed(2)}}</div>
+                                                            <div> X </div>
+                                                            <div>{{product.count}} =</div>
+                                                        </div>
+                                                        <div>{{(product.price*product.count).toFixed(2)}}</div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between ">
+                                                        <div>Скидка- </div>
+                                                        <div>
+                                                            -{{discountValue(product.discountValue,product.count).toFixed(2)}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label class="custom-big-checkbox" style="margin-left:40px;">
+                                                    <input type="checkbox" name="otk" id="otkritka"
+                                                        value="{{product.id}}" class="align-self-center"
+                                                        [(ngModel)]="product.checked" (change)="fieldsChangeShowUrna()">
+                                                    <span class="custom-big-checkbox__checkbox"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+            <div style="text-align: center;" *ngIf='order.reservationProducts.length>0'>
+                <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
+                    nextLabel="{{'PAGINATION.Next' | translate}}">
+                </pagination-controls>
+            </div>
+
+
+            <div class="d-flex justify-content-between ">
+                <div>{{'RETURN.RETURN.HEADER.Total' | translate}} </div>
+                <div style="margin-right:70px;">{{ComingTotalPrice().toFixed(2)}}</div>
+            </div>
+            <div style="text-align: center;">------{{'RETURN.RETURN.HEADER.Info' | translate}}------</div>
+            <hr>
+            <div class="d-flex justify-content-between ">
+                <div>{{'RETURN.RETURN.HEADER.Discount' | translate}} </div>
+                <div style="margin-right:70px;">{{ComingTotalDiscount().toFixed(2)}}</div>
+            </div>
+            <hr>
+
+            <div>{{order.orderDate | date:'dd-MM-yyyy, H:mm:ss'}}</div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    {{'RETURN.RETURNMODAL.HEADER.HeaderDelete'| translate }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <div> {{'RETURN.RETURNMODAL.BODY.Content' | translate }}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">{{'RETURN.RETURNMODAL.BUTTON_RETURNMODAL.No'
+                    |
+                    translate }}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="
+                    deleteAllProducts()">
+                    {{'RETURN.RETURNMODAL.BUTTON_RETURNMODAL.Yes' | translate
+                    }}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,10 +4,17 @@
 
 export const environment = {
   production: false,
+  authApi: 'http://192.168.9.213/',
+  storeApi: 'https://localhost:44350/',
+  tokenWhiteListedDomains: ['localhost:44350', '192.168.9.213']
+};
+
+/*export const environment = {
+  production: false,
   authApi: 'https://localhost:44327/',
   storeApi: 'https://localhost:44350/',
   tokenWhiteListedDomains: ['localhost:44350']
-};
+};*/
 
 /*
  * For easier debugging in development mode, you can import the following file

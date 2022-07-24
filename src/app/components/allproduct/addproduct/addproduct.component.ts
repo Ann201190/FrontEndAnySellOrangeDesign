@@ -42,7 +42,7 @@ export class AddProductComponent implements OnInit {
     //для добавления продукта
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required, Validators.min(0), Validators.max(999999999999)]),
+      price: new FormControl('', [Validators.required, Validators.min(0), Validators.max(Number.MAX_VALUE)]),
       file: new FormControl(''),
       barcode: new FormControl('', [Validators.required]),
       productUnit: new FormControl(this.productUnitType[0])

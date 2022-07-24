@@ -4,6 +4,7 @@ import { Order } from "./order";
 import { Product } from "./product";
 
 export interface ReservationProduct extends BaseEntity {
+    checked: any;
     count: number;
     price: number;
     product: Product;

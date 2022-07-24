@@ -57,6 +57,8 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { NgChartsModule } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
+import { SettingComponent } from './components/setting/setting.component';
+import { ReturnComponent } from './components/allorder/return/return.component';
 
 
 
@@ -107,7 +109,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListorderComponent,
     HeaderComponent,
     AddorderComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    SettingComponent,
+    ReturnComponent
   ],
   imports: [
     BrowserModule,

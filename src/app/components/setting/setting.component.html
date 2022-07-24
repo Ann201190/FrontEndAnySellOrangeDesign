@@ -1,0 +1,147 @@
+<div *ngIf='isWaiting' id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="text-center wow" style="margin-top: 48px;">
+    <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
+    </h5>
+</div>
+
+<h1 style="text-align: center;">{{'SETTINGS.HEADER.Header' | translate }}</h1>
+
+<div class="container-xxl bg-dark hero-sitting mb-5">
+    <div class="container my-5">
+        <div class="row" style="margin-top: 48px;">
+            <div class="col-lg-6 text-center text-lg-start">
+
+
+
+
+            </div>
+            <div class="col-lg-6 text-lg-start">
+
+
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+
+                    <h1 class="text-white mb-4"> {{'SETTINGS.SETTINGS.HEADER.Header_1' | translate }}</h1>
+
+                    <form [formGroup]="form_1" (ngSubmit)="addSettings()">
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label for="namePrinter">{{'SETTINGS.SETTINGS.HEADER.NamePrinter' | translate }}</label>
+                                <select class="form-select" id="namePrinter" formControlName="namePrinter">
+                                    <option *ngFor="let name of namePrinters | keyvalue" [ngValue]="name.value">
+                                        {{name.value}}</option>
+                                </select>
+                            </div>
+
+
+                            <div class="col-12">
+                                <label>{{'SETTINGS.SETTINGS.HEADER.DPI' | translate }}</label>
+
+                                <input id="dpi" type="number" name="dpi" formControlName="dpi" class="form-control"
+                                    placeholder="{{'SETTINGS.SETTINGS.INPUT_SETTINGS_PLACEHOLDER.DPI' | translate}}">
+
+                                <div *ngIf="form_1.controls['dpi'].invalid && form_1.controls['dpi'].touched">
+                                    <span class="error-message" *ngIf="form_1.controls['dpi'].errors?.['required']">
+                                        {{'SETTINGS.SETTINGS.SPAN.DPIEmpty'
+                                        | translate }}</span>
+                                    <span class="error-message" *ngIf="this.form_1.controls['dpi'].errors?.['min']">
+                                        {{'SETTINGS.SETTINGS.SPAN.DPIMin'
+                                        | translate }} </span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                                    [disabled]="form_1.invalid || form_1.disabled"
+                                    type="submit">{{'SETTINGS.SETTINGS.BUTTON_SETTINGS.Save' | translate }}</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+                <!------------------------------------------>
+
+
+
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+
+                    <h1 class="text-white mb-4"> {{'SETTINGS.SETTINGS.HEADER.Header_2' | translate }}</h1>
+
+                    <form [formGroup]="form_2" (ngSubmit)="changePassword()">
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label> {{ 'SETTINGS.SETTINGS.HEADER.Password' | translate }} </label>
+                                <input id="password" type="password"
+                                    placeholder="{{'SETTINGS.SETTINGS.INPUT_SETTINGS_PLACEHOLDER.Password' | translate}}"
+                                    formControlName="password" class="form-control">
+                                <div *ngIf="form_2.controls['password'].invalid && form_2.controls['password'].touched">
+                                    <span class="error-message"
+                                        *ngIf="form_2.controls['password'].errors?.['required']"> {{
+                                        'SETTINGS.SETTINGS.SPAN.PasswordСorrect' | translate }} </span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'SETTINGS.SETTINGS.HEADER.PasswordNew' | translate }}</label>
+                                <input class="form-control" id="new_password" type="password"
+                                    placeholder="{{'SETTINGS.SETTINGS.INPUT_SETTINGS_PLACEHOLDER.PasswordNew' | translate}}"
+                                    formControlName="new_password" />
+
+                                <div
+                                    *ngIf="form_2.controls['new_password'].invalid && form_2.controls['new_password'].touched">
+                                    <span class="error-message"
+                                        *ngIf="form_2.controls['new_password'].errors?.['required']">
+                                        {{'SETTINGS.SETTINGS.SPAN.PasswordСorrect' | translate }}</span>
+                                    <span
+                                        *ngIf="form_2.controls['new_password'].errors?.['minlength'] && form_2.controls['new_password'].errors?.['minlength']['requiredLength']">
+                                        {{'SETTINGS.SETTINGS.SPAN.PasswordMin' | translate }}
+                                        {{form_2.controls['new_password'].errors?.['minlength']['requiredLength']}}
+                                        {{'SETTINGS.SETTINGS.SPAN.PasswordSymbol' | translate }}
+                                        {{'SETTINGS.SETTINGS.SPAN.Now' | translate }}
+                                        {{form_2.controls['new_password'].errors?.['minlength']['actualLength']}}
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <label>{{'SETTINGS.SETTINGS.HEADER.Repeat' | translate }}</label>
+                                <input class="form-control"
+                                    placeholder="{{'SETTINGS.SETTINGS.INPUT_SETTINGS_PLACEHOLDER.PasswordRepeat' | translate}}"
+                                    id="confirm_password" type="password" formControlName="confirm_password" />
+                                <div *ngIf="form_2.controls['confirm_password'].touched">
+                                    <span class="error-message"
+                                        *ngIf="form_2.value.new_password!=form_2.value.confirm_password">{{'REGISTRATION.SPAN.PasswordMatch'|
+                                        translate }}</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" style="margin-right: 70px;"
+                                    [disabled]="(form_2.invalid || form_2.disabled) || form_2.value.new_password != form_2.value.confirm_password"
+                                    type="submit">{{'SETTINGS.SETTINGS.BUTTON_SETTINGS.Save' | translate }}</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>

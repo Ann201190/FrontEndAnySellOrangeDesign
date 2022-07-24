@@ -32,7 +32,7 @@ export class AnalyticsComponent implements OnInit {
 
   checCashier() {
     this.isWaiting = true;  //ожидание
-    this.orderService.getChecCashier(this.storage.getItem('storeId'))
+    this.orderService.getCheckCashier(this.storage.getItem('storeId'))
       .subscribe(cashierOrders => {
 
         console.log(cashierOrders);

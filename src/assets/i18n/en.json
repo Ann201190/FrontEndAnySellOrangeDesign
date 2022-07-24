@@ -645,7 +645,8 @@
         },
         "ORDERLIST": {
             "HEADER": {
-                "Sell": "Add sell"
+                "Sell": "Add sell",
+                "Return": "Return"
             }
         },
         "ORDERMODAL": {
@@ -657,7 +658,8 @@
                 "OrderStatus": "OrderStatus",
                 "OrderDate": "OrderDate",
                 "MessageOk": "Please, scan QR code for get your check!",
-                "MessageError": "Oops, something went wrong when trying to sell products. Please try again!"
+                "MessageError": "Oops, something went wrong when trying to sell products. Please try again!",
+                "Print": "Print check"
             },
             "HEADERTABLE": {
                 "Name": "Name",
@@ -683,7 +685,77 @@
         "Providers": "Providers",
         "Comings": "Comings",
         "Employees": "Employee",
-        "Analytics": "Analytics"
+        "Analytics": "Analytics",
+        "Settings": "Settings"
+    },
+    "SETTINGS": {
+        "HEADER": {
+            "Header": "Settings"
+        },
+        "SETTINGS": {
+            "HEADER": {
+                "Header_1": "Change printer's settings",
+                "Header_2": "Changing the user's password",
+                "NamePrinter": "Name printer",
+                "DPI": "DPI",
+                "Password": "Current password",
+                "PasswordNew": "New password",
+                "Repeat": "Repeat password"
+            },
+            "INPUT_SETTINGS_PLACEHOLDER": {
+                "DPI": "Enter number printer's DPI",
+                "Password": "Enter your current password",
+                "PasswordRepeat": "Enter your password",
+                "PasswordNew": "Enter your new password"
+            },
+            "SPAN": {
+                "DPIMin": "The minimum printer's DPI must be greater than 0",
+                "DPIEmpty": "Printer's DPI must not be empty",
+                "PasswordMin": "Password cannot be less",
+                "PasswordMatch": "Password doesn't match",
+                "PasswordСorrect": "Password must not be empty",
+                "PasswordSymbol": "symbol.",
+                "Now": "Now"
+            },
+            "BUTTON_SETTINGS": {
+                "Save": "Save"
+            }
+        }
+    },
+    "RETURN": {
+        "HEADER": {
+            "Header": "Return"
+        },
+        "RETURN": {
+            "HEADER": {
+                "Check": "Check",
+                "OrderNumber": "Check number",
+                "Discount": "Discount",
+                "Total": "Total",
+                "Info": "Service information"
+            },
+            "INPUT_RETURN_PLACEHOLDER": {
+                "OrderNumber": "Enter check number"
+            },
+            "SPAN": {
+                "OrderNumberEmpty": "Check number must not be empty"
+            },
+            "BUTTON_RETURN": {
+                "Search": "Search"
+            }
+        },
+        "RETURNMODAL": {
+            "HEADER": {
+                "HeaderDelete": "Deleting product"
+            },
+            "BODY": {
+                "Content": "Are you sure you want to delete the product from check?"
+            },
+            "BUTTON_RETURNMODAL": {
+                "Yes": "Yes",
+                "No": "No"
+            }
+        }
     },
     "FOOTER": {
         "Developers": "Developers",

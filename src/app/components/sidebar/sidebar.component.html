@@ -36,8 +36,10 @@
                                         alt="User" height="35" width="35"> {{'SIDEBAR.Employees'| translate }}</a>
                 <li *ngIf='role==roleType[1]'><a [routerLink]="['/analytics']"><img src="/assets/Analytics.png"
                                         alt="Analytics" height="35" width="35"> {{'SIDEBAR.Analytics'| translate }}</a>
-                <li *ngIf='role==roleType[1]'><a [routerLink]="['/analytics']"><img src="/assets/Settings.png"
-                                        alt="Settings" height="35" width="35"> НАСТРОЙКИ ДЛЯ ПРИНТЕРА</a>
+                <li *ngIf='role==roleType[1]'><a [routerLink]="['/settings']"><img src="/assets/Settings.png"
+                                        alt="Settings" height="35" width="35"> {{'SIDEBAR.Settings'| translate }}</a>
 
         </ul>
+
+
 </nav>

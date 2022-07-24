@@ -21,9 +21,11 @@
 
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s"
                 *ngFor="let store of storesEmployee | paginate: { itemsPerPage: 8, currentPage:  p } ;">
-                <!--      <i class="btn btn-square btn-primary mx-1" href="" *ngIf='isActiv(store.id)' class="fas fa-edit"></i>-->
+
                 <div class="team-item text-center rounded overflow-hidden"
                     (click)="setIdAndNameStoreAndNameIser(store.id, store.name, store.logoImage)">
+                    <div style="margin-top:27px; margin-left: 190px;"><i *ngIf='isActiv(store.id)' style="color: rgb(254, 161, 22);" class="fas fa-check"></i></div>
+                    <div style="margin-top:80px ;" *ngIf='!isActiv(store.id)'></div>
                     <div class="rounded-circle overflow-hidden m-4">
 
                         <img *ngIf="store.logoImage != null " id="image_1" [src]="store.logoImage" alt="Store"
@@ -31,6 +33,7 @@
 
                         <img *ngIf="store.logoImage == null" id="image_2" src="/assets/DefaultStore.png" alt="Store"
                             height="200" width="200" />
+
 
                     </div>
                     <h5 class="mb-0"> {{store.name}}</h5>

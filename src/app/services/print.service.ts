@@ -30,4 +30,12 @@ export class PrintService {
     printCheck(orderNumber: string): Observable<boolean> {
         return this.http.post<boolean>(`${this.baseApiUrl}print/print/${orderNumber}`, {})
     }
+
+    getPrinters(): Observable<string[]> {
+        return this.http.get<string[]>(`${this.baseApiUrl}print/getprinters`)
+    }
+
+    setPrinterSettings(printerSettings: any): Observable<boolean> {
+        return this.http.post<boolean>(`${this.baseApiUrl}print/setprintersettings`, { Dpi: printerSettings.dpi, PrinterName: printerSettings.printerName })
+    }
 }

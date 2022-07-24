@@ -30,7 +30,7 @@ export class OrderService {
         return this.http.get<Order[]>(`${this.baseApiUrl}order/getstoreorder/${storeId}`)
     }
 
-    getChecCashier(storeId: Guid): Observable<GraphBarData> {
+    getCheckCashier(storeId: Guid): Observable<GraphBarData> {
         return this.http.get<GraphBarData>(`${this.baseApiUrl}order/getcheccashier/${storeId}`)
     }
 
@@ -40,6 +40,10 @@ export class OrderService {
 
     getProfit(storeId: Guid): Observable<GraphLineData> {
         return this.http.get<GraphLineData>(`${this.baseApiUrl}order/getprofit/${storeId}`)
+    }
+
+    getCheck(storeId: Guid, number: string): Observable<Order> {
+        return this.http.get<Order>(`${this.baseApiUrl}order/getstorecheck/${storeId}/${number}`);
     }
 
 

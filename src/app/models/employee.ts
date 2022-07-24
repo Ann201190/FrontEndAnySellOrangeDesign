@@ -1,7 +1,7 @@
 import { SafeResourceUrl } from "@angular/platform-browser";
 import { BaseEntity } from "./baseEntity";
 import { Role } from "./enum/role";
-import { Store } from "./store";
+
 
 export interface Employee extends BaseEntity {
     name: string;
@@ -12,6 +12,9 @@ export interface Employee extends BaseEntity {
     address: string;
     phone: string;
     other?: string;
+    printerName: string;
+    printerDpi: number;
     // store: Store;
+
 }
 

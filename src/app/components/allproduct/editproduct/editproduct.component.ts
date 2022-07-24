@@ -59,7 +59,7 @@ export class EditproductComponent implements OnInit {
 
         this.form = new FormGroup({
           name: new FormControl(this.product.name, [Validators.required]),
-          price: new FormControl(this.product.price, [Validators.required, Validators.min(0), Validators.max(999999999999)]),
+          price: new FormControl(this.product.price, [Validators.required, Validators.min(0), Validators.max(Number.MAX_VALUE)]),
           file: new FormControl(),
           barcode: new FormControl(this.product.barcode, [Validators.required]),
           productUnit: new FormControl(this.productUnitType[this.product.productUnit])

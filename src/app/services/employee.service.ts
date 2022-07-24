@@ -22,6 +22,10 @@ export class EmployeeService {
     return this.http.get<boolean>(`${this.baseApiUrl}employee`)
   }
 
+  getEmployeeAllInfomation(): Observable<Employee> {
+    return this.http.get<Employee>(`${this.baseApiUrl}employee/getemployee`)
+  }
+
   getByStore(storeId: Guid): Observable<Employee[]> {
     return this.http.get<Employee[]>(`${this.baseApiUrl}employee/getemployeestore/${storeId}`)
   }
