@@ -53,7 +53,7 @@
 
             <div style="float: right">
 
-                <label class="custom-big-checkbox">
+                <label *ngIf='statusType[order.orderStatus] != statusType[1]' class="custom-big-checkbox">
                     <input type="checkbox" name="otk" id="otkritka" class="align-self-center"
                         [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"
                         (change)="fieldsChangeShowUrna()">
@@ -66,7 +66,8 @@
                 </button>
             </div>
 
-
+            <h3 *ngIf='statusType[order.orderStatus] == statusType[1]' style="color: red; text-align: center">
+                {{'RETURN.RETURN.HEADER.Сanceled' | translate}}</h3>
 
             <table class="table table-striped" style="background: white;">
                 <tbody>
@@ -99,7 +100,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <label class="custom-big-checkbox" style="margin-left:40px;">
+                                                <label *ngIf='statusType[order.orderStatus] != statusType[1].toString()'
+                                                    class="custom-big-checkbox" style="margin-left:40px;">
                                                     <input type="checkbox" name="otk" id="otkritka"
                                                         value="{{product.id}}" class="align-self-center"
                                                         [(ngModel)]="product.checked" (change)="fieldsChangeShowUrna()">

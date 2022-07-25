@@ -732,7 +732,8 @@
                 "OrderNumber": "Номер чека",
                 "Discount": "Скидка",
                 "Total": "Сумма",
-                "Info": "Служебная информация"
+                "Info": "Служебная информация",
+                "Сanceled": "Отмененный"
             },
             "INPUT_RETURN_PLACEHOLDER": {
                 "OrderNumber": "Введите номер чека"

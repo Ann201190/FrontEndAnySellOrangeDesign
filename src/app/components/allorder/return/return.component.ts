@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { Language } from 'src/app/models/enum/language';
+import { OrderStatus } from 'src/app/models/enum/orderstatus';
 import { Order } from 'src/app/models/order';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -20,7 +21,7 @@ export class ReturnComponent implements OnInit {
   public p: any = 0;
   public isShow: boolean = false;
 
-
+  statusType: Array<string> = Object.keys(OrderStatus).filter(key => isNaN(+key))
 
   constructor(
     public storage: LocalStorageService,
@@ -32,6 +33,8 @@ export class ReturnComponent implements OnInit {
   ngOnInit(): void {
 
     this.translateService.use(this.storage.getItem('lang'))
+
+
 
     //для добавления cотрудника
     this.form = new FormGroup({
@@ -80,11 +83,18 @@ export class ReturnComponent implements OnInit {
     this.orderService.getCheck(this.storage.getItem('storeId'), this.form.value.orderNumber).subscribe(data => {
 
       if (data == null) {
-        this.errorMessage()   
-      }  
+        this.errorMessage()
+      }
       this.order = data;
       this.isWaiting = false;
+
+
+      console.log(this.statusType[1])
+      console.log(this.order.orderStatus)
     })
+
+
+
   }
 
 
@@ -149,7 +159,7 @@ export class ReturnComponent implements OnInit {
   errorMessage() {
     if (this.storage.getItem('lang') == Language.en) this.toast.error('Check not found in this store! Try again.');
     else this.toast.error('Чек не найден в этом магазине! Попробуйте еще.');
- //   window.location.reload();
+    //   window.location.reload();
   }
 
 }

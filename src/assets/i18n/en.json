@@ -732,7 +732,8 @@
                 "OrderNumber": "Check number",
                 "Discount": "Discount",
                 "Total": "Total",
-                "Info": "Service information"
+                "Info": "Service information",
+                "Сanceled": "Canceled"
             },
             "INPUT_RETURN_PLACEHOLDER": {
                 "OrderNumber": "Enter check number"
