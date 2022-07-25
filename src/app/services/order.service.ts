@@ -46,6 +46,9 @@ export class OrderService {
         return this.http.get<Order>(`${this.baseApiUrl}order/getstorecheck/${storeId}/${number}`);
     }
 
+    topThreeProduct(storeId: Guid): Observable<GraphBarData> {
+        return this.http.get<GraphBarData>(`${this.baseApiUrl}order/gettopthreeproduct/${storeId}`)
+    }
 
     /*   editComing(coming: Coming): Observable<boolean> {
              return this.http.post<boolean>(`${this.baseApiUrl}coming/updatecoming`, coming)

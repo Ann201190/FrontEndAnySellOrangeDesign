@@ -6,18 +6,6 @@
 </div>
 
 
-
-<div style="width:1250px; heigh:1250px; margin: 0 auto;">
-  <canvas baseChart [data]="salesData_1" [type]="'bar'" [options]="chartOptions_1">
-  </canvas>
-</div>
-
-<div style="width:1250px; height:1250px">
-  <canvas baseChart [data]="salesData_2" [type]="'line'" [options]="chartOptions_2">
-  </canvas>
-</div>
-
-
 <!--<div style="width:450px; height:450px">
   <canvas baseChart [data]="salesData1" [type]="'line'" [options]="chartOptions_1">
   </canvas>
@@ -27,3 +15,84 @@
   <canvas baseChart [data]="salesData2" [type]="'line'" [options]="chartOptions">
   </canvas>
 </div>-->
+
+
+
+<!-- Menu Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}</h5>
+      <h1 class="mb-3"> {{'ANALYTICS.ANALYTICS.HEADER.Header' | translate }}</h1>
+    </div>
+    <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+      <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-6">
+        <li class="nav-item">
+          <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+            <i class="fas fa-chart-bar fa-2x text-primary"></i>
+            <div class="ps-3">
+
+              <h6 class="mt-n1 mb-0">{{'ANALYTICS.ANALYTICS.HEADER.CashierSales' | translate }}</h6>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+            <i class="fas fa-chart-line fa-2x text-primary"></i>
+            <div class="ps-3">
+
+              <h6 class="mt-n1 mb-0">{{'ANALYTICS.ANALYTICS.HEADER.Profit' | translate }}</h6>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+            <i class="fas fa-chart-area fa-2x text-primary"></i>
+            <div class="ps-3">
+
+              <h6 class="mt-n1 mb-0">{{'ANALYTICS.ANALYTICS.HEADER.TopThreeProduct' | translate }}</h6>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content" style="margin-top:18px;">
+        <div id="tab-1" class="tab-pane fade show p-0 active">
+
+
+
+          <div style="width:1250px;  margin: 0 auto;">
+            <canvas baseChart [data]="salesData_1" [type]="'bar'">
+            </canvas>
+            <div><b> {{'ANALYTICS.ANALYTICS.HEADER.Text_1' | translate }}</b></div>
+          </div>
+
+
+        </div>
+        <div id="tab-2" class="tab-pane fade show p-0">
+
+
+          <div style="width:1250px;  margin: 0 auto;">
+            <canvas baseChart [data]="salesData_2" [type]="'line'">
+            </canvas>
+            <div><b> {{'ANALYTICS.ANALYTICS.HEADER.Text_2' | translate }}</b></div>
+          </div>
+
+
+        </div>
+        <div id="tab-3" class="tab-pane fade show p-0">
+
+
+          <div style="width:1250px;  margin: 0 auto;">
+            <canvas baseChart [data]="salesData_3" [type]="'bar'">
+            </canvas>
+            <div><b>{{'ANALYTICS.ANALYTICS.HEADER.Text_3' | translate }}</b></div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Menu End -->
