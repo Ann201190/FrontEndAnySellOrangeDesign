@@ -767,10 +767,10 @@
                 "Header": "Analytics",
                 "CashierSales": "Сashier's sales",
                 "Profit": "Profit",
-                "TopThreeProduct": "Top 3 products",
+                "ProductMonth": "Products sold for the current month",
                 "Text_1": "Sales of cashiers (by number of receipts)",
                 "Text_2": "Profit",
-                "Text_3": "Top 3 selling products"
+                "Text_3": "Count of products sold in the current month"
             }
         }
     },

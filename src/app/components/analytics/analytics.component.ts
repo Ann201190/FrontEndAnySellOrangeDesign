@@ -81,6 +81,9 @@ export class AnalyticsComponent implements OnInit {
       })
   }
 
+
+
+  
   /* salesData2: ChartData<'bar'> = {
      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
      datasets: [
