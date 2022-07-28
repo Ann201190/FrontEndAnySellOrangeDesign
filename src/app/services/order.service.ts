@@ -7,6 +7,7 @@ import { GraphBarData } from '../models/graphBarData';
 import { GraphLineData } from '../models/grapLineData';
 import { Order } from '../models/order';
 import { OrderProduct } from '../models/OrderProduct';
+import { ProductsReturn } from '../models/productsReturn';
 import { Qrcode } from '../models/qrcode';
 
 
@@ -46,24 +47,11 @@ export class OrderService {
         return this.http.get<Order>(`${this.baseApiUrl}order/getstorecheck/${storeId}/${number}`);
     }
 
-    topThreeProduct(storeId: Guid): Observable<GraphBarData> {
+   productsMonthe(storeId: Guid): Observable<GraphBarData> {
         return this.http.get<GraphBarData>(`${this.baseApiUrl}order/gettopthreeproduct/${storeId}`)
     }
 
-    /*   editComing(coming: Coming): Observable<boolean> {
-             return this.http.post<boolean>(`${this.baseApiUrl}coming/updatecoming`, coming)
-         }*/
-    /* getByIdDiscount(id: Guid): Observable<Discount> {
-         return this.http.get<Discount>(`${this.baseApiUrl}discount/${id}`)
-     }
- 
-     addDiscount(discount: Discount): Observable<boolean> {
-         return this.http.post<boolean>(`${this.baseApiUrl}discount`, discount)
-     }
- 
-   
- 
-     deleteDiscount(id: Guid): Observable<boolean> {
-         return this.http.get<boolean>(`${this.baseApiUrl}discount/deletediscount/${id}`)
-     }*/
+    return(productsReturn: ProductsReturn): Observable<Qrcode> {
+        return this.http.post<Qrcode>(`${this.baseApiUrl}order/productsreturn/`, productsReturn)
+    }
 }

@@ -30,7 +30,7 @@ export class AnalyticsComponent implements OnInit {
     this.translateService.use(this.storage.getItem('lang'))
     this.checCashier();
     this.profit();
-    this.topThreeProduct();
+    this.productsMonthe();
   }
 
   checCashier() {
@@ -65,9 +65,9 @@ export class AnalyticsComponent implements OnInit {
       })
   }
 
-  topThreeProduct() {
+  productsMonthe() {
     this.isWaiting = true;  //ожидание
-    this.orderService.topThreeProduct(this.storage.getItem('storeId'))
+    this.orderService.productsMonthe(this.storage.getItem('storeId'))
       .subscribe(cashierOrders => {
 
         console.log(cashierOrders);
@@ -83,7 +83,7 @@ export class AnalyticsComponent implements OnInit {
 
 
 
-  
+
   /* salesData2: ChartData<'bar'> = {
      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
      datasets: [
@@ -110,39 +110,39 @@ export class AnalyticsComponent implements OnInit {
 
 
 
- /* chartOptions_1: ChartOptions = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        position: 'bottom',
-        text: this.message_1(),
-      },
-    },
-  };
-
-  chartOptions_2: ChartOptions = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        position: 'bottom',
-        text: 'Прибыль',
-      },
-    },
-  };
-
-
-  chartOptions_3: ChartOptions = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        position: 'bottom',
-        text: 'Топ 3 продаваемых продукта',
-      },
-    },
-  };*/
+  /* chartOptions_1: ChartOptions = {
+     responsive: true,
+     plugins: {
+       title: {
+         display: true,
+         position: 'bottom',
+         text: this.message_1(),
+       },
+     },
+   };
+ 
+   chartOptions_2: ChartOptions = {
+     responsive: true,
+     plugins: {
+       title: {
+         display: true,
+         position: 'bottom',
+         text: 'Прибыль',
+       },
+     },
+   };
+ 
+ 
+   chartOptions_3: ChartOptions = {
+     responsive: true,
+     plugins: {
+       title: {
+         display: true,
+         position: 'bottom',
+         text: 'Топ 3 продаваемых продукта',
+       },
+     },
+   };*/
 
   /* salesData1: ChartData<'line'> = {
      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],

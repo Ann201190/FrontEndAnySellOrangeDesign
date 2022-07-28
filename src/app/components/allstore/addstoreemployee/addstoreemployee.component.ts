@@ -51,7 +51,8 @@ export class AddstoreemployeeComponent implements OnInit {
       address: new FormControl('', [Validators.required]),
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required])
+      phone: new FormControl('', [Validators.required]),
+      addressStore: new FormControl('')
     })
   }
 
@@ -118,7 +119,8 @@ export class AddstoreemployeeComponent implements OnInit {
       address: this.form.value.address,
       nameEmployee: this.form.value.firstname,
       surNameEmployee: this.form.value.lastname,
-      phone: "+38" + this.form.value.phone
+      phone: "+38" + this.form.value.phone,
+      addressStore: this.form.value.addressStore
     }
 
     this.storeService.addStoretWithoutImage(store).subscribe(id => {

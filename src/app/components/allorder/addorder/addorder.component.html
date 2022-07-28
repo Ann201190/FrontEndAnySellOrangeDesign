@@ -172,28 +172,24 @@
         <div class="modal-content">
 
 
-            <!--     <div class="modal-header">
-                <h5 class="modal-title" id="moreModalLabel">{{'ORDER.ORDERMODAL.HEADER.OrderNumber' | translate }}
-                    {{oneOrder?.orderNumber}}
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>-->
-
-
             <div class="modal-body">
                 <div style="text-align: center;">
+
+
                     <div *ngIf='order == "error"'>
                         <p> "{{'ORDER.ORDERMODAL.BODY.MessageError' | translate}}" </p>
                     </div>
+
+
                     <div *ngIf='order!="error"'>
                         <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
                         <p style="font-size: 20px;"><b>{{order}}</b></p>
                         <p> "{{'ORDER.ORDERMODAL.BODY.MessageOk' | translate}}" </p>
+                        <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" type="submit" (click)="printChack()"><i
+                                class="fas fa-print"></i>
+                            {{'ORDER.ORDERMODAL.BODY.Print' | translate }} </a>
                     </div>
 
-                    <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" type="submit" (click)="printChack()"><i
-                            class="fas fa-print"></i>
-                        {{'ORDER.ORDERMODAL.BODY.Print' | translate }} </a>
                 </div>
 
             </div>

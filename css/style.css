@@ -172,6 +172,12 @@
     background-size: cover;
 }
 
+.hero-addshopemployee {
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../img/Cuales-son-los-beneficios-de-comprar-por-Internet-en-portales-de-ecommerce1.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
 .hero-addshop {

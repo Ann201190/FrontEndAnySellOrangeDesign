@@ -53,7 +53,7 @@ export class MorediscountComponent implements OnInit {
     this.isShow = false;
     for (let i = 0; i < this.products.length; i++) {
       if (this.products[i].checked) {
-        console.log(this.products[i].checked);
+        //  console.log(this.products[i].checked);
         this.isShow = true;
         return;
       }

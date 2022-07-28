@@ -5,137 +5,166 @@
     </div>
 </div>
 
-<form [formGroup]="form" (ngSubmit)="addStore()" class="minheight">
-    <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h5 class="section-title ff-secondary text-center text-primary fw-normal">AnySell
+    </h5>
+</div>
 
-        <div>
-            <h5 class="card-header bg-success rounded-header" style="margin-bottom: 30px; text-align: center;">
-                {{'STORE.STOREADD.HEADER.Header' | translate }}</h5>
+<div class="container-xxl bg-dark hero-addshopemployee mb-5">
+    <div class="container my-5">
+        <div class="row" style="margin-top: 48px;">
 
-            <div style="margin-bottom: 10px;">
-                <img *ngIf="logo != null" id="image_1" [src]="logo" alt="Store" height="150" width="150" />
-                <img *ngIf="logo == null" id="image_2" src="/assets/DefaultStore.png" alt="Store" height="150"
-                    width="150" />
-            </div>
+            <div class="col-lg-6 text-lg-start">
 
-            <button *ngIf="logo != null" type="button" class="restar-button-img"
-                (click)=" deleteLogo()">{{'STORE.STOREADD.BUTTON_STOREADD.DeleteLogo' | translate }}</button>
+                <div class="p-5 wow fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
+                    <h1 class="text-white mb-4"> {{'STORE.STOREADD.HEADER.Header' | translate }}</h1>
 
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Logo' | translate }}</label>
+                    <form [formGroup]="form" (ngSubmit)="addStore()">
+                        <div class="row g-3">
 
-                <input id="filelogo" type="file" #filelogo name="filelogo" (change)="onFileChangedLogo($event)"
-                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Logo' | translate}}"
-                    formControlName="filelogo" class="form-control">
-            </div>
+                            <div class="col-12">
+                                <img *ngIf="logo != null" id="image_1" [src]="logo" alt="Store" height="150"
+                                    width="150" />
+                                <img *ngIf="logo == null" id="image_2" src="/assets/DefaultStore.png" alt="Store"
+                                    height="150" width="150" />
+
+                                <button *ngIf="logo != null" type="button" class="btn btn-primary" style="padding: 2px;"
+                                    (click)="deleteLogo()">{{'STORE.STOREADD.BUTTON_STOREADD.DeleteLogo' | translate
+                                    }}</button>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Logo' | translate }}</label>
+
+                                <input id="filelogo" type="file" #filelogo name="filelogo"
+                                    (change)="onFileChangedLogo($event)"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Logo' | translate}}"
+                                    formControlName="filelogo" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Name' | translate }}</label>
+
+                                <input id="name" type="text" name="name" formControlName="name" class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Name' | translate}}">
+
+                                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+                                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
+                                        {{'STORE.STOREADD.SPAN.NameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.AddressStore' | translate }}</label>
+                                <input id="addressStore" type="text" name="addressStore" formControlName="addressStore"
+                                    class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.AddressStore' | translate}}">
+                            </div>
+
+                            <div class="col-12">
+                                <img *ngIf="photo != null" id="image_3" [src]="photo" alt="Employee" height="150"
+                                    width="150" />
+                                <img *ngIf="photo == null" id="image_4" src="/assets/DefaultContact.png" alt="Employee"
+                                    height="150" width="150" />
+
+                                <button *ngIf="photo != null" type="button" class="btn btn-primary"
+                                    style="padding: 2px;"
+                                    (click)=" deletePhoto()">{{'STORE.STOREADD.BUTTON_STOREADD.DeletePhoto' | translate
+                                    }}</button>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Photo' | translate }}</label>
+
+                                <input id="filephoto" type="file" #filephoto name="filephoto"
+                                    (change)="onFileChangedPhoto($event)"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Photo' | translate}}"
+                                    formControlName="filephoto" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Firstname' | translate }}</label>
+
+                                <input id="firstname" type="text" name="firstname" formControlName="firstname"
+                                    class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Firstname' | translate}}">
+
+                                <div *ngIf="form.controls['firstname'].invalid && form.controls['firstname'].touched">
+                                    <span class="error-message" *ngIf="form.controls['firstname'].errors?.['required']">
+                                        {{'STORE.STOREADD.SPAN.FirstnameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Lastname' | translate }}</label>
+
+                                <input id="lastname" type="text" name="lastname" formControlName="lastname"
+                                    class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Lastname' | translate}}">
+
+                                <div *ngIf="form.controls['lastname'].invalid && form.controls['lastname'].touched">
+                                    <span class="error-message" *ngIf="form.controls['lastname'].errors?.['required']">
+                                        {{'STORE.STOREADD.SPAN.LastnameEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Address' | translate }}</label>
+
+                                <input id="address" type="text" name="address" formControlName="address"
+                                    class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Address' | translate}}">
+
+                                <div *ngIf="form.controls['address'].invalid && form.controls['address'].touched">
+                                    <span class="error-message" *ngIf="form.controls['address'].errors?.['required']">
+                                        {{'STORE.STOREADD.SPAN.AddressEmpty'
+                                        | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Phone' | translate }}</label>
+                                <input formControlName="phone" placeholder="+380 XXX XX-XX-XX" class="form-control"
+                                    mask=" (000) 000-00-00" prefix="+38" type="tel" [showMaskTyped]="true"
+                                    style="margin-bottom: 20px;">
+
+                                <div style="color:red"
+                                    *ngIf="this.form.controls['phone'].invalid && this.form.controls['phone'].touched">
+                                    <span class="error-message"
+                                        *ngIf="this.form.controls['phone'].errors?.['required']">
+                                        {{'STORE.STOREADD.SPAN.PhoneEmpty'
+                                        | translate }} </span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>{{'STORE.STOREADD.HEADER.Other' | translate }}</label>
+                                <textarea id="other" type="text" name="other" formControlName="other"
+                                    class="form-control"
+                                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Other' | translate}}"></textarea>
+                            </div>
 
 
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Name' | translate }}</label>
 
-                <input id="name" type="text" name="name" formControlName="name" class="form-control"
-                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Name' | translate}}">
+                            <div class="col-12">
+                                <button class="btn btn-primary" style="margin-right: 70px;"
+                                    [disabled]="form.invalid || form.disabled"
+                                    type="submit">{{'STORE.STOREADD.BUTTON_STOREADD.Save' | translate }}</button>
 
-                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
-                    <span class="error-message" *ngIf="form.controls['name'].errors?.['required']">
-                        {{'STORE.STOREADD.SPAN.NameEmpty'
-                        | translate }}</span>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
 
+            <div class="col-lg-6 text-center text-lg-start">
 
-            <div style="margin-bottom: 10px;">
-                <img *ngIf="photo != null" id="image_3" [src]="photo" alt="Employee" height="150" width="150" />
-                <img *ngIf="photo == null" id="image_4" src="/assets/DefaultContact.png" alt="Employee" height="150"
-                    width="150" />
             </div>
-
-            <button *ngIf="photo != null" type="button" class="restar-button-img"
-                (click)=" deletePhoto()">{{'STORE.STOREADD.BUTTON_STOREADD.DeletePhoto' | translate }}</button>
-
-
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Photo' | translate }}</label>
-
-                <input id="filephoto" type="file" #filephoto name="filephoto" (change)="onFileChangedPhoto($event)"
-                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Photo' | translate}}"
-                    formControlName="filephoto" class="form-control">
-            </div>
-
-
-
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Firstname' | translate }}</label>
-
-                <input id="firstname" type="text" name="firstname" formControlName="firstname" class="form-control"
-                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Firstname' | translate}}">
-
-                <div *ngIf="form.controls['firstname'].invalid && form.controls['firstname'].touched">
-                    <span class="error-message" *ngIf="form.controls['firstname'].errors?.['required']">
-                        {{'STORE.STOREADD.SPAN.FirstnameEmpty'
-                        | translate }}</span>
-                </div>
-            </div>
-
-
-
-
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Lastname' | translate }}</label>
-
-                <input id="lastname" type="text" name="lastname" formControlName="lastname" class="form-control"
-                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Lastname' | translate}}">
-
-                <div *ngIf="form.controls['lastname'].invalid && form.controls['lastname'].touched">
-                    <span class="error-message" *ngIf="form.controls['lastname'].errors?.['required']">
-                        {{'STORE.STOREADD.SPAN.LastnameEmpty'
-                        | translate }}</span>
-                </div>
-            </div>
-
-
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Address' | translate }}</label>
-
-                <input id="address" type="text" name="address" formControlName="address" class="form-control"
-                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Address' | translate}}">
-
-                <div *ngIf="form.controls['address'].invalid && form.controls['address'].touched">
-                    <span class="error-message" *ngIf="form.controls['address'].errors?.['required']">
-                        {{'STORE.STOREADD.SPAN.AddressEmpty'
-                        | translate }}</span>
-                </div>
-            </div>
-
-
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Phone' | translate }}</label>
-                <input formControlName="phone" placeholder="+380 XXX XX-XX-XX" class="form-control"
-                    mask=" (000) 000-00-00" prefix="+38" type="tel" [showMaskTyped]="true" style="margin-bottom: 20px;">
-
-                <div style="color:red"
-                    *ngIf="this.form.controls['phone'].invalid && this.form.controls['phone'].touched">
-                    <span class="error-message" *ngIf="this.form.controls['phone'].errors?.['required']">
-                        {{'STORE.STOREADD.SPAN.PhoneEmpty'
-                        | translate }} </span>
-                </div>
-            </div>
-
-
-
-            <div class="marginInput">
-                <label>{{'STORE.STOREADD.HEADER.Other' | translate }}</label>
-                <textarea id="other" type="text" name="other" formControlName="other" class="form-control"
-                    placeholder="{{'STORE.STOREADD.INPUT_STOREADD_PLACEHOLDER.Other' | translate}}"></textarea>
-            </div>
-
-
-            <div class="container-buttons">
-                <button class="btn btn-success" style="margin-right: 70px;" [disabled]="form.invalid || form.disabled"
-                    type="submit">{{'STORE.STOREADD.BUTTON_STOREADD.Save' | translate }}</button>
-            </div>
-
 
         </div>
     </div>
-</form>
+</div>

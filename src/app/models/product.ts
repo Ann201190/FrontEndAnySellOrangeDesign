@@ -13,6 +13,8 @@ export interface Product extends BaseEntity {
     productUnit: ProductUnit;
     image?: SafeResourceUrl;
     discount?: Discount;
+    checked?: boolean;
+    index?: number;
 }
 
 

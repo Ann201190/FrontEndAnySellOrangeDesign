@@ -5,21 +5,18 @@
     </div>
 </div>
 
-<div class="minheight">
-    <div *ngIf='!isWaiting' style="width: 600px; margin: 0 auto;">
-        <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
-            <div class="card-body" style="margin: 0 auto; width: 450px;">
-                <div *ngIf='isRegistration' style="text-align:center">
-                    <p> {{'CONFIRM.InfoTrue' | translate }}</p>
-                    <button class="btn btn-primary" [routerLink]="['']" style="margin-right: 70px;" type="submit">
-                        {{'CONFIRM.LogIn' | translate }}</button>
-                </div>
-                <div *ngIf='!isRegistration' style="text-align:center">
-                    <p>{{'CONFIRM.InfoFalse' | translate }}</p>
-                </div>
-            </div>
-        </div>
+
+<div class="p-5 wow fadeInUp minheight"
+    style="border:solid; border-width: 2px; margin-top: 48px; text-align: center; border-color: rgb(254, 161 ,22);  height: 200px; "
+    data-wow-delay="0.2s">
+
+    <div *ngIf='isRegistration' style="margin-top: 98px;">
+        <h5> {{'CONFIRM.InfoTrue' | translate }}</h5>
+        <button class="btn btn-primary" [routerLink]="['']" style="margin-right: 70px; margin-top: 25px;" type="submit">
+            {{'CONFIRM.LogIn' | translate }}</button>
+    </div>
+
+    <div style="margin-top: 138px; " *ngIf='!isRegistration'>
+        <h5>{{'CONFIRM.InfoFalse' | translate }}</h5>
     </div>
 </div>
-
-

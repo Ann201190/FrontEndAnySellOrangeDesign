@@ -161,13 +161,49 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light"
-                    data-bs-dismiss="modal">{{'RETURN.RETURNMODAL.BUTTON_RETURNMODAL.No'
-                    |
-                    translate }}</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="
-                    deleteAllProducts()">
-                    {{'RETURN.RETURNMODAL.BUTTON_RETURNMODAL.Yes' | translate
-                    }}</button>
+                    data-bs-dismiss="modal">{{'RETURN.RETURNMODAL.BUTTON_RETURNMODAL.No' | translate }}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteAllProducts()"
+                    data-bs-toggle="modal" data-bs-target="#moreModal">
+                    {{'RETURN.RETURNMODAL.BUTTON_RETURNMODAL.Yes' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal More -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
+    style=" margin-top: 60px;">
+    <div class="modal-dialog" style="width: 560px ">
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <div style="text-align: center;">
+
+
+                    <div *ngIf='request == "error"'>
+                        <p> "{{'ORDER.ORDERMODAL.BODY.MessageError' | translate}}" </p>
+                    </div>
+
+
+                    <div *ngIf='request!="error"'>
+                        <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                        <p style="font-size: 20px;"><b>{{request}}</b></p>
+                        <p> "{{'ORDER.ORDERMODAL.BODY.MessageOk' | translate}}" </p>
+                        <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated" type="submit" (click)="printChack()"><i
+                                class="fas fa-print"></i>
+                            {{'ORDER.ORDERMODAL.BODY.Print' | translate }} </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="Close()"
+                    data-bs-dismiss="modal">{{'ORDER.ORDERMODAL.BUTTON_ORDERMODAL.Close' | translate}}</button>
             </div>
         </div>
     </div>
