@@ -24,8 +24,8 @@ export class ListorderComponent implements OnInit {
   public p: any = 0;
   public idOrderForDeleted!: Guid;
   public OrderStatus = OrderStatus;
-  public index!: number;
-
+  public index: number = 0;
+  orderStatusType: Array<string> = Object.keys(OrderStatus).filter(key => isNaN(+key))
 
   constructor(
     private toast: HotToastService,
@@ -63,18 +63,25 @@ export class ListorderComponent implements OnInit {
       })
   }
 
-  moreOrder(order: Order) {
+  moreOrder(orderNumber: any) {
 
-    this.oneOrder = order;
+    // this.oneOrder = order;
 
-    if (this.oneOrder.orderStatus != null) {
+
+    this.orderService.getCheck(this.storage.getItem('storeId'), orderNumber).subscribe(ord => {
+      this.oneOrder = ord
+
+      if (this.oneOrder.orderStatus != null) {
       this.index = this.oneOrder.orderStatus
     }
+    console.log(OrderStatus[this.index])
 
     this.totalSum = 0;
     this.oneOrder.reservationProducts.forEach(element => {
-      this.totalSum = this.OrderTotalPrice(order)
+      this.totalSum = this.OrderTotalPrice(this.oneOrder)
     });
+
+    })
   }
 
 

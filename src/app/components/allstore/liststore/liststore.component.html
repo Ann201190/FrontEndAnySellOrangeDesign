@@ -24,7 +24,8 @@
 
                 <div class="team-item text-center rounded overflow-hidden"
                     (click)="setIdAndNameStoreAndNameIser(store.id, store.name, store.logoImage)">
-                    <div style="margin-top:27px; margin-left: 190px;"><i *ngIf='isActiv(store.id)' style="color: rgb(254, 161, 22);" class="fas fa-check"></i></div>
+                    <div style="margin-top:27px; margin-left: 190px;"><i *ngIf='isActiv(store.id)'
+                            style="color: rgb(254, 161, 22);" class="fas fa-check"></i></div>
                     <div style="margin-top:80px ;" *ngIf='!isActiv(store.id)'></div>
                     <div class="rounded-circle overflow-hidden m-4">
 
@@ -49,7 +50,7 @@
             </div>
 
 
-            <div *ngIf='storesEmployee.length>0' style="text-align: center;">
+            <div *ngIf='storesEmployee!=null && storesEmployee.length>0' style="text-align: center;">
                 <pagination-controls (pageChange)="p = $event" previousLabel="{{'PAGINATION.Previous' | translate}}"
                     nextLabel="{{'PAGINATION.Next' | translate}}">
                 </pagination-controls>

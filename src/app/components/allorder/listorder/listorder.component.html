@@ -57,8 +57,9 @@
 
 
                                                         <a class="btn btn-square btn-primary mx-1"
-                                                            (click)="moreOrder(order)" data-bs-toggle="modal"
-                                                            data-bs-target="#moreModal"><i class="fas fa-info"></i></a>
+                                                            (click)="moreOrder(order.orderNumber)"
+                                                            data-bs-toggle="modal" data-bs-target="#moreModal"><i
+                                                                class="fas fa-info"></i></a>
 
 
                                                         <a class="btn btn-square btn-primary mx-1"
@@ -95,7 +96,7 @@
 <!-- Modal More -->
 <div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true"
     style=" margin-top: 60px;">
-    <div class="modal-dialog" style="width: 560px ">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="moreModalLabel">{{'ORDER.ORDERMODAL.HEADER.OrderNumber' | translate }}
@@ -104,7 +105,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div><b>{{'ORDER.ORDERMODAL.BODY.OrderStatus' | translate }}: </b>{{ OrderStatus[index] |translate }}
+                <div *ngIf="OrderStatus[index]==orderStatusType[0]"><b>{{'ORDER.ORDERMODAL.BODY.OrderStatus' | translate
+                        }}: </b>{{ OrderStatus[index] |translate }}
+                </div>
+                <div *ngIf="OrderStatus[index]!=orderStatusType[0]" style="color: red;">
+                    <b>{{'ORDER.ORDERMODAL.BODY.OrderStatus' | translate
+                        }}: </b>{{ OrderStatus[index] |translate }}
                 </div>
                 <div><b>{{'ORDER.ORDERMODAL.BODY.OrderDate' | translate }}: </b>{{oneOrder?.orderDate |
                     date:'dd-MM-yyyy, H:mm:ss'}}</div>

@@ -2,12 +2,22 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+//ЛОКАЛЬНО
 export const environment = {
   production: false,
-  authApi: 'http://192.168.9.213/',
+  authApi: 'http://192.168.58.213/',
   storeApi: 'https://localhost:44350/',
-  tokenWhiteListedDomains: ['localhost:44350', '192.168.9.213']
+  tokenWhiteListedDomains: ['localhost:44350', '192.168.58.213']
 };
+
+//ХОСТИНГ
+/*export const environment = {
+  production: false,
+  authApi: 'http://auth.user21741.realhost-free.net/',
+  storeApi: 'http://user21741.realhost-free.net/',
+  tokenWhiteListedDomains: ['user21741.realhost-free.net', 'auth.user21741.realhost-free.net']
+};*/
+
 
 /*export const environment = {
   production: false,

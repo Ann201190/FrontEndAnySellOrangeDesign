@@ -8,14 +8,15 @@
                 <h6 style="color:rgb(254, 161 ,22)">{{storage.getItem('email')}}</h6>
                 <h3 style="color:rgb(254, 161 ,22)">{{storage.getItem('storeName')}}</h3>
 
-                <a href="/"><span>
-
+                <a href="/">
+                        <span>
                                 <img *ngIf="path != null" id="imageStore_1"
                                         [src]=" path.changingThisBreaksApplicationSecurity" alt="Store" height="150"
                                         width="150" />
                                 <img *ngIf="path == null" id="imageStore_2" src="/assets/DefaultStore.png" alt="Store"
                                         height="150" width="150" />
-                        </span></a>
+                        </span>
+                </a>
         </h2>
         <ul>
                 <li><a [routerLink]="['/store']"><img src="/assets/Stores.png" alt="Store" height="35" width="35">
@@ -24,11 +25,22 @@
                                         width="35"> {{'SIDEBAR.Cashbox'| translate }}</a>
                 <li><a [routerLink]="['/product']"><img src="/assets/Products.png" alt="Product" height="35" width="35">
                                 {{'SIDEBAR.Products'| translate }}</a>
-                <li><a [routerLink]="['/discount']"><img src="/assets/Discounts.png" alt="Discount" height="35"
-                                        width="35">
-                                {{'SIDEBAR.Discounts'| translate }}</a>
-
+                <li *ngIf='role==roleType[1]'><a [routerLink]="['/discount']"><img src="/assets/Discounts.png"
+                                        alt="Discount" height="35" width="35"> {{'SIDEBAR.Discounts'| translate }}</a>
                 <li *ngIf='role==roleType[1]'><a [routerLink]="['/provider']"><img src="/assets/Providers.png"
+                                        alt="Discount" height="35" width="35"> {{'SIDEBAR.Providers'| translate }}</a>
+                <li><a [routerLink]="['/listcoming']"><img src="/assets/Comings.png" alt="Comings" height="35"
+                                        width="35"> {{'SIDEBAR.Comings'| translate }}</a>
+                <li *ngIf='role==roleType[1]'><a [routerLink]="['/employee']"><img src="/assets/Employees.png"
+                                        alt="User" height="35" width="35"> {{'SIDEBAR.Employees'| translate }}</a>
+                <li *ngIf='role==roleType[1]'><a [routerLink]="['/analytics']"><img src="/assets/Analytics.png"
+                                        alt="Analytics" height="35" width="35"> {{'SIDEBAR.Analytics'| translate }}</a>
+                <li><a [routerLink]="['/settings']"><img src="/assets/Settings.png" alt="Settings" height="35"
+                                        width="35"> {{'SIDEBAR.Settings'| translate }}</a>
+        </ul>
+</nav>
+
+<!--                <li *ngIf='role==roleType[1]'><a [routerLink]="['/provider']"><img src="/assets/Providers.png"
                                         alt="Discount" height="35" width="35"> {{'SIDEBAR.Providers'| translate }}</a>
                 <li *ngIf='role==roleType[1]'><a [routerLink]="['/listcoming']"><img src="/assets/Comings.png"
                                         alt="Comings" height="35" width="35"> {{'SIDEBAR.Comings'| translate }}</a>
@@ -37,9 +49,4 @@
                 <li *ngIf='role==roleType[1]'><a [routerLink]="['/analytics']"><img src="/assets/Analytics.png"
                                         alt="Analytics" height="35" width="35"> {{'SIDEBAR.Analytics'| translate }}</a>
                 <li *ngIf='role==roleType[1]'><a [routerLink]="['/settings']"><img src="/assets/Settings.png"
-                                        alt="Settings" height="35" width="35"> {{'SIDEBAR.Settings'| translate }}</a>
-
-        </ul>
-
-
-</nav>
+                                        alt="Settings" height="35" width="35"> {{'SIDEBAR.Settings'| translate }}</a>-->

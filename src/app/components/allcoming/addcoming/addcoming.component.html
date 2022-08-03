@@ -10,7 +10,7 @@
     </h5>
 </div>
 
-<div class="bg-dark d-flex" style="margin-top: 48px">
+<div class="bg-dark d-flex" style="margin-top: 48px" *ngIf="providers.length>0 && products.length>0">
 
     <div class="row g-0">
         <div class="col-md-6  ">
@@ -124,6 +124,14 @@
     </div>
 </div>
 
+
+<div *ngIf="providers.length<=0 || products.length<=0" class="p-5 wow fadeInUp minheight"
+    style="border:solid; border-width: 2px; margin-top: 48px; text-align: center; border-color: rgb(254, 161 ,22);  height: 200px; "
+    data-wow-delay="0.2s">
+    <div style="margin-top: 138px; ">
+        <h5>{{'COMING.COMINGADD.INFO.Error' | translate }}</h5>
+    </div>
+</div>
 
 
 <div *ngIf="productsAdd.length>0" class="p-5 wow fadeInUp"

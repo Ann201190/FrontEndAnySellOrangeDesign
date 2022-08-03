@@ -17,7 +17,16 @@
         "HEADER": {
             "Header": "Login",
             "Password": "Password",
-            "Email": "Email"
+            "Email": "Email",
+            "InfoStore": "Information about store"
+        },
+        "STORE": {
+            "HEADER": {
+                "AddressStore": "Address store",
+                "Name": "Name store",
+                "Employee": "Store's manager",
+                "CountEmployees": "Number of employees"
+            }
         },
         "BUTTON_LOGIN": {
             "LogIn": "Log in",
@@ -554,6 +563,9 @@
                 "Count": "Enter count coming",
                 "Price": "Enter price coming"
             },
+            "INFO": {
+                "Error": "The coming cannot be added because there are no products or providers."
+            },
             "SPAN": {
                 "NumberEmpty": "Coming's number must not be empty",
                 "CountEmpty": "Coming's count must not be empty",
@@ -634,6 +646,9 @@
                 "CountEmpty": "Product's count must not be empty",
                 "ProductEmpty": "Orders's product must not be empty",
                 "CountMin": "The minimum count must be greater than 0"
+            },
+            "INFO": {
+                "Error": "The coming cannot be added because there are no products."
             },
             "HEADERTABLE": {
                 "Total": "TOTAL"

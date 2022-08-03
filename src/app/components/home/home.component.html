@@ -5,6 +5,8 @@
     </div>
 </div>
 
+
+
 <div *ngIf='!isLoggedIn'>
     <div style="margin-top: 48px;">
         <div class="p-5 wow bg-dark fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
@@ -49,5 +51,70 @@
 </div>
 
 <div *ngIf='isLoggedIn' class="minheight">
-    <h1>Главная страница</h1>
+
+
+    <div class="text-center">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">AnySell
+        </h5>
+        <h1 style="text-align: center;">{{'HOME.HEADER.InfoStore' | translate }}</h1>
+    </div>
+
+
+    <div class="container-xxl mb-5">
+        <div class="container my-5">
+            <div class="row" style="margin-top: 48px;">
+
+                <div class="col-lg-6 text-lg-start">
+
+                    <div class=" wow fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
+
+                        <div style="width: 50%; ">
+
+                            <img *ngIf="store!=null && store.logoImage != null " id="image_1" [src]="store.logoImage"
+                                alt="Store" height="500" width="200" class="shadow"
+                                style="width: 200%; padding: 15px; background-color: white; " />
+
+                            <img *ngIf="store.logoImage == null" id="image_2" src="/assets/DefaultStore.png" alt="Store"
+                                height="500" width="200" class="shadow"
+                                style="width: 200%; padding: 15px; background-color: white;" />
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center text-lg-start bg-dark hero-main ">
+
+                    <div class="p-5 wow fadeInUp" style="max-width: 600px; margin: 0 auto;" data-wow-delay="0.2s">
+                        <div class="row g-3">
+
+
+                            <div class="col-12">
+                                <h3 style="color: white;"> {{'HOME.STORE.HEADER.Name' | translate }}: {{store?.name}}
+                                </h3>
+                            </div>
+
+                            <div class="col-12">
+                                <h3 style="color: white;">{{'HOME.STORE.HEADER.AddressStore' | translate }}:
+                                    {{store.address}}</h3>
+                            </div>
+
+                            <div class="col-12">
+                                <h3 style="color: white;"> {{'HOME.STORE.HEADER.Employee' | translate }}:
+                                    {{employee?.name}} {{employee?.surName}}</h3>
+                            </div>
+
+                            <div class="col-12">
+                                <h3 style="color: white;"> {{'HOME.STORE.HEADER.CountEmployees' | translate }}:
+                                    {{countEmployees}} </h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>

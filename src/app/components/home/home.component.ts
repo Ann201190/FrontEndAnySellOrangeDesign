@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
+import { Employee } from 'src/app/models/employee';
 import { Language } from 'src/app/models/enum/language';
+import { Role } from 'src/app/models/enum/role';
+import { Store } from 'src/app/models/store';
 import { AuthService } from 'src/app/services/auth.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { StoreService } from 'src/app/services/store.service';
 
 export const ACCESS_TOKEN_KEY = 'backendanysell_access_token'
 @Component({
@@ -18,11 +24,18 @@ export class HomeComponent implements OnInit {
 
   form!: FormGroup;
   public isWaiting = false;  //ожидание
+  public store!: Store;  //ожидание
+  public employees: Employee[] = [];
+  public employee!: Employee
+  public countEmployees!: number
 
   constructor(
     private authService: AuthService,
     public translateService: TranslateService,
+    public storeService: StoreService,
+    public employeeService: EmployeeService,
     private toast: HotToastService,
+    private sanitizer: DomSanitizer,
     private storage: LocalStorageService,
     private router: Router) {
   }
@@ -35,6 +48,29 @@ export class HomeComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     })
+
+    this.isWaiting = true;
+    if (this.storage.getItem('storeId') != "") {
+      this.storeService.getStoreById(this.storage.getItem('storeId')).subscribe(res => {
+        this.store = res
+        let objectURL = 'data:image/jpeg;base64,' + this.store.logoImage;
+        this.store.logoImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+
+        this.employeeService.getByStore(this.storage.getItem('storeId')).subscribe(res => {
+          this.employees = res
+
+          this.employees.forEach(element => {
+            if (element.role == Role.Manager)
+              this.employee = element;
+          });
+          this.countEmployees =  this.employees.length
+
+          this.isWaiting = false;
+        })
+      })
+
+    }
   }
 
   public get isLoggedIn(): boolean {
@@ -72,5 +108,8 @@ export class HomeComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+
+
 
 }

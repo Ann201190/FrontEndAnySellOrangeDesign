@@ -92,7 +92,6 @@ export class AddcomingComponent implements OnInit {
           .subscribe(prov => {
             this.providers = prov
 
-
             this.selectedProviderId = this.providers[this.providers.length - 1].id;
             this.selectedProductId = this.products[this.products.length - 1].id;
 

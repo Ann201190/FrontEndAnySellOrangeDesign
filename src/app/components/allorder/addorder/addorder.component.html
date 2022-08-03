@@ -5,8 +5,16 @@
     </div>
 </div>
 
+<div *ngIf="producrForOrder.length<=0" class="p-5 wow fadeInUp minheight"
+    style="border:solid; border-width: 2px; margin-top: 48px; text-align: center; border-color: rgb(254, 161 ,22);  height: 200px; "
+    data-wow-delay="0.2s">
+    <div style="margin-top: 138px; ">
+        <h5>{{'ORDER.ORDERADD.INFO.Error' | translate }}</h5>
+    </div>
+</div>
 
-<div class="container-xxl pt-5 pb-3">
+
+<div class="container-xxl pt-5 pb-3" *ngIf="producrForOrder.length>0">
     <div class="text-center wow">
         <h5 class="section-title ff-secondary text-center text-primary fw-normal">{{storage.getItem('storeName')}}
         </h5>
@@ -66,10 +74,9 @@
 
         </div>
 
+
+
         <div class="col-md-6">
-
-
-
             <div *ngIf="productsAdd.length>0" class="p-5 wow fadeInUp"
                 style="border:solid; border-width: 2px; border-color: rgb(254, 161 ,22);   height: 650px; "
                 data-wow-delay="0.2s">

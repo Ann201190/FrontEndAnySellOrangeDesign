@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
+import { STORE_API_URL } from 'src/app/app-injection-tokens';
 import { Language } from 'src/app/models/enum/language';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { PrintService } from 'src/app/services/print.service';
@@ -13,10 +14,12 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductComponent implements OnInit {
 
+  private baseApiUrl = `${this.apiUrl}api/`
   public isWaiting = false;  //ожидание
-  public path: string = `https://localhost:44350/api/Product/downloadprice/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
+  public path: string = `${this.baseApiUrl}/product/downloadprice/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
 
   constructor(
+    @Inject(STORE_API_URL) private apiUrl: string,
     public storage: LocalStorageService,
     private printService: PrintService,
     private toast: HotToastService,
@@ -29,7 +32,7 @@ export class ProductComponent implements OnInit {
 
 
   download() {
-    this.path = `https://localhost:44350/api/Product/downloadprice/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
+    this.path = `${this.baseApiUrl}product/downloadprice/${this.storage.getItem('storeId')}/${this.storage.getItem('lang')}`
   }
 
   successMessage() {
