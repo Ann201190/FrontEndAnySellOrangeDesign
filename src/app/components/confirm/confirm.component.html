@@ -10,13 +10,13 @@
     style="border:solid; border-width: 2px; margin-top: 48px; text-align: center; border-color: rgb(254, 161 ,22);  height: 200px; "
     data-wow-delay="0.2s">
 
-    <div *ngIf='isRegistration' style="margin-top: 98px;">
+    <div *ngIf='isRegistration && !isWaiting' style="margin-top: 98px;">
         <h5> {{'CONFIRM.InfoTrue' | translate }}</h5>
         <button class="btn btn-primary" [routerLink]="['']" style="margin-right: 70px; margin-top: 25px;" type="submit">
             {{'CONFIRM.LogIn' | translate }}</button>
     </div>
 
-    <div style="margin-top: 138px; " *ngIf='!isRegistration'>
+    <div style="margin-top: 138px; " *ngIf='!isRegistration && !isWaiting'>
         <h5>{{'CONFIRM.InfoFalse' | translate }}</h5>
     </div>
 </div>

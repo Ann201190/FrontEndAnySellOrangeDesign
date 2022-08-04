@@ -17,6 +17,16 @@ export const environment = {
   storeApi: 'http://user21741.realhost-free.net/',
   tokenWhiteListedDomains: ['user21741.realhost-free.net', 'auth.user21741.realhost-free.net']
 };*/
+/*hanna.zhelezniak@ranok.com.ua   пароль 12345678
+для хостинга*/
+
+
+/*export const environment = {
+  production: false,
+  authApi: 'http://192.168.58.213/',
+  storeApi: 'http://user21741.realhost-free.net/',
+  tokenWhiteListedDomains: ['user21741.realhost-free.net', '192.168.58.213']
+};*/
 
 
 /*export const environment = {

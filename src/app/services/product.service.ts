@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { map, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { STORE_API_URL } from '../app-injection-tokens';
 import { Product } from '../models/product';
 import { ProductWithDiscount } from '../models/productWithDiscount';
-
 
 
 @Injectable({

@@ -74,6 +74,7 @@ export class HomeComponent implements OnInit {
   }
 
   public get isLoggedIn(): boolean {
+    //return false;
     return this.authService.isAuthenticated()
   }
 
@@ -108,8 +109,4 @@ export class HomeComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
-
-
-
-
 }

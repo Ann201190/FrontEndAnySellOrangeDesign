@@ -23,7 +23,7 @@ export class ConfirmComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.use(this.storage.getItem('lang'))
 
-
+    this.isWaiting = true;
     this.route.params.subscribe((params: Params) => {
       let stringConfirm: string = params['stringConfirm']
 
